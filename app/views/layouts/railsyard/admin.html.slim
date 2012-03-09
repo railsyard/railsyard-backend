@@ -1,0 +1,10 @@
+doctype html
+html
+  head
+    title Railsyard CMS
+    = stylesheet_link_tag    "railsyard/admin", :media => "all"
+    = javascript_include_tag "railsyard/admin"
+    = csrf_meta_tags
+
+  body= yield
+
