@@ -2,7 +2,10 @@
 ENV["RAILS_ENV"] = "test"
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 
+require 'database_cleaner'
 require 'rspec/rails'
+require 'rspec/rails/mocha'
+require 'capybara/rspec'
 
 ENGINE_RAILS_ROOT=File.join(File.dirname(__FILE__), '../')
 
@@ -11,5 +14,19 @@ ENGINE_RAILS_ROOT=File.join(File.dirname(__FILE__), '../')
 Dir[File.join(ENGINE_RAILS_ROOT, "spec/support/**/*.rb")].each {|f| require f }
 
 RSpec.configure do |config|
-  config.use_transactional_fixtures = true
+  ### Mocha ###
+  config.mock_with :mocha
+
+  ### Database Cleaner ###
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean_with(:truncation)
+  end
+  config.before(:each) { DatabaseCleaner.clean }
+
+  ### Capybara ###
+  Capybara.default_driver = :rack_test
+  Capybara.javascript_driver = :webkit
+  Capybara.default_selector = :css
+  Capybara.ignore_hidden_elements = true
 end
