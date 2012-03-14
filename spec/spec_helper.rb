@@ -1,32 +1,40 @@
-# Configure Rails Envinronment
-ENV["RAILS_ENV"] = "test"
-require File.expand_path("../dummy/config/environment.rb",  __FILE__)
+require 'rubygems'
+require 'spork'
 
-require 'database_cleaner'
-require 'rspec/rails'
-require 'rspec/rails/mocha'
-require 'capybara/rspec'
+Spork.prefork do
+  ENV["RAILS_ENV"] = "test"
+  require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 
-ENGINE_RAILS_ROOT=File.join(File.dirname(__FILE__), '../')
+  require 'database_cleaner'
+  require 'rspec/rails'
+  require 'rspec/rails/mocha'
+  require 'capybara/rspec'
 
-# Requires supporting ruby files with custom matchers and macros, etc,
-# in spec/support/ and its subdirectories.
-Dir[File.join(ENGINE_RAILS_ROOT, "spec/support/**/*.rb")].each {|f| require f }
+  # Requires supporting ruby files with custom matchers and macros, etc,
+  # in spec/support/ and its subdirectories.
 
-RSpec.configure do |config|
-  ### Mocha ###
-  config.mock_with :mocha
+  RSpec.configure do |config|
+    ### Mocha ###
+    config.mock_with :mocha
 
-  ### Database Cleaner ###
-  config.before(:suite) do
-    DatabaseCleaner.strategy = :truncation
-    DatabaseCleaner.clean_with(:truncation)
+    ### Database Cleaner ###
+    config.before(:suite) do
+      DatabaseCleaner.strategy = :truncation
+      DatabaseCleaner.clean_with(:truncation)
+    end
+    config.before(:each) { DatabaseCleaner.clean }
+
+    ### Capybara ###
+    Capybara.default_driver = :rack_test
+    Capybara.javascript_driver = :webkit
+    Capybara.default_selector = :css
+    Capybara.ignore_hidden_elements = true
   end
-  config.before(:each) { DatabaseCleaner.clean }
-
-  ### Capybara ###
-  Capybara.default_driver = :rack_test
-  Capybara.javascript_driver = :webkit
-  Capybara.default_selector = :css
-  Capybara.ignore_hidden_elements = true
 end
+
+Spork.each_run do
+  ENGINE_RAILS_ROOT=File.join(File.dirname(__FILE__), '../')
+  Dir[File.join(ENGINE_RAILS_ROOT, "spec/support/**/*.rb")].each {|f| require f }
+  Dir[File.join(ENGINE_RAILS_ROOT, "lib/**/*.rb")].each { |f| require f }
+end
+

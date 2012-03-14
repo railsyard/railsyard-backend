@@ -23,7 +23,9 @@ Gem::Specification.new do |s|
   s.add_dependency "jquery-rails"
   s.add_dependency "compass-rails"
   s.add_dependency "coffee-rails"
+  s.add_dependency "blockenspiel"
 
+  s.add_development_dependency "spork"
   s.add_development_dependency "capybara"
   s.add_development_dependency "capybara-webkit"
   s.add_development_dependency "rspec-rails-mocha"
