@@ -11,6 +11,7 @@ module Railsyard
         attr_reader :model_class, :edit_config, :list_config
 
         def initialize(model_class, &block)
+          @model_class = model_class
           Blockenspiel.invoke(block, self) if block_given?
         end
 

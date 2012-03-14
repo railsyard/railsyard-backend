@@ -55,3 +55,4 @@ describe Railsyard::Backend::Base do
   end
 
 end
+
