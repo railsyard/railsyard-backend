@@ -1,22 +1,25 @@
-require 'railsyard/backend/dsl/model_config'
+require 'railsyard/backend/config/model'
 
 module Railsyard
   module Backend
-    class Base
 
+    class Base
       def initialize
-        @model_configurations = {}
+        @models = {}
       end
 
       def define_editor_for(model_class, &block)
-        model_configuration = Dsl::ModelConfig.new(model_class, &block)
-        @model_configurations[model_class] = model_configuration
+        @models[model_class] = Config::Model.new(model_class, &block)
       end
 
-      def config_for_model(model_class)
-        @model_configurations[model_class]
+      def editor_for(model_class)
+        @models[model_class]
       end
 
+      def editors
+        @models.values
+      end
     end
+
   end
 end

@@ -6,54 +6,86 @@ describe Railsyard::Backend::Base do
     let(:model) { stub }
     let(:model_config) { stub }
 
-    it "setup a Dsl::ModelConfig for the specified model" do
-      Railsyard::Backend::Dsl::ModelConfig.expects(:new).with(@model)
-      subject.define_editor_for @model
+    it "setup a Config::Model for the specified model" do
+      model = stub
+      Railsyard::Backend::Config::Model.expects(:new).with(model)
+      subject.define_editor_for(model)
     end
 
-    it ".config_for_model returns it" do
-      Railsyard::Backend::Dsl::ModelConfig.stubs(:new).with(@model).returns(model_config)
-      subject.define_editor_for @model
-      subject.config_for_model(@model).should == model_config
+  end
+
+  describe ".editor_for" do
+    it "returns an editor by model" do
+      model = stub
+      model_config = stub
+      Railsyard::Backend::Config::Model.stubs(:new).returns(model_config)
+      subject.define_editor_for(model)
+      subject.editor_for(model).should == model_config
     end
   end
 
   context "integration" do
+
     it "saves all the DSL tree configuration properly" do
 
       backend = Railsyard::Backend::Base.new
       backend.define_editor_for "foo" do
+
+        label :title
         localized with: :lang
+
         edit do
           field :field_in_default_group
-          group :foo do
+          group :custom_group do
             field :simple
             field :explicit_type, as: :string
             field :advanced do
-              read_only true
-              visible true
-              use_partial "foo_bar"
+              read_only { :foo }
+              visible if: lambda { :bar }
+              use_partial :foo_bar
             end
           end
         end
+
+        list do
+          as_tree using: :parent
+          field :title do
+            format_as { |value| value.to_s.upcase }
+          end
+          field :author do
+            use_partial { |value| "author" }
+          end
+          field :updated_at do
+            date_format :short
+          end
+          field :created_at do
+            visible if: lambda { true }
+          end
+        end
+
       end
 
-      config = backend.config_for_model("foo")
-      config.should be_localized
+      config = backend.editor_for("foo")
 
-      edit_config = config.edit_config
+      config.l10n_attribute.should == :lang
+      config.label_method.should == :title
 
-      default_group = edit_config.group_config_by_name(:default)
-      default_group.field_config_by_name(:field_in_default_group).should_not be_nil
+      config.list.sorting_type.should == :tree
+      config.list.sorting_attribute.should == :parent
+      config.list.field(:title).format.call(:test).should == "TEST"
+      config.list.field(:updated_at).date_format.should == :short
+      config.list.field(:created_at).visible[:if].call.should be_true
 
-      foo_group = edit_config.group_config_by_name(:foo)
-      foo_group.field_config_by_name(:simple).should_not be_nil
-      foo_group.field_config_by_name(:explicit_type).field_type.should == :string
+      config.edit.group(:default).field(:field_in_default_group).should_not be_nil
 
-      advanced_field = foo_group.field_config_by_name(:advanced)
-      advanced_field.read_only_config.should be_true
-      advanced_field.visible_config.should be_true
-      advanced_field.partial_config.should == "foo_bar"
+      group = config.edit.group(:custom_group)
+      group.field(:simple).should_not be_nil
+      group.field(:explicit_type).field_type.should == :string
+
+      advanced_field = group.field(:advanced)
+      advanced_field.read_only.call.should == :foo
+      advanced_field.visible[:if].call.should == :bar
+      advanced_field.partial.should == :foo_bar
     end
 
   end
