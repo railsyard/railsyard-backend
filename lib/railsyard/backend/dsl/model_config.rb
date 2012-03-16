@@ -23,6 +23,20 @@ module Railsyard
           @list_config ||= ListConfig.new(&block)
         end
 
+        def localized(options)
+          options.symbolize_keys!
+          options.assert_valid_keys(:with)
+          @l10n_config = options
+        end
+
+        def localized?
+          !!@l10n_config
+        end
+
+        def l10n_field
+          @l10n_config[:with].to_sym if localized?
+        end
+
       end
     end
   end

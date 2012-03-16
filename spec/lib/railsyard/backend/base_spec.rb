@@ -23,6 +23,7 @@ describe Railsyard::Backend::Base do
 
       backend = Railsyard::Backend::Base.new
       backend.define_editor_for "foo" do
+        localized with: :lang
         edit do
           field :field_in_default_group
           group :foo do
@@ -37,7 +38,10 @@ describe Railsyard::Backend::Base do
         end
       end
 
-      edit_config = backend.config_for_model("foo").edit_config
+      config = backend.config_for_model("foo")
+      config.should be_localized
+
+      edit_config = config.edit_config
 
       default_group = edit_config.group_config_by_name(:default)
       default_group.field_config_by_name(:field_in_default_group).should_not be_nil

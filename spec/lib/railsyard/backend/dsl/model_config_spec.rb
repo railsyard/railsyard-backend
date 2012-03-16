@@ -9,6 +9,12 @@ describe Railsyard::Backend::Dsl::ModelConfig do
     subject.model_class.should == model
   end
 
+  it "saves localized_with config" do
+    subject.localized(with: :foo)
+    subject.should be_localized
+    subject.l10n_field.should == :foo
+  end
+
   describe ".edit" do
     it "initialize a Dsl::EditConfig" do
       edit_config = stub
