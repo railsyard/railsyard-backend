@@ -1,0 +1,12 @@
+ruby:
+  url = resource.new_record? ? create_resource_path : update_resource_path
+
+= simple_form_for resource, url: url do |form|
+  - editor_config.edit.groups.each do |group|
+    = field_set_tag group.name do
+      - group.fields.each do |field|
+        = form.input field.name
+
+    = form.button :submit
+
+
