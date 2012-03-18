@@ -11,7 +11,7 @@ gemspec
 # your gem to rubygems.org.
 
 gem 'sqlite3'
-gem 'slim'
+gem 'slim-rails'
 gem 'jquery-rails'
 gem 'compass-rails'
 gem 'sass-rails'
