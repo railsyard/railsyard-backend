@@ -6,5 +6,10 @@ html
     = javascript_include_tag "railsyard/admin"
     = csrf_meta_tags
 
-  body= yield
+  body
+    - [:alert, :notice].each do |type|
+      - if flash[type]
+        div class="#{type}-flash-message"= flash[type]
+
+    = yield
 

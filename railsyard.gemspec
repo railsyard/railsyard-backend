@@ -19,11 +19,11 @@ Gem::Specification.new do |s|
   s.add_dependency "rails"
   s.add_dependency "slim"
   s.add_dependency "simple_form"
-  s.add_dependency "cancan"
   s.add_dependency "jquery-rails"
   s.add_dependency "compass-rails"
   s.add_dependency "coffee-rails"
   s.add_dependency "blockenspiel"
+  s.add_dependency "responders"
 
   s.add_development_dependency "spork"
   s.add_development_dependency "capybara"
@@ -32,4 +32,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "database_cleaner"
   s.add_development_dependency "factory_girl_rails"
   s.add_development_dependency "launchy"
+
+  s.add_development_dependency "devise"
+  s.add_development_dependency "cancan"
 end

@@ -1,5 +1,5 @@
 require 'blockenspiel'
-require 'railsyard/backend/dsl/edit'
+require 'railsyard/backend/dsl/list'
 require 'railsyard/backend/config/base'
 require 'railsyard/backend/config/edit_group'
 

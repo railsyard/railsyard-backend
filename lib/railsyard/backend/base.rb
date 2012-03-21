@@ -9,11 +9,11 @@ module Railsyard
       end
 
       def define_editor_for(model_class, &block)
-        @models[model_class] = Config::Model.new(model_class, &block)
+        @models[model_class.name] = Config::Model.new(model_class, &block)
       end
 
       def editor_for(model_class)
-        @models[model_class]
+        @models[model_class.name]
       end
 
       def editors

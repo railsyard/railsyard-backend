@@ -10,6 +10,7 @@ Spork.prefork do
   require 'rspec/rails/mocha'
   require 'capybara/rspec'
   require 'capybara-webkit'
+  require 'factory_girl_rails'
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.

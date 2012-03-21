@@ -7,7 +7,7 @@ describe Railsyard::Backend::Base do
     let(:model_config) { stub }
 
     it "setup a Config::Model for the specified model" do
-      model = stub
+      model = stub(name: :class_name)
       Railsyard::Backend::Config::Model.expects(:new).with(model)
       subject.define_editor_for(model)
     end
@@ -16,7 +16,7 @@ describe Railsyard::Backend::Base do
 
   describe ".editor_for" do
     it "returns an editor by model" do
-      model = stub
+      model = stub(name: :class_name)
       model_config = stub
       Railsyard::Backend::Config::Model.stubs(:new).returns(model_config)
       subject.define_editor_for(model)
@@ -28,8 +28,10 @@ describe Railsyard::Backend::Base do
 
     it "saves all the DSL tree configuration properly" do
 
+      class Foobar; end
+
       backend = Railsyard::Backend::Base.new
-      backend.define_editor_for "foo" do
+      backend.define_editor_for Foobar do
 
         label :title
         localized with: :lang
@@ -65,7 +67,7 @@ describe Railsyard::Backend::Base do
 
       end
 
-      config = backend.editor_for("foo")
+      config = backend.editor_for(Foobar)
 
       config.l10n_attribute.should == :lang
       config.label_method.should == :title

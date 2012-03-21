@@ -1,0 +1,7 @@
+h1 Index
+
+ul
+  - collection.each do |resource|
+    li class=dom_class(resource) id=dom_id(resource)
+      = link_to resource.send(editor_config.label_method), edit_path(resource_class: collection_name, id: resource)
+      = link_to "x", destroy_path(resource_class: collection_name, id: resource), method: :delete, rel: "delete-resource"
