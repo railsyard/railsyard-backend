@@ -1,3 +1,5 @@
+require 'railsyard/authentication/none'
+
 module Railsyard
   module Backend
     module Controller
