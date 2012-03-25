@@ -18,6 +18,7 @@ Spork.prefork do
   RSpec.configure do |config|
     ### Mocha ###
     config.mock_with :mocha
+    config.include FactoryGirl::Syntax::Methods
 
     ### Database Cleaner ###
     config.before(:suite) do

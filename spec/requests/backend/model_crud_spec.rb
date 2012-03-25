@@ -4,7 +4,7 @@ feature "Backend basic CRUD" do
 
   scenario "List resources" do
     # Given I have 5 books
-    books = FactoryGirl.create_list(:book, 5)
+    books = create_list(:book, 5)
 
     # When I visit the list action for Book models
     visit "/backend/books"
@@ -39,7 +39,7 @@ feature "Backend basic CRUD" do
 
   scenario "Resource editing" do
     # Given I have a book model
-    book = FactoryGirl.create(:book)
+    book = create(:book)
 
     # When I visit the edit action for the model
     visit "/backend/books/#{book.to_param}/edit"
@@ -62,7 +62,7 @@ feature "Backend basic CRUD" do
 
   scenario "Resource removal" do
     # Given I have a book model
-    book = FactoryGirl.create(:book)
+    book = create(:book)
 
     # When I visit the list action for Book models
     visit "/backend/books"
