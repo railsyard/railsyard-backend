@@ -5,13 +5,13 @@ require "railsyard/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "Railsyard"
+  s.name        = "railsyard"
   s.version     = Railsyard::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Railsyard."
-  s.description = "TODO: Description of Railsyard."
+  s.authors     = ["Stefano Verna", "Francesco Disperati"]
+  s.email       = ["s.verna@cantierecreativo.net", "f.disperati@cantierecreativo.net"]
+  s.homepage    = "http://railsyardcms.org"
+  s.summary     = "A free and open source Ruby on Rails 3.2 CMS"
+  s.description = ""
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
 
