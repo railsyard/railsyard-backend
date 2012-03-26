@@ -1,3 +1,37 @@
+@import "blueprint/reset";
+@import "blueprint/debug";
+@import "blueprint";
+@import "blueprint/liquid";
+
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+
+
+@include blueprint-typography;
+/* FIXME: debug rules */
+@include blueprint-debug;
+/* div { border: 1px solid #F00; } */
+/* div div { border: 1px solid #0F0; } */
+/* div div div { border: 1px solid #00F; } */
+
 $blueprint-liquid-container-width: 100%;
 
-$base-color: #666;
+/* Hack to equalize columns height */
+.equalcolumns {
+    overflow: hidden;
+}
+.equalcolumns {
+    padding-bottom: 2000px;
+    margin-bottom: -2000px;
+}
+
+/* Colors */
+$ry-green:   #8BB106;
+$ry-blue:    #068BB1;
+$ry-fuchsia: #B1068B;
+$background: #999;
+$grey:       #666;
+
+/* Fonts */
+@import url(http://fonts.googleapis.com/css?family=Cabin:400,700);
+$font-title: 'Cabin', sans-serif;

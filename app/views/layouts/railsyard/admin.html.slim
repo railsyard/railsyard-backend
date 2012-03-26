@@ -8,12 +8,20 @@ html
 
   body
     #container
-      #sidebar
-        = image_tag("railsyard/logo.jpg")
+      #sidebar.equalcolumns
+        div
+          = link_to image_tag("railsyard/logo.jpg"), "/"
 
-      #content
-        - [:alert, :notice].each do |type|
-          - if flash[type]
-            div class="#{type}-flash-message"= flash[type]
+          ul.menu
+            - Railsyard.backend.editors.each do |e|
+              - model = e.model_class
+              li
+                = link_to model, index_path, :resource_class => model
 
-        = yield
+      #content.equalcolumns
+        div
+          - [:alert, :notice].each do |type|
+            - if flash[type]
+              div class="#{type}-flash-message"= flash[type]
+
+          = yield
