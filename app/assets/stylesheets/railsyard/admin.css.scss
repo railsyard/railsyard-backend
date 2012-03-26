@@ -1,0 +1,33 @@
+@import "blueprint/reset";
+@import "blueprint/debug";
+@import "blueprint";
+@import "blueprint/liquid";
+
+@import "partials/base";
+
+@include blueprint-typography;
+
+/* FIXME: debug rules */
+@include blueprint-debug;
+/* div { border: 1px solid #F00; } */
+/* div div { border: 1px solid #0F0; } */
+/* div div div { border: 1px solid #00F; } */
+
+body {
+    color: $base-color;
+}
+
+#container {
+    @include container;
+}
+
+#sidebar {
+    @include column(6);
+}
+
+#content {
+    @include column(18);
+    @include last;
+}
+
+form { @include blueprint-form; }
