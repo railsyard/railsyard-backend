@@ -1,3 +1,4 @@
+require 'responders'
 require 'railsyard/backend/controller'
 
 module Railsyard

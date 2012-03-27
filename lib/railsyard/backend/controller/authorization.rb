@@ -1,5 +1,3 @@
-require 'railsyard/authorization/none'
-
 module Railsyard
   module Backend
     module Controller
@@ -10,6 +8,8 @@ module Railsyard
         delegate :authorize!, to: :authorizer, allow_nil: true
 
         def authorizer
+          require 'railsyard/authorization/none'
+
           if @authorizer.nil?
             authorizer_class = Railsyard.authorization_adapter || Railsyard::Authorization::None
             @authorizer = authorizer_class.new(self)
