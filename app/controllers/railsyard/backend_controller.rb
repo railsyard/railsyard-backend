@@ -16,6 +16,7 @@ module Railsyard
 
     helper_method :create_resource_path
     helper_method :update_resource_path
+    helper_method :reorder_resources_path
 
     layout "railsyard/admin"
 
