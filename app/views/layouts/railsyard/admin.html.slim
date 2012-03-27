@@ -10,13 +10,13 @@ html
     #container
       #sidebar.equalcolumns
         div
-          = link_to image_tag("railsyard/logo.jpg"), "/"
+          = link_to image_tag("railsyard/logo.jpg"), backend_index_path
 
           ul.menu
             - Railsyard.backend.editors.each do |e|
               - model = e.model_class
               li
-                = link_to model, index_path, :resource_class => model
+                = link_to model, index_path( :resource_class => model.table_name )
 
       #content.equalcolumns
         div
