@@ -5,24 +5,19 @@ describe Railsyard::Backend::Dsl::EditField do
   let(:config) { stub }
   subject { Railsyard::Backend::Dsl::EditField.new(config) }
 
-  describe ".read_only" do
-    it "saves the value in the config object" do
-      config.expects(:read_only=)
-      subject.read_only(true)
-    end
-  end
+  delegated_options = {
+    readonly: :readonly=,
+    use_partial: :partial=,
+    visible: :visible=,
+    input_options: :input_options=
+  }
 
-  describe ".use_partial" do
-    it "saves the value in the config object" do
-      config.expects(:partial=)
-      subject.use_partial(true)
-    end
-  end
-
-  describe ".visible" do
-    it "saves the value in the config object" do
-      config.expects(:visible=)
-      subject.visible(true)
+  delegated_options.each do |method, config_method|
+    describe ".#{method}" do
+      it "saves the value in the config object" do
+        config.expects(config_method)
+        subject.public_send(method, true)
+      end
     end
   end
 

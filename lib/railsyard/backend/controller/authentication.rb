@@ -1,5 +1,3 @@
-require 'railsyard/authentication/none'
-
 module Railsyard
   module Backend
     module Controller
@@ -11,6 +9,8 @@ module Railsyard
         delegate :authenticate!, to: :authenticator, allow_nil: true
 
         def authenticator
+          require 'railsyard/authentication/none'
+
           if @authenticator.nil?
             authenticator_class = Railsyard.authentication_adapter || Railsyard::Authentication::None
             @authenticator = authenticator_class.new(self)
