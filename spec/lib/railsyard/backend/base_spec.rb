@@ -42,7 +42,7 @@ describe Railsyard::Backend::Base do
             field :simple
             field :explicit_type, as: :string
             field :advanced do
-              read_only { :foo }
+              readonly { :foo }
               visible if: lambda { :bar }
               use_partial :foo_bar
             end
@@ -85,7 +85,7 @@ describe Railsyard::Backend::Base do
       group.field(:explicit_type).field_type.should == :string
 
       advanced_field = group.field(:advanced)
-      advanced_field.read_only.call.should == :foo
+      advanced_field.readonly.call.should == :foo
       advanced_field.visible[:if].call.should == :bar
       advanced_field.partial.should == :foo_bar
     end
