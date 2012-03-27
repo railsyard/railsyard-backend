@@ -3,14 +3,12 @@ $ ->
     $this = $(this)
     $this.sortable
       update: ->
-        serialized =
+        $this.sortable("disable")
         $.ajax
           url: $this.data("sort-path")
           type: "post"
           data: $this.sortable("serialize")
-        .success ->
-          alert("Wee!")
-        .error ->
-          alert("Fail")
+        .always ->
+          $this.sortable("enable")
 
 
