@@ -1,0 +1,3 @@
+[submodule "app/assets/stylesheets/railsyard/jquery-ui-theme"]
+	path = app/assets/stylesheets/railsyard/jquery-ui-theme
+	url = git://github.com/taitems/Aristo-jQuery-UI-Theme.git
