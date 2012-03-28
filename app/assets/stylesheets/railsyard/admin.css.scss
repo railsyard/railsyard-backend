@@ -1,6 +1,7 @@
 /* =require_tree ./jquery-ui-theme */
 
 @import "partials/base";
+@import "partials/ui";
 
 /* Global */
 html, body {
@@ -51,7 +52,6 @@ a:hover {
 
     &> div {
         margin: 10px;
-        @include border-radius(4px);
     }
 }
 
@@ -79,6 +79,6 @@ ul.menu {
     }
 
     li:hover {
-        background-color: lighten($ry-green, 50%);
+        background-color: $ry-green-light;
     }
 }

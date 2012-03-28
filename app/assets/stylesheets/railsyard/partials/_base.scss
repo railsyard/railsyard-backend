@@ -32,6 +32,10 @@ $ry-fuchsia: #B1068B;
 $background: #999;
 $grey:       #666;
 
+$ry-green-light:   lighten($ry-green, 50%);
+$ry-blue-light:    lighten($ry-blue, 50%);
+$ry-fuchsia-light: lighten($ry-fuchsia, 50%);
+
 /* Fonts */
 @import url(http://fonts.googleapis.com/css?family=Cabin:400,700);
 $font-title: 'Cabin', sans-serif;

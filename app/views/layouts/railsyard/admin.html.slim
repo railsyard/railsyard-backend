@@ -20,8 +20,6 @@ html
 
       #content.equalcolumns
         div
-          - [:alert, :notice].each do |type|
-            - if flash[type]
-              div class="#{type}-flash-message"= flash[type]
+          = render "layouts/railsyard/show_flash"
 
           = yield
