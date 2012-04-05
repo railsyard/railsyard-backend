@@ -4,3 +4,6 @@
 [submodule "vendor/submodules/formalize"]
 	path = vendor/submodules/formalize
 	url = https://github.com/nathansmith/formalize.git
+[submodule "vendor/submodules/datatables"]
+	path = vendor/submodules/datatables
+	url = https://github.com/DataTables/DataTables.git
