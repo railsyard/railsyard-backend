@@ -13,14 +13,13 @@ html
 
         nav
           ul.models
-            - 4.times do
-              - Railsyard.backend.editors.each do |e|
-                - model = e.model_class
-                li
-                  = link_to model.name, index_path(:resource_class => model.table_name)
-                  ul.actions
-                    li = link_to "List", index_path(:resource_class => model.table_name)
-                    li = link_to "Add new", new_path(:resource_class => model.table_name)
+            - Railsyard.backend.editors.each do |e|
+              - model = e.model_class
+              li
+                = link_to model.name, index_path(:resource_class => model.table_name)
+                ul.actions
+                  li = link_to "List", index_path(:resource_class => model.table_name)
+                  li = link_to "Add new", new_path(:resource_class => model.table_name)
 
       #page-content
         div

@@ -3,9 +3,9 @@ Railsyard.backend.define_editor_for Book do
   label :title
 
   list do
-    field :title
+    sortable using: :foo
     field :subtitle
-    field :description
+    field :description_excerpt
   end
 
   edit do

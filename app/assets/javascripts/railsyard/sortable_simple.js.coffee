@@ -2,6 +2,7 @@ $ ->
   $("[data-sortable=simple]").each ->
     $this = $(this)
     $this.sortable
+      placeholder: "placeholder"
       update: ->
         $this.sortable("disable")
         $.ajax

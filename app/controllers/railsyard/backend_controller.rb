@@ -14,6 +14,7 @@ module Railsyard
     helper_method :editor_config
     helper_method :collection_name
     helper_method :resource
+    helper_method :resource_class
 
     helper_method :create_resource_path
     helper_method :update_resource_path

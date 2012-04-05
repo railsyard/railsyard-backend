@@ -1,0 +1,19 @@
+li class=dom_class(resource) id=dom_id(resource)
+
+  .resource
+    = link_to edit_path(resource_class: collection_name, id: resource) do
+      = resource.send(editor_config.label_method)
+
+    ul.fields class="fields-#{editor_config.list.fields.count}" data-resize-width-based-on="#page-content" data-resize-percentage="0.7"
+      - editor_config.list.fields.each do |field|
+        - value = resource.send(field.name)
+        li
+          span.label = simple_form_translate(resource.class, "labels", field.name, field.name.to_s.titleize)
+          - if value.present?
+            span.value = value
+          - else
+            span.value.empty = simple_form_translate(resource.class, "empty", field.name, "No value")
+
+    ul.actions
+      li= link_to "Delete", destroy_path(resource_class: collection_name, id: resource), method: :delete, rel: "delete-resource"
+

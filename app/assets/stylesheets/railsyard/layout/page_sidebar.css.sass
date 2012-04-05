@@ -20,6 +20,9 @@
 
       &> li
 
+        &:last-child
+          border-bottom: 1px solid white
+
         &> a
           display: block
           line-height: 30px
@@ -30,7 +33,7 @@
           +text-shadow(white 0px 1px 0)
 
           &:hover
-            background-color: #e4e4e4
+            background-color: $light-blue
 
         &> ul
           background: white
