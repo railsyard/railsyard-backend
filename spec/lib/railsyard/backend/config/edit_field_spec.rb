@@ -13,7 +13,7 @@ describe Railsyard::Backend::Config::EditField do
     config.field_type.should == :foo
   end
 
-  %w(read_only partial visible).each do |attr|
+  %w(readonly partial visible).each do |attr|
     it "let get and set conditional :#{attr} attribute" do
       subject.send("#{attr}=", :foo)
       subject.send(attr).should == :foo

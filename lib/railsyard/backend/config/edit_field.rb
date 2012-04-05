@@ -6,7 +6,7 @@ module Railsyard
     module Config
 
       class EditField < Base
-        conditional_config :read_only
+        conditional_config :readonly
         conditional_config :partial
         conditional_config :visible
 
