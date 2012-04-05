@@ -29,6 +29,14 @@ module Railsyard
           @fields.values
         end
 
+        def simple_sorting?
+          sorting_type == :simple
+        end
+
+        def tree_sorting?
+          sorting_type == :tree
+        end
+
       end
 
     end

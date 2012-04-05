@@ -17,6 +17,7 @@ module Railsyard
 
     helper_method :create_resource_path
     helper_method :update_resource_path
+    helper_method :reorder_resources_path
 
     layout "railsyard/admin"
 
@@ -25,11 +26,24 @@ module Railsyard
     before_filter :authenticate!
     before_filter :authorize_action!
 
-    respond_to :html
+    respond_to :html, except: :reorder
+    respond_to :json, only: :reorder
+
     responders :flash
 
     def index
       respond_with collection
+    end
+
+    def reorder
+      params[resource_name].each_with_index do |id, position|
+        record = resource_class.find(id)
+        record.update_attribute(
+          editor_config.list.sorting_attribute,
+          position
+        )
+      end
+      render json: { success: true }
     end
 
     def show
