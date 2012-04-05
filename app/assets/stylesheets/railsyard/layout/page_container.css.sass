@@ -1,0 +1,22 @@
+#page-container
+  position: relative
+
+  $page-sidebar-width: 190px
+
+  &::before, &::after
+    content: ""
+    position: absolute
+    top: 0
+    left: 0
+    bottom: 0
+    background-color: #ececec
+    width: $page-sidebar-width
+
+  &::after
+    left: $page-sidebar-width - 4px
+    width: 4px
+    background: transparent
+    +box-shadow(rgba(black, 0.2) -2px 0 3px inset)
+
+  @import page_sidebar
+  @import page_content

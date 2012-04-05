@@ -1,0 +1,50 @@
+#page-sidebar
+  position: absolute
+  top: 0
+  left: 0
+  width: $page-sidebar-width
+
+
+  h1
+    +replace-text("railsyard/logo.png")
+    height: image-height("railsyard/logo.png")
+    padding: 20px 0
+
+  nav
+
+    a
+      color: $blue
+      text-decoration: none
+
+    &> ul.models
+
+      &> li
+
+        &> a
+          display: block
+          line-height: 30px
+          border-top: 1px solid white
+          border-bottom: 1px solid rgba(black, 0.2)
+          font-weight: bold
+          padding: 0 15px
+          +text-shadow(white 0px 1px 0)
+
+          &:hover
+            background-color: #e4e4e4
+
+        &> ul
+          background: white
+          +box-shadow(rgba(black, 0.2) 0 1px 3px inset)
+          border-bottom: 1px solid rgba(black, 0.2)
+          padding: 3px 0
+
+          &> li > a
+            display: block
+            line-height: 25px
+            padding: 0 15px
+            font-size: 12px
+
+            &:hover
+              background-color: #eaf2fa
+              color: #444
+              +text-shadow(white 0px 1px 0)

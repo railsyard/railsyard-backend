@@ -7,18 +7,22 @@ html
     = csrf_meta_tags
 
   body
-    #container
-      #sidebar.equalcolumns
-        div
-          = link_to image_tag("railsyard/logo.jpg"), backend_index_path
+    #page-container
+      #page-sidebar
+        h1.logo = link_to "Railsyard", backend_index_path
 
-          ul.menu
-            - Railsyard.backend.editors.each do |e|
-              - model = e.model_class
-              li
-                = link_to model, index_path( :resource_class => model.table_name )
+        nav
+          ul.models
+            - 4.times do
+              - Railsyard.backend.editors.each do |e|
+                - model = e.model_class
+                li
+                  = link_to model.name, index_path(:resource_class => model.table_name)
+                  ul.actions
+                    li = link_to "List", index_path(:resource_class => model.table_name)
+                    li = link_to "Add new", new_path(:resource_class => model.table_name)
 
-      #content.equalcolumns
+      #page-content
         div
           = render "layouts/railsyard/show_flash"
 
