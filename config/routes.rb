@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  match "/static" => "railsyard/static#index"
+  get "/backend" => "railsyard/static#index", :as => :backend_index
 
   scope "backend" do
     controller "railsyard/backend" do
