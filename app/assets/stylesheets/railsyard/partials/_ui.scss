@@ -27,3 +27,26 @@
         .ui-icon-notice { background-position: 0 -144px; }
     }
 }
+
+.ui-accordion-header {
+    position: relative;
+    padding: 4px 0;
+
+    span {
+        display: block;
+        position: absolute;
+        top: 50%;
+        margin-top: -8px;
+    }
+
+    a {
+        display: block;
+        font-size: 16px;
+        margin-left: 20px;
+    }
+}
+
+.ui-accordion-content {
+    position: relative;
+    margin-bottom: 4px;
+}

@@ -3,14 +3,17 @@ module Railsyard
   class FormBuilder < SimpleForm::FormBuilder
 
     def group(group_name, options = {}, &block)
-      group_legend = translate(:groups, group_name)
+      group_legend = template.link_to translate(:groups, group_name), '#'
       group_hint = translate(:group_hints, group_name)
-      template.field_set_tag(group_legend, class: "group") do
-        [
+      [
+       template.content_tag( :h3, group_legend, data: {behaviour: "groups-toggle"} ),
+       template.content_tag( :div, data: {behaviour: "groups-toggle"} ) do
+         [
           (template.content_tag(:p, group_hint, class: "hint") if group_hint.present?),
-          template.capture(&block)
-        ].compact.join.html_safe
-      end
+           template.capture(&block)
+           ].join.html_safe
+        end
+      ].join.html_safe
     end
 
     def translate(namespace, name, default='')
