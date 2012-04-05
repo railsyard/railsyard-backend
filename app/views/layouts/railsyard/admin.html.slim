@@ -7,9 +7,19 @@ html
     = csrf_meta_tags
 
   body
-    - [:alert, :notice].each do |type|
-      - if flash[type]
-        div class="#{type}-flash-message"= flash[type]
+    #container
+      #sidebar.equalcolumns
+        div
+          = link_to image_tag("railsyard/logo.jpg"), backend_index_path
 
-    = yield
+          ul.menu
+            - Railsyard.backend.editors.each do |e|
+              - model = e.model_class
+              li
+                = link_to model, index_path( :resource_class => model.table_name )
 
+      #content.equalcolumns
+        div
+          = render "layouts/railsyard/show_flash"
+
+          = yield

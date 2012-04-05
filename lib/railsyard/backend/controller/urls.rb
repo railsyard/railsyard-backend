@@ -9,6 +9,10 @@ module Railsyard
           index_path(resource_class: collection_name)
         end
 
+        def reorder_resources_path
+          reorder_path(resource_class: collection_name)
+        end
+
         def resource_path
           show_path(resource_class: collection_name, id: resource)
         end
