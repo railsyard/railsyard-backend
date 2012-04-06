@@ -34,6 +34,7 @@
 
         &> ul.fields
           display: inline-block
+          text-align: left
 
           @for $fields-count from 2 through 10
             &.fields-#{$fields-count} li
@@ -53,7 +54,7 @@
               font-size: 11px
               margin-bottom: 4px
 
-            .value.empty
+            .value.blank
               color: #666
 
         &> ul.actions

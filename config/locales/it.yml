@@ -1,0 +1,10 @@
+it:
+  railsyard:
+    blank: "Nessun valore"
+    helpers:
+      list: "Elenco %{model}"
+      edit: "Modifica %{model}"
+      update: "Aggiorna %{model}"
+      new: "Crea %{model}"
+      create: "Crea %{model}"
+      destroy: "Elimina %{model}"

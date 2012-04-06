@@ -6,18 +6,38 @@ module BackendHelper
     simple_form_for(object, *(args << options.merge(:builder => Railsyard::FormBuilder)), &block)
   end
 
-  def simple_form_translate(model, namespace, name, default='')
-    model_name = model.name.tableize
-    lookups     = []
-
-    lookups << :"#{model_name}.#{action_name}.#{name}"
-    lookups << :"#{model_name}.#{name}"
-    lookups << :"defaults.#{action_name}.#{name}"
-    lookups << :"defaults.#{name}"
-    lookups << default
-
-    I18n.t(lookups.shift, :scope => :"simple_form.#{namespace}", :default => lookups).presence
+  def model_t(model, options = {})
+    model = model.class if model.class.ancestors.include? ActiveRecord::Base
+    model.model_name.human(options)
   end
 
+  def model_attr_t(model, attribute, options = {})
+    model = model.class if model.class.ancestors.include? ActiveRecord::Base
+    model.human_attribute_name(attribute, options)
+  end
+
+  def ry_t(field, options = {})
+    I18n.t("railsyard.#{field}", options)
+  end
+
+  def index_label(model)
+    ry_t("helpers.list", model: model_t(model, count: 2))
+  end
+
+  def new_label(model)
+    ry_t("helpers.new", model: model_t(model))
+  end
+
+  def create_label(model)
+    ry_t("helpers.create", model: model_t(model))
+  end
+
+  def edit_label(model)
+    ry_t("helpers.edit", model: model_t(model))
+  end
+
+  def destroy_label(model)
+    ry_t("helpers.destroy", model: model_t(model))
+  end
 
 end

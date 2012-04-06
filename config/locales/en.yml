@@ -1,0 +1,10 @@
+en:
+  railsyard:
+    blank: "No value"
+    helpers:
+      list: "List %{model}"
+      new: "New %{model}"
+      create: "Create new %{model}"
+      edit: "Edit %{model}"
+      update: "Update %{model}"
+      destroy: "Delete %{model}"

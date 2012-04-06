@@ -10,7 +10,7 @@ feature "Backend basic CRUD" do
     visit "/backend/books"
 
     # Then all the books should be properly listed
-    page.should have_content "Index"
+    page.should have_content "List Books"
     books.each do |book|
       page.should have_selector dom_id_for(book)
     end
@@ -19,6 +19,9 @@ feature "Backend basic CRUD" do
   scenario "Resource creation" do
     # When I visit the new action for Book models
     visit "/backend/books/new"
+
+    # Then the title should be "New Book"
+    page.should have_content "New Book"
 
     # And I fill in the form with a book data
     fill_in "Title", with: "Foo"
@@ -44,6 +47,9 @@ feature "Backend basic CRUD" do
     # When I visit the edit action for the model
     visit "/backend/books/#{book.to_param}/edit"
 
+    # Then the title should be "Edit Book"
+    page.should have_content "Edit Book"
+
     # And I fill in the form with a book data
     fill_in "Title", with: "Foo"
     fill_in "Subtitle", with: "Bar"
@@ -67,8 +73,11 @@ feature "Backend basic CRUD" do
     # When I visit the list action for Book models
     visit "/backend/books"
 
-    # And I click on the "delete" button of the book
+    # Within the list item for the book itself
     within dom_id_for(book) do
+      # The button label should be "Delete Book"
+      page.should have_content "Delete Book"
+      # When I click on the Delete button
       find_rel("delete-resource").click
     end
 

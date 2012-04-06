@@ -1,15 +1,4 @@
-h2 = resource_class.name
-
-/* table data-table="true" */
-/*   thead */
-/*     tr */
-/*       th Name */
-/*       th Actions */
-/*   tbody */
-/*     - collection.each do |resource| */
-/*       tr */
-/*         td = link_to resource.send(editor_config.label_method), edit_path(resource_class: collection_name, id: resource) */
-/*         td = link_to "x", destroy_path(resource_class: collection_name, id: resource), method: :delete, rel: "delete-resource" */
+h2 = index_label(resource_class)
 
 ul.collection data-sortable=editor_config.list.sorting_type data-sort-path=reorder_resources_path
   - collection.each do |resource|
