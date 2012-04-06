@@ -22,10 +22,10 @@ module Railsyard
         end
 
         def resource_class
+          return nil if collection_name.singularize == collection_name
           model_class_name = collection_name.classify
           if Object.const_defined? model_class_name
             model_class_name.constantize
-          else
           end
         end
 

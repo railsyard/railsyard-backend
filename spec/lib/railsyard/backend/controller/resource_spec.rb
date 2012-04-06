@@ -18,6 +18,12 @@ describe Railsyard::Backend::Controller::Resource do
       subject.send(:resource_class).should == ExampleModel
     end
 
+    it "return nils on singular collection_names" do
+      class ExampleModel; end
+      subject.stubs(:collection_name).returns("example_model")
+      subject.send(:resource_class).should be_nil
+    end
+
     it "returns nil otherwise" do
       subject.stubs(:collection_name).returns("foo")
       subject.send(:resource_class).should be_nil
