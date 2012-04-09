@@ -31,6 +31,7 @@
 .ui-accordion-header {
     position: relative;
     padding: 4px 0;
+    cursor: pointer;
 
     span {
         display: block;
@@ -48,5 +49,6 @@
 
 .ui-accordion-content {
     position: relative;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
+    padding: 8px 20px;
 }
