@@ -30,7 +30,8 @@
 
 .ui-accordion-header {
     position: relative;
-    padding: 4px 0;
+    padding: 8px 0;
+    background-color: $light-gray;
     cursor: pointer;
 
     span {
@@ -44,6 +45,9 @@
         display: block;
         font-size: 16px;
         margin-left: 20px;
+        text-decoration: none;
+        color: $grey;
+        @include text-shadow(white 0px 1px 0);
     }
 }
 

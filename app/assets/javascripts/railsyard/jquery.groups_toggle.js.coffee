@@ -3,7 +3,7 @@
 $.fn.groupsToggle = ->
   @each ->
     $header = $(this)
-    $header.addClass 'ui-accordion-header ui-helper-reset ui-state-default ui-state-focus'
+    $header.addClass 'ui-accordion-header'
     $header.prepend $('<span>').addClass( 'ui-icon ui-icon-triangle-1-s' )
 
     visible = true
