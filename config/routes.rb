@@ -11,7 +11,6 @@ Rails.application.routes.draw do
         match "/new"     , to: :new     , as: :new     , via: :get
 
         scope ":id" do
-          match "/"       , to: :show    , as: :show    , via: :get
           match "/"       , to: :update  , as: :update  , via: :put
           match "/"       , to: :destroy , as: :destroy , via: :delete
           match "/edit"   , to: :edit    , as: :edit    , via: :get

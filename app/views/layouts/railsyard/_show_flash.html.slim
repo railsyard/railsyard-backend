@@ -1,6 +1,3 @@
 - [:alert, :notice].each do |type|
   - if flash[type]
-    div class="ui-flash ui-state-#{type} ui-corner-all"
-      p
-        span class="ui-icon ui-icon-#{type}"
-        strong = flash[type]
+    div class="flash flash-#{type}" = flash[type]

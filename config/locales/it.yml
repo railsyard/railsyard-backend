@@ -8,3 +8,16 @@ it:
       new: "Crea %{model}"
       create: "Crea %{model}"
       destroy: "Elimina %{model}"
+    groups:
+      defaults:
+        default: "Campi della risorsa"
+
+  flash:
+    actions:
+      create:
+        notice: '%{resource_name}: risorsa creata con successo.'
+      update:
+        notice: '%{resource_name}: risorsa aggiornata con successo.'
+      destroy:
+        notice: '%{resource_name}: risorsa eliminata con successo.'
+        alert: '%{resource_name}: non è stato possibile eliminare la risorsa.'

@@ -7,3 +7,6 @@
 [submodule "vendor/submodules/datatables"]
 	path = vendor/submodules/datatables
 	url = https://github.com/DataTables/DataTables.git
+[submodule "vendor/submodules/humane-js"]
+	path = vendor/submodules/humane-js
+	url = https://github.com/wavded/humane-js.git

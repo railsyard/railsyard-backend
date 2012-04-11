@@ -47,10 +47,6 @@ module Railsyard
       render json: { success: true }
     end
 
-    def show
-      respond_with resource
-    end
-
     def new
       respond_with build_resource
     end
@@ -67,7 +63,7 @@ module Railsyard
 
     def update
       resource.update_attributes(resource_params)
-      respond_with resource, location: resource_path
+      respond_with resource, location: resources_path
     end
 
     def destroy

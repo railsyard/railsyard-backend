@@ -8,3 +8,6 @@ en:
       edit: "Edit %{model}"
       update: "Update %{model}"
       destroy: "Delete %{model}"
+    groups:
+      defaults:
+        default: "Resource Fields"

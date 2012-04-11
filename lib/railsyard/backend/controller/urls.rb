@@ -13,10 +13,6 @@ module Railsyard
           reorder_path(resource_class: collection_name)
         end
 
-        def resource_path
-          show_path(resource_class: collection_name, id: resource)
-        end
-
         def create_resource_path
           create_path(resource_class: collection_name)
         end
