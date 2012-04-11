@@ -2,7 +2,9 @@ ruby:
   url = resource.new_record? ? create_resource_path : update_resource_path
 
 = backend_form_for resource, url: url do |form|
+
   - editor_config.edit.groups.each do |group|
+
     = form.group group.name do
       - group.fields.each do |field|
         - if resource.class.reflect_on_association(field.name)
@@ -10,6 +12,5 @@ ruby:
         - else
           = form.input field.name
 
-  = form.button :submit
-
-
+  .input.submit
+    = form.button :submit

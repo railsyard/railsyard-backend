@@ -44,34 +44,36 @@ describe Railsyard::FormBuilder do
       EOTEMPLATE
     end
 
-    it "should add a fieldset with class :group" do
+    it "should add a div with data-behaviour" do
       render(:inline => template, :locals => { :resource => resource })
-      rendered.should have_xpath("//fieldset[@class='group']")
+      rendered.should have_xpath("//div[@data-behaviour='groups-toggle']")
     end
 
-    it "should not add a legend" do
+    it "should add a empty header" do
       render(:inline => template, :locals => { :resource => resource })
-      rendered.should_not have_xpath("//fieldset[@class='group']/legend")
+      rendered.should have_xpath("//h3[@data-behaviour='groups-toggle']/a") do |a|
+        a.should_not have_content # FIXME: never executed?
+      end
     end
 
     it "should not add hint" do
       render(:inline => template, :locals => { :resource => resource })
-      rendered.should_not have_xpath("//fieldset[@class='group']/p[@class='hint']")
+      rendered.should_not have_xpath("//div[@data-behaviour='groups-toggle']/p[@class='hint']")
     end
 
     context "with proper translations" do
 
-      it "should add a legend" do
+      it "should add a header" do
         store_translations(:en, railsyard: { groups: { book: { main: "FOO" } } }) do
           render(:inline => template, :locals => { :resource => resource })
-          rendered.should have_xpath("//fieldset[@class='group']/legend[text()='FOO']")
+          rendered.should have_xpath("//h3[@data-behaviour='groups-toggle']/a[text()='FOO']")
         end
       end
 
       it "should add a hint" do
         store_translations(:en, railsyard: { group_hints: { book: { main: "FOO" } } }) do
           render(:inline => template, :locals => { :resource => resource })
-          rendered.should have_xpath("//fieldset[@class='group']/p[@class='hint' and text()='FOO']")
+          rendered.should have_xpath("//div[@data-behaviour='groups-toggle']/p[@class='hint' and text()='FOO']")
         end
       end
 

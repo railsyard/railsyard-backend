@@ -9,8 +9,10 @@ Railsyard.backend.define_editor_for Book do
   end
 
   edit do
-    field :title
-    field :subtitle
+    group :name do
+      field :title
+      field :subtitle
+    end
     field :description
   end
 
