@@ -16,8 +16,8 @@ module Railsyard
         end
 
         def add_field_to_default_group(field_config)
-          @groups[:default] ||= EditGroup.new(:default)
-          @groups[:default].add_field(field_config)
+          @groups[:main] ||= EditGroup.new(:main)
+          @groups[:main].add_field(field_config)
         end
 
         def add_group(group_config)
