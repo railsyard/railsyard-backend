@@ -3,25 +3,9 @@
 #= require humane
 
 @import compass
-@import colors
 
-+global-reset
-
-$page-sidebar-width: 190px
-$page-header-height: 70px
-
-body
-  color: #222
-  font-family: sans-serif
-  font-size: 14px
-  +background(linear-gradient(left, $light-gray, $light-gray $page-sidebar-width, white $page-sidebar-width))
-
-  .flash
-    display: none
-
-  @import common/form
-  @import common/accordion
-
-  @import layout/page_container
-  @import actions/index
-
+@import admin/variables
+@import admin/common
+@import admin/layout
+@import admin/actions
+@import admin/extras
