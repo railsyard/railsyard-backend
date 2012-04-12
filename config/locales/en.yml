@@ -10,4 +10,4 @@ en:
       destroy: "Delete %{model}"
     groups:
       defaults:
-        main: "Resource Fields"
+        main: "Other Fields"
