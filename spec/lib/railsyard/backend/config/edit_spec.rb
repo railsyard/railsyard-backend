@@ -11,13 +11,13 @@ describe Railsyard::Backend::Config::Edit do
   end
 
   describe ".add_field_to_default_group" do
-    it "creates a group named :default and adds the field to it" do
+    it "creates a group named :main and adds the field to it" do
       field = stub
       group = stub
       group.expects(:add_field).with(field)
-      Railsyard::Backend::Config::EditGroup.expects(:new).with(:default).returns(group)
+      Railsyard::Backend::Config::EditGroup.expects(:new).with(:main).returns(group)
       subject.add_field_to_default_group(field)
-      subject.group(:default).should == group
+      subject.group(:main).should == group
     end
   end
 

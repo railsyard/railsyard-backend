@@ -8,13 +8,13 @@ feature "Backend layout interaction" do
 
     # When I visit the edit action for that book
     visit "/backend/books/#{book.id}/edit"
-    # And I see a fields group
+    # And I see a field in a group
     find( 'label', text: 'Description' ).should be_visible
     # And I click the fields group name
-    click_on "No group"
+    click_on "Other Fields"
     wait_until_animation_end
 
-    # Then the fields in the group should disappear
+    # Then the fields in that group should disappear
     lambda { find('label', text: 'Description') }.should raise_error(Capybara::ElementNotFound)
   end
 
