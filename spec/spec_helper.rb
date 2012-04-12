@@ -32,7 +32,7 @@ Spork.prefork do
       Capybara::Selenium::Driver.new(app, :browser => :chrome)
     end
     Capybara.default_driver = :rack_test
-    Capybara.javascript_driver = :selenium_chrome
+    Capybara.javascript_driver = :selenium_chrome unless ENV['TRAVIS']
     Capybara.default_selector = :css
     Capybara.ignore_hidden_elements = true
   end

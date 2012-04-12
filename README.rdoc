@@ -1,3 +1,5 @@
 = Railsyard
 
 This project rocks and uses MIT-LICENSE.
+
+{<img src="https://secure.travis-ci.org/cantierecreativo/railsyardcms.png?branch=v3-develop" alt="Build Status" />}[http://travis-ci.org/cantierecreativo/railsyardcms]
