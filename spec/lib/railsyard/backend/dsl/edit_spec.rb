@@ -17,9 +17,9 @@ describe Railsyard::Backend::Dsl::Edit do
   describe ".field" do
     it "initialize a Config::EditField and adds it to default group" do
       field_config = stub
-      Railsyard::Backend::Config::EditField.stubs(:new).with(:foo).returns(field_config)
+      Railsyard::Backend::Config::EditField.stubs(:new).with(:foo, { cheese: "bar" }).returns(field_config)
       config.expects(:add_field_to_default_group).with(field_config)
-      subject.field(:foo)
+      subject.field(:foo, cheese: "bar")
     end
   end
 

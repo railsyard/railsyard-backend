@@ -78,7 +78,7 @@ describe Railsyard::Backend::Base do
       config.list.field(:updated_at).date_format.should == :short
       config.list.field(:created_at).visible[:if].call.should be_true
 
-      config.edit.group(:default).field(:field_in_default_group).should_not be_nil
+      config.edit.group(:main).field(:field_in_default_group).should_not be_nil
 
       group = config.edit.group(:custom_group)
       group.field(:simple).should_not be_nil

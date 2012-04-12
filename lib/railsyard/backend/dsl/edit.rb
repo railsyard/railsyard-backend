@@ -12,8 +12,8 @@ module Railsyard
           config.add_group Config::EditGroup.new(name, &block)
         end
 
-        def field(name, &block)
-          config.add_field_to_default_group Config::EditField.new(name, &block)
+        def field(name, options = {}, &block)
+          config.add_field_to_default_group Config::EditField.new(name, options, &block)
         end
       end
 

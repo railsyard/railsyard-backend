@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe Railsyard::Backend::Dsl::Base do
+describe Railsyard::Support::Dsl do
 
   let(:config) { stub }
-  subject { Railsyard::Backend::Dsl::Base.new(config) }
+  subject { Railsyard::Support::Dsl.new(config) }
 
   it "takes a config to fill" do
     subject
@@ -12,7 +12,7 @@ describe Railsyard::Backend::Dsl::Base do
   describe "#delegate_to_config" do
 
     before do
-      class FooBar < Railsyard::Backend::Dsl::Base
+      class FooBar < Railsyard::Support::Dsl
         delegate_to_config :foo, :foo=
       end
     end

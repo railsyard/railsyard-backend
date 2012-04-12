@@ -11,7 +11,7 @@ feature "Backend layout interaction" do
     # And I see a fields group
     find( 'label', text: 'Description' ).should be_visible
     # And I click the fields group name
-    click_on "No group"
+    click_on "Resource Fields"
     wait_until_animation_end
 
     # Then the fields in the group should disappear
