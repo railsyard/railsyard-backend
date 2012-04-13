@@ -4,6 +4,13 @@ html
     title Railsyard CMS
     = stylesheet_link_tag    "railsyard/admin", :media => "all"
     = javascript_include_tag "railsyard/admin"
+
+    - Railsyard.plugin_manager.plugins.each do |plugin|
+      - plugin.backend_css_dependencies.each do |asset_path|
+        = stylesheet_link_tag asset_path
+      - plugin.backend_js_dependencies.each do |asset_path|
+        = javascript_include_tag asset_path
+
     = csrf_meta_tags
 
   body

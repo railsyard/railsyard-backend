@@ -13,4 +13,9 @@ module Railsyard
     @@backend ||= Backend::Base.new
   end
 
+  def self.plugin_manager
+    require "railsyard/plugin/manager"
+    @@plugin_manager ||= Plugin::Manager.new
+  end
+
 end
