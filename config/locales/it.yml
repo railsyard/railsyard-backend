@@ -10,7 +10,7 @@ it:
       destroy: "Elimina %{model}"
     groups:
       defaults:
-        main: "Altri campi"
+        main: "Campi Risorsa"
 
   flash:
     actions:
