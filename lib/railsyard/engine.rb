@@ -16,7 +16,6 @@ module Railsyard
     end
 
     # This reloads all the backend configuration files in development env
-
     config.to_prepare do
       Dir[Rails.root.join("app/backend/**/*.rb")].each { |f| require_dependency f }
     end

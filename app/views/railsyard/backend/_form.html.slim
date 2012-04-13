@@ -4,13 +4,13 @@ ruby:
 = backend_form_for resource, url: url do |form|
 
   - editor_config.edit.groups.each do |group|
-
     = form.group group.name do
       - group.fields.each do |field|
         - if resource.class.reflect_on_association(field.name)
-          = form.association field.name
+          = form.association field.name, field.simple_form_options
         - else
-          = form.input field.name
+          = form.input field.name, field.simple_form_options
 
   .input.submit
     = form.button :submit
+

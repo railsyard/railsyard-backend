@@ -1,5 +1,5 @@
 $(document).ready ->
-  $("button, input[type=submit]").button()
+  $(".button, button, input[type=submit]").button()
 
   $("[data-table]").dataTable
     bJQueryUI: true

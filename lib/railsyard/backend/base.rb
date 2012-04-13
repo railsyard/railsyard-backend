@@ -1,5 +1,3 @@
-require 'railsyard/backend/config/model'
-
 module Railsyard
   module Backend
 
@@ -9,6 +7,7 @@ module Railsyard
       end
 
       def define_editor_for(model_class, &block)
+        require 'railsyard/backend/config/model'
         @models[model_class.name] = Config::Model.new(model_class, &block)
       end
 
