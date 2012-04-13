@@ -2,4 +2,9 @@ language: ruby
 rvm:
   - 1.9.3
 before_script:
+  # Start xvfb for capybara specs
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+
+  - "git submodule update --init --recursive"
   - "bundle exec rake db:migrate RAILS_ENV=test"
