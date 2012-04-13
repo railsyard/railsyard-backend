@@ -9,7 +9,7 @@ describe Railsyard::Backend::Dsl::EditField do
     readonly: :readonly=,
     use_partial: :partial=,
     visible: :visible=,
-    input_options: :input_options=,
+    input_options: :input_options=
   }
 
   delegated_options.each do |method, config_method|
