@@ -19,6 +19,10 @@ module Railsyard
           @fields[field_config.name] = field_config
         end
 
+        def add_nested(nested_config)
+          @fields[nested_config.name] = nested_config
+        end
+
         def field(name)
           @fields[name.to_sym]
         end

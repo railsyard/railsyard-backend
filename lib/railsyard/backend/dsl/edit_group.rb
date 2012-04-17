@@ -9,6 +9,9 @@ module Railsyard
         def field(*args, &block)
           config.add_field Config::EditField.new(*args, &block)
         end
+        def nested(*args, &block)
+          config.add_nested Config::NestedEdit.new(*args, &block)
+        end
       end
 
     end

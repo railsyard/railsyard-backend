@@ -20,6 +20,11 @@ module Railsyard
           @groups[:main].add_field(field_config)
         end
 
+        def add_nested_to_default_group(field_config)
+          @groups[:main] ||= EditGroup.new(:main)
+          @groups[:main].add_nested(field_config)
+        end
+
         def add_group(group_config)
           @groups[group_config.name] = group_config
         end

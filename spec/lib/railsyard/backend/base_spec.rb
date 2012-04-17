@@ -46,6 +46,12 @@ describe Railsyard::Backend::Base do
               visible if: lambda { :bar }
               use_partial :foo_bar
             end
+            nested :relation do
+              field :title
+              nested :deep_relation do
+                field :title
+              end
+            end
           end
         end
 
@@ -82,6 +88,7 @@ describe Railsyard::Backend::Base do
 
       group = config.edit.group(:custom_group)
       group.field(:simple).should_not be_nil
+      group.field(:relation).group(:main).should have(2).fields
       group.field(:explicit_type).field_type.should == :string
 
       advanced_field = group.field(:advanced)

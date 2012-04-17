@@ -16,4 +16,12 @@ describe Railsyard::Backend::Config::EditGroup do
     subject.field(:foo).should == field
   end
 
+  it "lets you add nested_fields, and get them back via .field and .fields" do
+    field = stub(:name => :foo)
+    subject.add_nested(field)
+    subject.fields.should have(1).field
+    subject.fields.first.should == field
+    subject.field(:foo).should == field
+  end
+
 end

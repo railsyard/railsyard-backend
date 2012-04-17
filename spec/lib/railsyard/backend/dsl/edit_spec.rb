@@ -23,4 +23,13 @@ describe Railsyard::Backend::Dsl::Edit do
     end
   end
 
+  describe ".nested" do
+    it "initialize a Config::NestedEdit and adds it to default group" do
+      field_config = stub
+      Railsyard::Backend::Config::NestedEdit.stubs(:new).with(:foo, { cheese: "bar" }).returns(field_config)
+      config.expects(:add_nested_to_default_group).with(field_config)
+      subject.nested(:foo, cheese: "bar")
+    end
+  end
+
 end
