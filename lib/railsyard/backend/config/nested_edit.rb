@@ -1,8 +1,4 @@
-require 'blockenspiel'
-require 'railsyard/backend/dsl/edit'
-require 'railsyard/backend/config/base'
-require 'railsyard/backend/config/edit_group'
-
+require 'railsyard/backend/config/edit'
 
 module Railsyard
   module Backend

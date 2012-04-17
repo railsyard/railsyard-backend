@@ -7,7 +7,7 @@ module Railsyard
   module Backend
     module Dsl
 
-      class Edit < Base
+      class NestedEdit < Edit
 
         def group(name, &block)
           config.add_group Config::EditGroup.new(name, &block)
@@ -17,8 +17,7 @@ module Railsyard
           config.add_field_to_default_group Config::EditField.new(name, options, &block)
         end
 
-        def nested(name, options = {}, &block)
-          require 'railsyard/backend/config/nested_edit'
+        def nested(name, options = {})
           config.add_nested_to_default_group Config::NestedEdit.new(name, options, &block)
         end
 

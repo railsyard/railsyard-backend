@@ -1,0 +1,12 @@
+- config.groups.each do |group|
+  = form.group group.name do
+    - group.fields.each do |field|
+      - if field.is_a? Railsyard::Backend::Config::EditField
+        - if resource.class.reflect_on_association(field.name)
+          = form.association field.name, field.simple_form_options
+        - else
+          = form.input field.name, field.simple_form_options
+      - elsif field.is_a? Railsyard::Backend::Config::NestedEdit
+        = form.simple_fields_for field.name do |subform|
+          = render "nested_form", form: subform, config: field
+
