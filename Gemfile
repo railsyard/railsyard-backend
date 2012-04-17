@@ -18,4 +18,4 @@ gem 'sass-rails'
 gem 'coffee-rails'
 gem 'simple_form'
 gem 'responders'
-
+gem 'formalize-rails'

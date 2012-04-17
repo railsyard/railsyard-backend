@@ -7,6 +7,7 @@ require "compass-rails"
 require "coffee-rails"
 require "blockenspiel"
 require "responders"
+require "formalize-rails"
 
 module Railsyard
   class Engine < ::Rails::Engine
