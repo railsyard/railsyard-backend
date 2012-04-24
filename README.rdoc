@@ -2,4 +2,4 @@
 
 This project rocks and uses MIT-LICENSE.
 
-{<img src="https://secure.travis-ci.org/cantierecreativo/railsyardcms.png?branch=v3-develop" alt="Build Status" />}[http://travis-ci.org/cantierecreativo/railsyardcms]
+{<img src="https://secure.travis-ci.org/cantierecreativo/railsyard-backend.png?branch=master" alt="Build Status" />}[http://travis-ci.org/cantierecreativo/railsyard-backend]
