@@ -1,0 +1,47 @@
+form
+  div.input
+    margin: 10px 0
+
+    &.submit
+      margin-left: 170px
+
+    label
+      display: inline-block
+      text-align: right
+      width: 140px
+      margin-right: 10px
+      font-size: 13px
+      padding-top: 5px
+      color: #666
+
+    input, textarea
+      display: inline-block
+      @include border-radius(3px)
+
+      &.text
+        width: 420px
+
+      &.numeric
+        width: 180px
+
+    &.boolean
+
+      input
+        display: inline-block
+        margin-left: 150px
+        margin-right: 5px
+
+      label
+        width: auto
+
+  .fields
+    border: 1px solid #ccc
+    margin-bottom: 20px
+
+    .remove-fields
+      margin: 15px 0
+      margin-top: -20px
+      margin-left: 170px
+      display: block
+
+    .remove_nested_fields

@@ -1,0 +1,9 @@
+ruby:
+  url = resource.new_record? ? create_resource_path : update_resource_path
+
+= backend_form_for resource, url: url do |form|
+  = render "nested_form", form: form, config: editor_config.edit
+
+  .input.submit
+    = form.button :submit
+

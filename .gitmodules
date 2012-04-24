@@ -1,0 +1,9 @@
+[submodule "vendor/submodules/Aristo-jQuery-UI-Theme"]
+	path = vendor/submodules/Aristo-jQuery-UI-Theme
+	url = git://github.com/taitems/Aristo-jQuery-UI-Theme.git
+[submodule "vendor/submodules/datatables"]
+	path = vendor/submodules/datatables
+	url = https://github.com/DataTables/DataTables.git
+[submodule "vendor/submodules/humane-js"]
+	path = vendor/submodules/humane-js
+	url = https://github.com/wavded/humane-js.git

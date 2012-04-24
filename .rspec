@@ -1,1 +1,3 @@
--b --colour --drb --format d
+--colour
+--drb
+--format nested

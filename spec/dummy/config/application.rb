@@ -8,6 +8,7 @@ require "active_resource/railtie"
 require "sprockets/railtie"
 
 Bundler.require
+require "railsyard"
 
 module Dummy
   class Application < Rails::Application

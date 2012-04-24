@@ -4,7 +4,32 @@ html
     title Railsyard CMS
     = stylesheet_link_tag    "railsyard/admin", :media => "all"
     = javascript_include_tag "railsyard/admin"
+
+    - Railsyard.plugin_manager.plugins.each do |plugin|
+      - plugin.backend_css_dependencies.each do |asset_path|
+        = stylesheet_link_tag asset_path
+      - plugin.backend_js_dependencies.each do |asset_path|
+        = javascript_include_tag asset_path
+
     = csrf_meta_tags
 
-  body= yield
+  body
+    #page-container
+      #page-sidebar
+        h1.logo = link_to "Railsyard", backend_index_path
 
+        nav
+          ul.models
+            - Railsyard.backend.editors.each do |e|
+              - model = e.model_class
+              li
+                = link_to model_t(model, count: 2), index_path(:resource_class => model.table_name)
+                ul.actions
+                  li = link_to index_label(model), index_path(:resource_class => model.table_name)
+                  li = link_to new_label(model), new_path(:resource_class => model.table_name)
+
+      #page-content
+        div
+          = render "layouts/railsyard/show_flash"
+
+          = yield

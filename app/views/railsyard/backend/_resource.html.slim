@@ -1,0 +1,21 @@
+li class=dom_class(resource) id=dom_id(resource)
+
+  - fields = editor_config.list.fields
+
+  .resource class="fields-#{fields.count}"
+    = link_to edit_path(resource_class: collection_name, id: resource) do
+      = resource.send(editor_config.label_method)
+
+    ul.fields
+      - fields.each do |field|
+        - value = resource.send(field.name)
+        li
+          span.label = model_attr_t(resource, field.name)
+          - if value.present?
+            span.value = value
+          - else
+            span.value.blank = ry_t("blank")
+
+    ul.actions
+      li= link_to destroy_label(resource),  destroy_path(resource_class: collection_name, id: resource), method: :delete, rel: "delete-resource"
+
