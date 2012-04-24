@@ -7,16 +7,16 @@ require "railsyard/version"
 Gem::Specification.new do |s|
   s.name        = "railsyard"
   s.version     = Railsyard::VERSION
-  s.authors     = ["Stefano Verna", "Francesco Disperati"]
+  s.authors     = ["Stefano Verna", "Francesco Disperati", "Silvio Relli"]
   s.email       = ["s.verna@cantierecreativo.net", "f.disperati@cantierecreativo.net"]
   s.homepage    = "http://railsyardcms.org"
-  s.summary     = "A free and open source Ruby on Rails 3.2 CMS"
-  s.description = ""
+  s.summary     = "A modular, free and open source Ruby on Rails 3.2 CMS"
+  s.description = "A modular, free and open source Ruby on Rails 3.2 CMS"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
 
-  s.add_dependency "sass-rails"
   s.add_dependency "rails"
+  s.add_dependency "sass-rails"
   s.add_dependency "slim-rails"
   s.add_dependency "simple_form"
   s.add_dependency "jquery-rails"

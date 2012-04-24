@@ -1,3 +1,3 @@
 module Railsyard
-  VERSION = "0.0.1"
+  VERSION = "3.0.beta"
 end
