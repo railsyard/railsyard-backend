@@ -2,10 +2,10 @@ doctype html
 html
   head
     title Railsyard CMS
-    = stylesheet_link_tag    "railsyard/admin", :media => "all"
-    = javascript_include_tag "railsyard/admin"
+    = stylesheet_link_tag    "railsyard/backend", :media => "all"
+    = javascript_include_tag "railsyard/backend"
 
-    - Railsyard.plugin_manager.plugins.each do |plugin|
+    - Railsyard::Backend.plugin_manager.plugins.each do |plugin|
       - plugin.backend_css_dependencies.each do |asset_path|
         = stylesheet_link_tag asset_path
       - plugin.backend_js_dependencies.each do |asset_path|
@@ -20,7 +20,7 @@ html
 
         nav
           ul.models
-            - Railsyard.backend.editors.each do |e|
+            - Railsyard::Backend.editor_manager.editors.each do |e|
               - model = e.model_class
               li
                 = link_to model_t(model, count: 2), index_path(:resource_class => model.table_name)

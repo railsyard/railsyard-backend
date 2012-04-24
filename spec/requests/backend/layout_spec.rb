@@ -8,8 +8,10 @@ feature "Backend layout interaction" do
 
     # When I visit the edit action for that book
     visit "/backend/books/#{book.id}/edit"
+
+    save_and_open_page
     # And I see a field in a group
-    find( 'label', text: 'Description' ).should be_visible
+    find('label', text: 'Description').should be_visible
     # And I click the fields group name
     click_on "Resource Fields"
     wait_until_animation_end

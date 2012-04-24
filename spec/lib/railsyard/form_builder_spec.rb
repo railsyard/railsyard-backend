@@ -1,10 +1,10 @@
 require 'spec_helper'
-require 'railsyard/form_builder'
+require 'railsyard-backend/form_builder'
 
-describe Railsyard::FormBuilder do
+describe Railsyard::Backend::FormBuilder do
 
   subject do
-    Railsyard::FormBuilder.new(stub_everything, stub_everything, stub_everything, stub_everything, stub_everything)
+    Railsyard::Backend::FormBuilder.new(stub_everything, stub_everything, stub_everything, stub_everything, stub_everything)
   end
 
   describe ".translate" do

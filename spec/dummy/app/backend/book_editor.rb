@@ -1,4 +1,4 @@
-Railsyard.backend.define_editor_for Book do
+Railsyard::Backend.define_editor_for Book do
 
   label :title
 

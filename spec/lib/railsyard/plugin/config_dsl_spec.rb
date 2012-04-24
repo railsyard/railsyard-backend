@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe Railsyard::Plugin::ConfigDsl do
+describe Railsyard::Backend::Plugin::ConfigDsl do
 end

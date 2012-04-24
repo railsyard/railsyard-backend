@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "layouts/railsyard/admin" do
   it "includes additional assets coming from plugins" do
-    Railsyard.plugin_manager.add_plugin(:foo) do
+    Railsyard::Backend.plugin_manager.add_plugin(:foo) do
       backend_javascript_dependency "dep"
       backend_stylesheet_dependency "dep"
     end

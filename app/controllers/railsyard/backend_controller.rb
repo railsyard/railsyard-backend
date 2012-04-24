@@ -1,5 +1,5 @@
 require 'responders'
-require 'railsyard/backend/controller'
+require 'railsyard-backend/controller'
 
 module Railsyard
   class BackendController < Railsyard::ApplicationController
@@ -86,7 +86,7 @@ module Railsyard
     end
 
     def editor_config
-      @editor_config ||= Railsyard.backend.editor_for(resource_class)
+      @editor_config ||= Railsyard::Backend.editor_manager.editor_for(resource_class)
     end
 
     def member_action?

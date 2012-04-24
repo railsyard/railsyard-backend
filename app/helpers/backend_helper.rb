@@ -1,9 +1,9 @@
 module BackendHelper
 
   def backend_form_for(object, *args, &block)
-    require 'railsyard/form_builder'
+    require 'railsyard-backend/form_builder'
     options = args.extract_options!
-    simple_form_for(object, *(args << options.merge(:builder => Railsyard::FormBuilder)), &block) << after_nested_form_callbacks
+    simple_form_for(object, *(args << options.merge(:builder => Railsyard::Backend::FormBuilder)), &block) << after_nested_form_callbacks
   end
 
   def model_t(model, options = {})
