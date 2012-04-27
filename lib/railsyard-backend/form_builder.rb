@@ -37,16 +37,17 @@ module Railsyard::Backend
     def link_to_add(*args, &block)
       options = args.extract_options!.symbolize_keys
       association = args.pop
+      complete_association_name = "#{object_name}_#{association}".gsub(/[\[\]]+/, '_')
       options[:class] = [options[:class], "add_nested_fields"].compact.join(" ")
-      options["data-association"] = association
+      options["data-association"] = complete_association_name
       options["data-association-type"] = object.class.reflect_on_association(association).macro
       args << (options.delete(:href) || "javascript:void(0)")
       args << options
       @fields ||= {}
-      @template.after_nested_form(association) do
+      @template.after_nested_form(complete_association_name) do
         model_object = object.class.reflect_on_association(association).klass.new
-        output = %Q[<div id="#{association}_fields_blueprint" class="nested_form_blueprint" style="display: none">].html_safe
-        output << fields_for(association, model_object, :child_index => "new_#{association}", &@fields[association])
+        output = %Q[<div id="#{complete_association_name}_fields_blueprint" class="nested_form_blueprint" style="display: none">].html_safe
+        output << fields_for(association, model_object, :child_index => "new_#{complete_association_name}", &@fields[complete_association_name])
         output.safe_concat('</div>')
         output
       end
@@ -56,8 +57,9 @@ module Railsyard::Backend
     def link_to_remove(*args, &block)
       options = args.extract_options!.symbolize_keys
       association = args.pop
+      complete_association_name = "#{object_name}_#{association}".gsub(/[\[\]]+/, '_')
       options[:class] = [options[:class], "remove_nested_fields"].compact.join(" ")
-      options["data-association"] = association
+      options["data-association"] = complete_association_name
       options["data-association-type"] = parent_builder.object.class.reflect_on_association(association).macro
       args << (options.delete(:href) || "javascript:void(0)")
       args << options
@@ -66,9 +68,10 @@ module Railsyard::Backend
 
     def fields_for_with_nested_attributes(association_name, *args)
       # TODO Test this better
-      block = args.pop || Proc.new { |fields| @template.render(:partial => "#{association_name.to_s.singularize}_fields", :locals => {:f => fields}) }
+      complete_association_name = "#{object_name}_#{association_name}".gsub(/[\[\]]+/, '_')
+      block = args.pop || Proc.new { |fields| @template.render(:partial => "#{complete_association_name.to_s.singularize}_fields", :locals => {:f => fields}) }
       @fields ||= {}
-      @fields[association_name] = block
+      @fields[complete_association_name] = block
       super(association_name, *(args << block))
     end
 
