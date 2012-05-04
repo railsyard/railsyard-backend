@@ -1,18 +1,6 @@
 doctype html
 html
-  head
-    title Railsyard CMS
-    = stylesheet_link_tag    "railsyard/backend", :media => "all"
-    = javascript_include_tag "railsyard/backend"
-
-    - Railsyard::Backend.plugin_manager.plugins.each do |plugin|
-      - plugin.backend_css_dependencies.each do |asset_path|
-        = stylesheet_link_tag asset_path
-      - plugin.backend_js_dependencies.each do |asset_path|
-        = javascript_include_tag asset_path
-
-    = csrf_meta_tags
-
+  head= render "railsyard/common/head"
   body
     #page-container
       #page-sidebar
@@ -30,6 +18,5 @@ html
 
       #page-content
         div
-          = render "layouts/railsyard/show_flash"
-
+          = render "railsyard/common/flash_messages"
           = yield
