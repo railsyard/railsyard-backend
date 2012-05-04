@@ -9,6 +9,7 @@ module Railsyard::Backend
       attr_accessor :name
       attr_accessor :backend_js_dependencies
       attr_accessor :backend_css_dependencies
+      attr_accessor :authentication_partial
 
       def initialize(&block)
         @backend_js_dependencies = []

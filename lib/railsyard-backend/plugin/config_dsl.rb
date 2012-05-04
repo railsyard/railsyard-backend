@@ -14,6 +14,9 @@ module Railsyard::Backend
         config.backend_css_dependencies << asset_path
       end
 
+      def authentication_infos(partial_path)
+        config.authentication_partial = partial_path
+      end
     end
 
   end

@@ -2,6 +2,9 @@ doctype html
 html
   head= render "railsyard/common/head"
   body
+    - if Railsyard::Backend.plugin_manager.authentication_partial.present?
+      = render Railsyard::Backend.plugin_manager.authentication_partial
+
     #page-container
       #page-sidebar
         h1.logo = link_to "Railsyard", backend_index_path
@@ -11,7 +14,7 @@ html
             - Railsyard::Backend.editor_manager.editors.each do |e|
               - model = e.model_class
               li
-                = link_to model_t(model, count: 2), "##{model.table_name}", data: { behaviour: "dom-toggle", toggle_closed: "true" }
+                = link_to model_t(model, count: 2), "##{model.table_name}", data: { behaviour: "dom-toggle", toggle_closed: (controller_name != "backend" || model != resource_class) }
                 ul.actions id=model.table_name
                   li = link_to index_label(model), index_path(:resource_class => model.table_name)
                   li = link_to new_label(model), new_path(:resource_class => model.table_name)

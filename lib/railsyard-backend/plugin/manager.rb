@@ -16,6 +16,10 @@ module Railsyard::Backend
         @plugins.values
       end
 
+      def authentication_partial
+        @plugins.values.map(&:authentication_partial).first
+      end
+
     end
   end
 end
