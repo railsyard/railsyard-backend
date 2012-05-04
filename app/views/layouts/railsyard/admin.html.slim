@@ -23,8 +23,8 @@ html
             - Railsyard::Backend.editor_manager.editors.each do |e|
               - model = e.model_class
               li
-                = link_to model_t(model, count: 2), index_path(:resource_class => model.table_name)
-                ul.actions
+                = link_to model_t(model, count: 2), "##{model.table_name}", data: { behaviour: "dom-toggle", toggle_closed: "true" }
+                ul.actions id=model.table_name
                   li = link_to index_label(model), index_path(:resource_class => model.table_name)
                   li = link_to new_label(model), new_path(:resource_class => model.table_name)
 
