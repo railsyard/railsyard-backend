@@ -27,6 +27,11 @@ module Railsyard::Backend
           model_class_name.constantize
         end
       end
+
+      def editor_config
+        @editor_config ||= Railsyard::Backend.editor_manager.editor_for(resource_class)
+      end
+
     end
 
   end

@@ -2,13 +2,11 @@ require 'responders'
 require 'railsyard-backend/controller'
 
 module Railsyard
-  class BackendController < Railsyard::ApplicationController
+  class ResourcesController < Railsyard::ApplicationController
 
-    include Railsyard::Backend::Controller::Filters
     include Railsyard::Backend::Controller::Resource
     include Railsyard::Backend::Controller::Authentication
     include Railsyard::Backend::Controller::Authorization
-    include Railsyard::Backend::Controller::Urls
 
     helper_method :collection
     helper_method :editor_config
@@ -16,14 +14,8 @@ module Railsyard
     helper_method :resource
     helper_method :resource_class
 
-    helper_method :create_resource_path
-    helper_method :update_resource_path
-    helper_method :reorder_resources_path
-
     layout "railsyard/admin"
 
-    before_filter :ensure_model_existance!
-    before_filter :ensure_editor_existance!
     before_filter :authenticate!
     before_filter :authorize_action!
 
@@ -58,17 +50,17 @@ module Railsyard
     def create
       build_resource
       resource.save
-      respond_with resource, location: resources_path
+      respond_with resource, location: resources_path(tableized_class_name: collection_name)
     end
 
     def update
       resource.update_attributes(resource_params)
-      respond_with resource, location: resources_path
+      respond_with resource, location: resources_path(tableized_class_name: collection_name)
     end
 
     def destroy
       resource.destroy
-      respond_with resource, location: resources_path
+      respond_with resource, location: resources_path(tableized_class_name: collection_name)
     end
 
     protected
@@ -82,15 +74,16 @@ module Railsyard
     end
 
     def collection_name
-      params[:resource_class]
-    end
-
-    def editor_config
-      @editor_config ||= Railsyard::Backend.editor_manager.editor_for(resource_class)
+      params[:tableized_class_name]
     end
 
     def member_action?
       [ :show, :edit, :destroy ].include? action_name
+    end
+
+    def authorize_action!
+      resource_to_authorize = member_action? ? resource : resource_class
+      authorize!(action_name, resource_to_authorize)
     end
 
   end

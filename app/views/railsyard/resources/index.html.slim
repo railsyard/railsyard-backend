@@ -2,6 +2,6 @@
 
 h2 = index_label(resource_class)
 
-ul.collection data-sortable=editor_config.list.sorting_type data-sort-path=reorder_resources_path
+ul.collection data-sortable=editor_config.list.sorting_type data-sort-path=reorder_resources_path(resource_class)
   - collection.each do |resource|
     = render "resource", resource: resource

@@ -51,5 +51,6 @@ describe Railsyard::Backend::Controller::Authorization do
 
   end
 
+
 end
 

@@ -18,6 +18,10 @@ module Railsyard
       editor_manager.define_editor_for(*args, &block)
     end
 
+    def self.define_instance_editor_for(*args, &block)
+      editor_manager.define_instance_editor_for(*args, &block)
+    end
+
     def self.plugin_manager
       require 'railsyard-backend/plugin/manager'
       @@plugin_manager ||= Plugin::Manager.new

@@ -29,7 +29,7 @@ describe Railsyard::Backend::FormBuilder do
 
   describe ".group", type: :view do
     helper SimpleForm::ActionViewExtensions::FormHelper
-    helper BackendHelper
+    helper FormHelper
 
     before do
       view.stubs(:book_path).returns("#")
@@ -44,21 +44,15 @@ describe Railsyard::Backend::FormBuilder do
       EOTEMPLATE
     end
 
-    it "should add a div with data-behaviour" do
+    it "should add a link with domo-toggle behaviour, and a div linked to it" do
       render(:inline => template, :locals => { :resource => resource })
-      rendered.should have_xpath("//div[@data-behaviour='groups-toggle']")
-    end
-
-    it "should add a empty header" do
-      render(:inline => template, :locals => { :resource => resource })
-      rendered.should have_xpath("//h3[@data-behaviour='groups-toggle']/a") do |a|
-        a.should_not have_content # FIXME: never executed?
-      end
+      rendered.should have_xpath("//a[@data-behaviour='dom-toggle' and @href='#main']")
+      rendered.should have_xpath("//div[@id='main']")
     end
 
     it "should not add hint" do
       render(:inline => template, :locals => { :resource => resource })
-      rendered.should_not have_xpath("//div[@data-behaviour='groups-toggle']/p[@class='hint']")
+      rendered.should_not have_xpath("//div[@id='main']/p[@class='hint']")
     end
 
     context "with proper translations" do
@@ -66,14 +60,14 @@ describe Railsyard::Backend::FormBuilder do
       it "should add a header" do
         store_translations(:en, railsyard: { groups: { book: { main: "FOO" } } }) do
           render(:inline => template, :locals => { :resource => resource })
-          rendered.should have_xpath("//h3[@data-behaviour='groups-toggle']/a[text()='FOO']")
+          rendered.should have_xpath("//a[@data-behaviour='dom-toggle' and @href='#main' and text()='FOO']")
         end
       end
 
       it "should add a hint" do
         store_translations(:en, railsyard: { group_hints: { book: { main: "FOO" } } }) do
           render(:inline => template, :locals => { :resource => resource })
-          rendered.should have_xpath("//div[@data-behaviour='groups-toggle']/p[@class='hint' and text()='FOO']")
+          rendered.should have_xpath("//div[@id='main']/p[@class='hint' and text()='FOO']")
         end
       end
 

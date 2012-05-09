@@ -18,6 +18,7 @@ module Railsyard::Backend
 
         @authorizer
       end
+
     end
 
   end

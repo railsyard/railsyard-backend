@@ -3,7 +3,7 @@ li class=dom_class(resource) id=dom_id(resource)
   - fields = editor_config.list.fields
 
   .resource class="fields-#{fields.count}"
-    = link_to edit_path(resource_class: collection_name, id: resource) do
+    = link_to edit_resource_path(resource) do
       = resource.send(editor_config.label_method)
 
     ul.fields
@@ -17,5 +17,5 @@ li class=dom_class(resource) id=dom_id(resource)
             span.value.blank = ry_t("blank")
 
     ul.actions
-      li= link_to destroy_label(resource),  destroy_path(resource_class: collection_name, id: resource), method: :delete, rel: "delete-resource"
+      li= link_to destroy_label(resource), destroy_resource_path(resource), method: :delete, rel: "delete-resource"
 

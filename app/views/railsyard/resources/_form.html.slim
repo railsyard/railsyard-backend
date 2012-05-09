@@ -1,5 +1,5 @@
 ruby:
-  url = resource.new_record? ? create_resource_path : update_resource_path
+  url = resource.new_record? ? create_resource_path(resource) : update_resource_path(resource)
 
 = backend_form_for resource, url: url, html: { class: "horizontal" } do |form|
   = render "nested_form", form: form, config: editor_config.edit

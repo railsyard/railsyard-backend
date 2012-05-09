@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "Backend basic CRUD" do
+feature "CRUD for resources" do
 
   scenario "List resources" do
     # Given I have 5 books
@@ -87,5 +87,7 @@ feature "Backend basic CRUD" do
     # And a success message should appear
     page.should have_notice "Book was successfully destroyed."
   end
+
+  pending "Nested resources"
 
 end

@@ -1,0 +1,6 @@
+= backend_form_for instance, url: update_instance_path(instance), method: :put, html: { class: "horizontal" } do |form|
+  = render "nested_form", form: form, config: editor_config
+
+  .input.submit
+    = form.button :submit
+

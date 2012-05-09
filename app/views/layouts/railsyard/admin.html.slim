@@ -10,14 +10,20 @@ html
         h1.logo = link_to "Railsyard", backend_index_path
 
         nav
+
           ul.models
             - Railsyard::Backend.editor_manager.editors.each do |e|
               - model = e.model_class
               li
-                = link_to model_t(model, count: 2), "##{model.table_name}", data: { behaviour: "dom-toggle", toggle_closed: (controller_name != "backend" || model != resource_class) }
-                ul.actions id=model.table_name
-                  li = link_to index_label(model), index_path(:resource_class => model.table_name)
-                  li = link_to new_label(model), new_path(:resource_class => model.table_name)
+                = link_to model_t(model, count: 2), "##{model.name.tableize}", data: { behaviour: "dom-toggle", toggle_closed: (controller_name != "backend" || model != resource_class) }
+                ul.actions id=model.name.tableize
+                  li = link_to index_label(model), resources_path(model)
+                  li = link_to new_label(model), new_resource_path(model)
+
+          ul.models.instance-models
+            - Railsyard::Backend.editor_manager.instance_editors.each do |model_name, editor|
+              - model = model_name.constantize
+              li= link_to model_t(model_name.constantize), edit_instance_path(model)
 
       #page-content
         div
