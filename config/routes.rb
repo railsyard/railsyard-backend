@@ -5,9 +5,8 @@ Rails.application.routes.draw do
 
     controller "railsyard/resources" do
       scope ":tableized_class_name", constraints: lambda { |r|
-        # require 'railsyard-backend/routes/editor_for_resource_constraint'
-        # Railsyard::Backend::Routes::EditorForResourceConstraint.new(r).valid?
-        true
+        require 'railsyard-backend/routes/editor_for_resource_constraint'
+        Railsyard::Backend::Routes::EditorForResourceConstraint.new(r).valid?
       } do
 
         match "/"        , to: :index   , via: :get    , as: :resources
