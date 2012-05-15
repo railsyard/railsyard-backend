@@ -3,8 +3,9 @@ li class=dom_class(resource) id=dom_id(resource)
   - fields = editor_config.list.fields
 
   .resource class="fields-#{fields.count}"
-    = link_to edit_resource_path(resource) do
-      = resource.send(editor_config.label_method)
+    - label = resource.send(editor_config.label_method)
+    = link_to_if edit_enabled_for_resource(resource), label, edit_resource_path(resource), class: "label" do
+      span.label= label
 
     ul.fields
       - fields.each do |field|
@@ -17,5 +18,5 @@ li class=dom_class(resource) id=dom_id(resource)
             span.value.blank = ry_t("blank")
 
     ul.actions
-      li= link_to destroy_label(resource), destroy_resource_path(resource), method: :delete, rel: "delete-resource", confirm: ry_t("delete_confirm")
+      li= link_to destroy_label(resource), destroy_resource_path(resource), method: :delete, rel: "delete-resource", confirm: ry_t("delete_confirm") if edit_enabled_for_resource(resource)
 
