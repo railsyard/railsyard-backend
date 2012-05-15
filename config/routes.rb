@@ -4,12 +4,21 @@ Rails.application.routes.draw do
   scope "backend" do
 
     controller "railsyard/resources" do
+
       scope ":tableized_class_name", constraints: lambda { |r|
         require 'railsyard-backend/routes/editor_for_resource_constraint'
-        Railsyard::Backend::Routes::EditorForResourceConstraint.new(r).valid?
+        Railsyard::Backend::Routes::EditorForResourceConstraint.new(r, :list).valid?
       } do
 
         match "/"        , to: :index   , via: :get    , as: :resources
+
+      end
+
+      scope ":tableized_class_name", constraints: lambda { |r|
+        require 'railsyard-backend/routes/editor_for_resource_constraint'
+        Railsyard::Backend::Routes::EditorForResourceConstraint.new(r, :edit).valid?
+      } do
+
         match "/"        , to: :create  , via: :post   , as: :create_resource
         match "/reorder" , to: :reorder , via: :post   , as: :reorder_resources
         match "/new"     , to: :new     , via: :get    , as: :new_resource

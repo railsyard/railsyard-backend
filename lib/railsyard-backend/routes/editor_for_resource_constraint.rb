@@ -6,12 +6,13 @@ module Railsyard::Backend
     class EditorForResourceConstraint
       include Controller::Resource
 
-      def initialize(request)
+      def initialize(request, attribute_presence)
         @request = request
+        @attribute_presence = attribute_presence
       end
 
       def valid?
-        editor_config.present?
+        editor_config.present? && editor_config.send(@attribute_presence).present?
       end
 
       def resource_id

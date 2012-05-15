@@ -36,6 +36,10 @@ module UrlsHelper
     Rails.application.routes.url_helpers.update_instance_path(underscore_class_name: model_name(obj).underscore)
   end
 
+  def edit_enabled_for_resource(obj)
+    Railsyard::Backend.editor_manager.editor_for(resource_class).edit.present?
+  end
+
   private
 
   def model_name(obj)

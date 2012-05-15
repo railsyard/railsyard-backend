@@ -1,5 +1,6 @@
 en:
   railsyard:
+    delete_confirm: "Do you really want to delete this resource?"
     blank: "No value"
     helpers:
       list: "List %{model}"

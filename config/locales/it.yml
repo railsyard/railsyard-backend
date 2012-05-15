@@ -4,6 +4,7 @@ it:
     dashboard: "Dashboard"
     powered: "Sito realizzato con Railsyard %{version}"
     blank: "Nessun valore"
+    delete_confirm: "Sei sicuro di voler eliminare questa risorsa?"
     helpers:
       list: "Elenco %{model}"
       edit: "Modifica %{model}"
