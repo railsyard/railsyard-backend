@@ -1,4 +1,4 @@
-Railsyard::Backend.define_editor_for <%= singular_name %> do
+Railsyard::Backend.define_editor_for <%= class_name %> do
 
   list do
     label :<%= @attributes.first.name %>

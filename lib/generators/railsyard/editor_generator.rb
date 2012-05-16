@@ -2,13 +2,12 @@ module Railsyard
   module Generators
 
     class EditorGenerator < Rails::Generators::NamedBase
-      include Rails::Generators::ResourceHelpers
       source_root File.expand_path('../templates', __FILE__)
 
       argument :model_attributes, type: :array, default: [], banner: "[field[:type][:index] field[:type][:index]]"
       desc "Generates a model with given NAME and attributes and creates the Railsyard editor configuration"
 
-      hook_for :orm
+      hook_for :orm, :as => "model"
 
       def initialize(*args, &block)
         super
