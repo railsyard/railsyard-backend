@@ -13,24 +13,52 @@ describe Railsyard::Backend::Config::EditField do
     config.field_type.should == :foo
   end
 
-  %w(input_options readonly partial visible).each do |attr|
+  %w(input_options visible).each do |attr|
     it "let get and set conditional :#{attr} attribute" do
       subject.send("#{attr}=", :foo)
       subject.send(attr).should == :foo
     end
   end
 
-  describe "simple_form_options" do
-    it "merges :input_options and :as params" do
-      config = Railsyard::Backend::Config::EditField.new(:field, as: :type)
-      config.input_options = { foo: :bar }
-      config.simple_form_options.should == { as: :type, foo: :bar }
+  describe ".is_visible_for_resource?" do
+
+    context "if .visible is a callable object" do
+      it "calls it passing it resource and view context, and returns the result" do
+        config = Railsyard::Backend::Config::EditField.new(:foo)
+        config.stubs(:visible).returns(Proc.new { |a, b| a + b })
+        config.is_visible_for_resource?("foo", "bar").should == "foobar"
+      end
     end
 
-    it "supports nils" do
-      config = Railsyard::Backend::Config::EditField.new(:field, as: :type)
-      config.simple_form_options.should == { as: :type }
+    context "otherwise" do
+      it "just returns the value" do
+        config = Railsyard::Backend::Config::EditField.new(:foo)
+        config.stubs(:visible).returns(:foo)
+        config.is_visible_for_resource?(stub, stub).should == :foo
+      end
     end
+
+  end
+
+  describe ".simple_form_options" do
+
+    it "passes the .field_type as :as key" do
+      config = Railsyard::Backend::Config::EditField.new(:field, as: :type)
+      config.simple_form_options(stub, stub).should == { as: :type }
+    end
+
+    it "merges .field_type with .input_options (if it's not callable)" do
+      config = Railsyard::Backend::Config::EditField.new(:field, as: :type)
+      config.input_options = { foo: :bar }
+      config.simple_form_options(stub, stub).should == { as: :type, foo: :bar }
+    end
+
+    it "merges .field_type with the result of calling .input_options (if it's callable)" do
+      config = Railsyard::Backend::Config::EditField.new(:field, as: :type)
+      config.input_options = Proc.new { { bar: :foo } }
+      config.simple_form_options(stub, stub).should == { as: :type, bar: :foo }
+    end
+
   end
 
 end

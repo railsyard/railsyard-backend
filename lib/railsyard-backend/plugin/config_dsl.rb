@@ -4,7 +4,7 @@ module Railsyard::Backend
   module Plugin
 
     class ConfigDsl < Support::Dsl
-      delegate_to_config :name, :name=
+      delegate_value_or_block :name, to: :name=
 
       def backend_javascript_dependency(asset_path)
         config.backend_js_dependencies << asset_path

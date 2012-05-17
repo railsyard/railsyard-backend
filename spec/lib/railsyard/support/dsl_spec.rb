@@ -9,11 +9,11 @@ describe Railsyard::Backend::Support::Dsl do
     subject
   end
 
-  describe "#delegate_to_config" do
+  describe "#delegate_value_or_block" do
 
     before do
       class FooBar < Railsyard::Backend::Support::Dsl
-        delegate_to_config :foo, :foo=
+        delegate_value_or_block :foo, to: :foo=
       end
     end
 

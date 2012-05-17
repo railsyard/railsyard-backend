@@ -9,20 +9,10 @@ describe Railsyard::Backend::Config::Model do
     subject.model_class.should == model
   end
 
-  %w(edit list l10n_attribute label_method).each do |attribute|
+  %w(edit list label_method image_method).each do |attribute|
     it "can get and set :#{attribute} attribute" do
       subject.send("#{attribute}=", :foo)
       subject.send(attribute).should == :foo
-    end
-  end
-
-  describe ".localized?" do
-    it "is true if there's a :l10n_attribute" do
-      subject.l10n_attribute = :foo
-      subject.should be_localized
-    end
-    it "is false if there's no :l10n_attribute" do
-      subject.should_not be_localized
     end
   end
 

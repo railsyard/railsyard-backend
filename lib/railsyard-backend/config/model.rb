@@ -12,10 +12,6 @@ module Railsyard::Backend
         @model_class = model_class
         Blockenspiel.invoke(block, Dsl::Model.new(self)) if block_given?
       end
-
-      def localized?
-        !!@l10n_attribute
-      end
     end
 
   end

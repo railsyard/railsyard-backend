@@ -8,7 +8,7 @@ describe Railsyard::Backend::Config::ListField do
     subject.name.should == :foo
   end
 
-  %w(partial visible date_format format).each do |attr|
+  %w(format).each do |attr|
     it "let get and set conditional :#{attr} attribute" do
       subject.send("#{attr}=", :foo)
       subject.send(attr).should == :foo

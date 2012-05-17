@@ -16,26 +16,6 @@ module FormHelper
     end
   end
 
-  def edit_field_visible?(field, resource)
-    if field.visible.respond_to?(:call)
-      field.visible.call(resource, self)
-    else
-      field.visible
-    end
-  end
-
-  def edit_field_options(field, resource)
-    options = {}
-    options[:as] = field.field_type if field.field_type.present?
-
-    if field.input_options.respond_to?(:call)
-      options = options.merge field.input_options.call(resource, self)
-    else
-      options = options.merge field.input_options
-    end
-
-    options
-  end
 
   private
 

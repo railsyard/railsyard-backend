@@ -5,7 +5,7 @@ module Railsyard::Backend
   module Config
 
     class ListField < Base
-      block_attr_accessor :format
+      attr_accessor :format
       attr_reader :name
 
       def initialize(name, &block)

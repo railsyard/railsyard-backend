@@ -23,15 +23,4 @@ describe Railsyard::Backend::Dsl::Model do
     end
   end
 
-  describe ".localized" do
-    it "accepts :with option and assigns it to config :l10n_attribute" do
-      config_edit = stub
-      config.expects(:l10n_attribute=).with(:param)
-      subject.localized(with: :param)
-    end
-    it "throws an Exception with other options" do
-      lambda { subject.localized(foo: :bar) }.should raise_error
-    end
-  end
-
 end

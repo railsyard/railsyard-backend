@@ -5,8 +5,8 @@ module Railsyard::Backend
   module Dsl
 
     class EditField < Base
-      delegate_to_config :visible,       :visible=
-      delegate_to_config :input_options, :input_options=
+      delegate_value_or_block :visible,       to: :visible=
+      delegate_value_or_block :input_options, to: :input_options=
     end
 
   end

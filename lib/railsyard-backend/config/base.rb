@@ -2,17 +2,17 @@ module Railsyard::Backend
   module Config
 
     class Base
-      def self.block_attr_accessor(name)
-        attr_accessor name
-        variable = "@#{name}".to_sym
-        define_method "#{name}=" do |value = nil, &block|
-          if block.present?
-            instance_variable_set(variable, block)
-          else
-            instance_variable_set(variable, value)
-          end
+
+      protected
+
+      def value_or_call(value, *args)
+        if value.respond_to?(:call)
+          value.call(*args)
+        else
+          value
         end
       end
+
     end
 
   end

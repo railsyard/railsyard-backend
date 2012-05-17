@@ -6,8 +6,8 @@ module Railsyard::Backend
   module Config
 
     class EditField < Base
-      block_attr_accessor :visible
-      block_attr_accessor :input_options
+      attr_accessor :visible
+      attr_accessor :input_options
 
       attr_reader :name, :field_type
 
@@ -19,6 +19,16 @@ module Railsyard::Backend
         @visible = true
         @input_options = {}
         Blockenspiel.invoke(block, Dsl::EditField.new(self)) if block_given?
+      end
+
+      def is_visible_for_resource?(resource, view)
+        value_or_call(visible, resource, view)
+      end
+
+      def simple_form_options(resource, view)
+        options = {}
+        options[:as] = field_type if field_type.present?
+        options.merge value_or_call(input_options, resource, view)
       end
 
     end

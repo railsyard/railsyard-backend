@@ -7,8 +7,8 @@ module Railsyard::Backend
   module Dsl
 
     class Model < Base
-      delegate_to_config :label, :label_method=
-      delegate_to_config :image, :image_method=
+      delegate_value_or_block :label, to: :label_method=
+      delegate_value_or_block :image, to: :image_method=
 
       def edit(&block)
         config.edit = Config::Edit.new(&block)
