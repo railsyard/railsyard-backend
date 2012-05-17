@@ -8,6 +8,7 @@ module Railsyard::Backend
 
     class Model < Base
       delegate_to_config :label, :label_method=
+      delegate_to_config :image, :image_method=
 
       def edit(&block)
         config.edit = Config::Edit.new(&block)
@@ -15,12 +16,6 @@ module Railsyard::Backend
 
       def list(&block)
         config.list = Config::List.new(&block)
-      end
-
-      def localized(options)
-        options.symbolize_keys!
-        options.assert_valid_keys(:with)
-        config.l10n_attribute = options[:with].to_sym
       end
     end
 

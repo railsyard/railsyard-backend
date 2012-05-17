@@ -34,7 +34,7 @@ describe Railsyard::Backend::EditorManager do
       backend.define_editor_for Foobar do
 
         label :title
-        localized with: :lang
+        image :thumb
 
         edit do
           field :field_in_default_group
@@ -42,9 +42,8 @@ describe Railsyard::Backend::EditorManager do
             field :simple
             field :explicit_type, as: :string
             field :advanced do
-              readonly { :foo }
-              visible if: lambda { :bar }
-              use_partial :foo_bar
+              visible -> { :bar }
+              input_options :foo_bar
             end
             nested :relation do
               field :title
@@ -56,33 +55,24 @@ describe Railsyard::Backend::EditorManager do
         end
 
         list do
-          as_tree using: :parent
+          sortable using: :position
           field :title do
             format_as { |value| value.to_s.upcase }
           end
-          field :author do
-            use_partial { |value| "author" }
-          end
-          field :updated_at do
-            date_format :short
-          end
-          field :created_at do
-            visible if: lambda { true }
-          end
+          field :created_at
         end
 
       end
 
       config = backend.editor_for(Foobar)
 
-      config.l10n_attribute.should == :lang
       config.label_method.should == :title
+      config.image_method.should == :thumb
 
-      config.list.sorting_type.should == :tree
-      config.list.sorting_attribute.should == :parent
+      config.list.sorting_type.should == :simple
+      config.list.sorting_attribute.should == :position
       config.list.field(:title).format.call(:test).should == "TEST"
-      config.list.field(:updated_at).date_format.should == :short
-      config.list.field(:created_at).visible[:if].call.should be_true
+      config.list.field(:created_at).should be_present
 
       config.edit.group(:main).field(:field_in_default_group).should_not be_nil
 
@@ -92,9 +82,8 @@ describe Railsyard::Backend::EditorManager do
       group.field(:explicit_type).field_type.should == :string
 
       advanced_field = group.field(:advanced)
-      advanced_field.readonly.call.should == :foo
-      advanced_field.visible[:if].call.should == :bar
-      advanced_field.partial.should == :foo_bar
+      advanced_field.visible.call.should == :bar
+      advanced_field.input_options.should == :foo_bar
     end
 
   end

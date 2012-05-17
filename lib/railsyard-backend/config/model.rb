@@ -6,7 +6,7 @@ module Railsyard::Backend
   module Config
 
     class Model < Base
-      attr_accessor :model_class, :edit, :list, :l10n_attribute, :label_method
+      attr_accessor :model_class, :edit, :list, :label_method, :image_method
 
       def initialize(model_class, &block)
         @model_class = model_class
