@@ -2,10 +2,13 @@ doctype html
 html
   head= render "railsyard/common/head"
   body
-    - if Railsyard::Backend.plugin_manager.authentication_partial.present?
-      = render Railsyard::Backend.plugin_manager.authentication_partial
-
     #page-container
+
+      #top-bar
+        - if Railsyard::Backend.plugin_manager.authentication_partial.present?
+          = render Railsyard::Backend.plugin_manager.authentication_partial
+        = yield :top_bar
+
       #page-sidebar
         h1.logo = link_to "Railsyard", backend_index_path
 

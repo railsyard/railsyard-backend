@@ -6,7 +6,6 @@ module Railsyard::Backend
 
     class ListField < Base
       attr_accessor :format, :date_format, :partial
-      conditional_config :visible
       attr_reader :name
 
       def initialize(name, &block)

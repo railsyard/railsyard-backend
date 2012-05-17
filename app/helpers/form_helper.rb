@@ -16,6 +16,22 @@ module FormHelper
     end
   end
 
+  def edit_field_visible?(field, resource)
+    if field.visible.respond_to?(:call)
+      field.visible.call(resource, self)
+    else
+      field.visible
+    end
+  end
+
+  def edit_field_options(field, resource)
+    if field.input_options.respond_to?(:call)
+      field.input_options.call(resource, self)
+    else
+      field.input_options
+    end
+  end
+
   private
 
   def after_nested_form_callbacks

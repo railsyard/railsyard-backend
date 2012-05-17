@@ -1,16 +1,16 @@
 - config.groups.each do |group|
   = form.group group.name do
     - group.fields.each do |field|
-      - association = resource.class.reflect_on_association(field.name)
+      - association = form.object.class.reflect_on_association(field.name)
       - if field.is_a? Railsyard::Backend::Config::EditField
-        - if association.present?
-          = form.association field.name, field.simple_form_options
-        - else
-          = form.input field.name, field.simple_form_options
+        - if edit_field_visible?(field, form.object)
+          - if association.present?
+            = form.association field.name
+          - else
+            = form.input field.name, edit_field_options(field, form.object)
       - elsif field.is_a? Railsyard::Backend::Config::NestedEdit
         = form.simple_fields_for field.name do |subform|
           = render "nested_form", form: subform, config: field
           .input.remove-fields
             = subform.link_to_remove destroy_label(subform.object), field.name, class: "button"
         = form.link_to_add new_label(association.klass), field.name, class: "button"
-

@@ -37,17 +37,21 @@ module UrlsHelper
   end
 
   def edit_enabled_for_resource(obj)
-    Railsyard::Backend.editor_manager.editor_for(resource_class).edit.present?
+    Railsyard::Backend.editor_manager.editor_for(model_class(obj)).edit.present?
   end
 
   private
 
-  def model_name(obj)
+  def model_class(obj)
     if obj.is_a? ActiveModel::Naming
-      obj.name
+      obj
     else
-      obj.class.name
+      obj.class
     end
+  end
+
+  def model_name(obj)
+    model_class(obj).name
   end
 
 end
