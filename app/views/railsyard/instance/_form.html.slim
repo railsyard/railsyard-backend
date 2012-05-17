@@ -1,4 +1,7 @@
 = backend_form_for instance, url: update_instance_path(instance), method: :put, html: { class: "horizontal" } do |form|
+
+  = form.error_messages
+
   = render "railsyard/resources/nested_form", form: form, config: editor_config
 
   .input.submit

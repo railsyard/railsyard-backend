@@ -16,7 +16,6 @@ module FormHelper
     end
   end
 
-
   private
 
   def after_nested_form_callbacks

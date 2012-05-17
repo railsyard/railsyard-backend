@@ -89,5 +89,6 @@ feature "CRUD for resources" do
   end
 
   pending "Nested resources"
+  pending "Errors gets printed out"
 
 end

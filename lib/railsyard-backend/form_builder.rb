@@ -82,6 +82,17 @@ module Railsyard::Backend
       output
     end
 
+    def error_messages
+      return unless object.respond_to?(:errors) && object.errors.any?
+
+      @template.content_tag(:ul, class: "errors") do
+        object.errors.full_messages.map do |error|
+          @template.content_tag(:li, error)
+        end.join.html_safe
+      end
+    end
+
+
   end
 
 end
