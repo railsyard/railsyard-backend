@@ -10,7 +10,7 @@
             = form.input field.name, edit_field_options(field, form.object)
       - elsif field.is_a? Railsyard::Backend::Config::NestedEdit
         = form.simple_fields_for field.name do |subform|
-          = render "nested_form", form: subform, config: field
+          = render "railsyard/resources/nested_form", form: subform, config: field
           .input.remove-fields
             = subform.link_to_remove destroy_label(subform.object), field.name, class: "button"
         = form.link_to_add new_label(association.klass), field.name, class: "button"

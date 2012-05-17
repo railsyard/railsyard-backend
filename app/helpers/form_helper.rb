@@ -25,11 +25,16 @@ module FormHelper
   end
 
   def edit_field_options(field, resource)
+    options = {}
+    options[:as] = field.field_type if field.field_type.present?
+
     if field.input_options.respond_to?(:call)
-      field.input_options.call(resource, self)
+      options = options.merge field.input_options.call(resource, self)
     else
-      field.input_options
+      options = options.merge field.input_options
     end
+
+    options
   end
 
   private
