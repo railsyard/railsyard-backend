@@ -9,6 +9,8 @@ module Railsyard
     mattr_accessor :authorization_adapter
     mattr_accessor :authorizer_initializer
 
+    mattr_reader :sidebar
+
     def self.editor_manager
       require 'railsyard-backend/editor_manager'
       @@editor_manager ||= Backend::EditorManager.new
@@ -25,6 +27,11 @@ module Railsyard
     def self.plugin_manager
       require 'railsyard-backend/plugin/manager'
       @@plugin_manager ||= Plugin::Manager.new
+    end
+
+    def self.define_sidebar(&block)
+      require 'railsyard-backend/config/sidebar'
+      @@sidebar = Config::Sidebar.new(&block)
     end
 
   end
