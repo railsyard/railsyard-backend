@@ -1,4 +1,7 @@
+require 'blockenspiel'
+require 'railsyard-backend/dsl/sidebar'
 require 'railsyard-backend/config/base'
+require 'railsyard-backend/config/sidebar_group'
 
 module Railsyard::Backend
   module Config

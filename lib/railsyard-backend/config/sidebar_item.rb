@@ -1,6 +1,5 @@
 require 'blockenspiel'
 require 'railsyard-backend/config/base'
-require 'railsyard-backend/dsl/edit_field'
 
 module Railsyard::Backend
   module Config
