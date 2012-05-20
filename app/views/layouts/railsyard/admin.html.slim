@@ -29,7 +29,7 @@ html
                         li = link_to new_label(model), new_resource_path(model) if edit_enabled_for_resource(model)
 
                   - when :instance
-                    li = link_to model_t(model_name.constantize), edit_instance_path(model)
+                    li = link_to model_t(model), edit_instance_path(model)
 
                   - else
                     li = item.inspect
