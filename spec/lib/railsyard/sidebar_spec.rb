@@ -18,18 +18,32 @@ describe Railsyard::Backend do
 
       Railsyard::Backend.define_sidebar do
 
-        group :first
-        group :second
+        group :posts do
+          resource :book
+          resource :author
+        end
+
+        group :settings do
+          resource :user
+          instance :general
+          instance :pages
+        end
 
       end
 
       config = Railsyard::Backend.sidebar
-
       config.groups.                     should     have( 2 ).groups
-      config.group(:first).              should_not be_nil
+      config.group(:settings).           should_not be_nil
+
+      settings_group = config.group(:settings)
+      settings_group.items.              should     have( 3 ).items
+      settings_group.item(:user).        should_not be_nil
+
+      user_resource = settings_group.item(:user)
+      user_resource.name.                should     == :user
+      user_resource.type.                should     == :resource
     end
 
   end
 
 end
-
