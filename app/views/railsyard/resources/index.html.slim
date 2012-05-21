@@ -1,6 +1,21 @@
 - content_for(:title) { index_label(resource_class) }
 
+- content_for :top_bar do
+  - if editor_config.list.search_scope.present?
+    .search-box
+      form accept-charset="UTF-8" action=resources_path(resource_class) method="get"
+        = text_field_tag :query, params[:query]
+        = submit_tag "Ricerca"
+
 h2 = index_label(resource_class)
+
+- fields = editor_config.list.fields
+header.resource class="fields-#{fields.count}"
+  span.label= model_attr_t(resource_class, editor_config.label_method)
+  ul.fields
+    - fields.each do |field|
+      li
+        span.label = model_attr_t(resource_class, field.name)
 
 ul.collection data-sortable=editor_config.list.sorting_type data-sort-path=reorder_resources_path(resource_class, page: params[:page])
   - collection.each do |resource|

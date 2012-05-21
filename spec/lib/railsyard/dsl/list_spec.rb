@@ -37,4 +37,11 @@ describe Railsyard::Backend::Dsl::List do
     end
   end
 
+  describe ".searchable" do
+    it "accepts the :with_scope parameter, and forwards it to .search_scope= config" do
+      config.expects(:search_scope=).with(:search)
+      subject.searchable(with_scope: "search")
+    end
+  end
+
 end

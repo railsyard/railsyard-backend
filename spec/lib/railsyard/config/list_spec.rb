@@ -11,7 +11,7 @@ describe Railsyard::Backend::Config::List do
   end
 
 
-  %w(sorting_type sorting_attribute page_size).each do |attr|
+  %w(sorting_type sorting_attribute page_size search_scope).each do |attr|
     it "let get and set :#{attr} attribute" do
       subject.send("#{attr}=", :foo)
       subject.send(attr).should == :foo

@@ -5,7 +5,11 @@ module Railsyard::Backend
       include ActiveSupport::Concern
 
       def collection
-        @collection ||= resource_class.page(params[:page]).per(editor_config.list.page_size)
+        collection = resource_class.page(params[:page]).per(editor_config.list.page_size)
+        if (search_scope = editor_config.list.search_scope).present? && params[:query].present?
+          collection = collection.send(search_scope, params[:query])
+        end
+        collection
       end
 
       def resource

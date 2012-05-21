@@ -37,6 +37,14 @@ module Railsyard::Backend
         end
       end
 
+      def searchable(options = {})
+        options.symbolize_keys!
+        options.assert_valid_keys(:with_scope)
+        if options[:with_scope].present?
+          config.search_scope = options[:with_scope].to_sym
+        end
+      end
+
     end
 
   end

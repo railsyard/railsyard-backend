@@ -1,79 +1,85 @@
 ul.collection
 
-  li
+  &.placeholder
+    background: rgba($light-gray, 0.8)
+    height: 60px
 
-    &.placeholder
-      background: rgba($light-gray, 0.8)
-      height: 60px
+  &.ui-sortable-helper
+    background: white
+    border-bottom-width: 0
+    +box-shadow(rgba(black, 0.1) 0 3px 3px)
 
-    &.ui-sortable-helper
-      background: white
-      border-bottom-width: 0
-      +box-shadow(rgba(black, 0.1) 0 3px 3px)
+  li .resource
+    padding: 11px 20px
+    border-bottom: 1px solid $light-gray
 
-    .resource
-      padding: 8px 20px
-      +pie-clearfix
-      border-bottom: 1px solid $light-gray
-      +text-shadow(white 0 1px 0)
+    &:hover
+      background: $light-blue
 
-      &:hover
-        background: $light-blue
+    &> .label
+      float: left
+      font-family: $decorative-font
+      color: #333
+      text-decoration: none
+      font-size: 20px
+      line-height: 20px
 
+header.resource
+  background: $light-gray
+  padding: 4px 20px
+  border-bottom: 1px solid darken($light-gray, 15%)
+  border-top: 1px solid lighten($light-gray, 20%)
+
+  .label
+    float: left
+    font-family: $decorative-font
+    color: #666
+    text-decoration: none
+    font-size: 16px
+    line-height: 27px
+
+ul.collection li .resource, header.resource
+  +pie-clearfix
+  +text-shadow(white 0 1px 0)
+
+  &> ul.fields
+    display: table
+    float: left
+    width: 70%
+
+    li
+      font-size: 13px
+      display: table-cell
+
+      .value
+        display: block
+
+      .value.blank
+        color: #888
+        font-style: italic
+
+  &> ul.actions
+    float: right
+    text-align: right
+    width: 10%
+
+  @for $fields-count from 1 through 10
+    &.fields-#{$fields-count}
       &> .label
-        float: left
-        font-family: $decorative-font
-        color: #333
-        text-decoration: none
-        font-size: 20px
-        line-height: 27px
+        width: 90% / ($fields-count + 1) + 3%
 
       &> ul.fields
-        display: table
-        float: left
-        width: 70%
+        width: 90% / ($fields-count + 1) * $fields-count - 3%
 
         li
-          font-size: 12px
-          display: table-cell
+          width: 100% / $fields-count - 1.5%
+          padding-right: 1.5%
 
-          .label, .value
-            display: block
-
-          .label
-            color: #999
-            font-style: italic
-            font-size: 11px
-            margin-bottom: 4px
-
-          .value.blank
-            color: #666
-
-      &> ul.actions
-        float: right
-        text-align: right
-        width: 10%
-
-      @for $fields-count from 1 through 10
-        &.fields-#{$fields-count}
-          &> .label
-            width: 90% / ($fields-count + 1) + 3%
-
-          &> ul.fields
-            width: 90% / ($fields-count + 1) * $fields-count - 3%
-
-            li
-              width: 100% / $fields-count - 1.5%
-              padding-right: 1.5%
-
-      &.fields-0
-        &>.label
-          width: 90%
-        &> ul.fields
-          display: none
-
-    &> ul.collection
-      margin-left: 50px
+  &.fields-0
+    &>.label
+      width: 90%
+    &> ul.fields
+      display: none
 
 nav.pagination
   background: white

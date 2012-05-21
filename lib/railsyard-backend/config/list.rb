@@ -8,7 +8,7 @@ module Railsyard::Backend
   module Config
 
     class List < Base
-      attr_accessor :sorting_type, :sorting_attribute, :page_size
+      attr_accessor :sorting_type, :sorting_attribute, :page_size, :search_scope
 
       def initialize(&block)
         @fields = {}
