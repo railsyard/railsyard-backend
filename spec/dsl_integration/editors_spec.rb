@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "Editors DSL" do
-  
+
   it "saves all the DSL tree configuration properly" do
 
     class Foobar; end
@@ -47,7 +47,7 @@ describe "Editors DSL" do
 
     config.list.sorting_type.should == :simple
     config.list.sorting_attribute.should == :position
-    config.list.field(:title).format.call(:test).should == "TEST"
+    config.list.field(:title).formatter.call(:test).should == "TEST"
     config.list.field(:created_at).should be_present
 
     config.edit.group(:main).field(:field_in_default_group).should_not be_nil

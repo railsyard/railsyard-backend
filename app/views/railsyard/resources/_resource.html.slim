@@ -16,10 +16,7 @@ li class=dom_class(resource) id=dom_id(resource)
       - fields.each do |field|
         - value = resource.send(field.name)
         li
-          - if value.present?
-            span.value = value
-          - else
-            span.value.blank = ry_t("blank")
+          span.value= field.format(value, ry_t("blank"))
 
     ul.actions
       li= link_to destroy_label(resource), destroy_resource_path(resource), method: :delete, rel: "delete-resource", confirm: ry_t("delete_confirm") if edit_enabled_for_resource(resource)
