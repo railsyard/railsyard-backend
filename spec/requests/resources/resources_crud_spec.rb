@@ -3,16 +3,21 @@ require 'spec_helper'
 feature "CRUD for resources" do
 
   scenario "List resources" do
-    # Given I have 5 books
-    books = create_list(:book, 5)
+    # Given I have 10 books
+    books = create_list(:book, 10)
 
     # When I visit the list action for Book models
     visit "/backend/books"
 
-    # Then all the books should be properly listed
+    # Then the first 5 books should be properly listed
     page.should have_content "List Books"
-    books.each do |book|
+    books[0...5].each do |book|
       page.should have_selector dom_id_for(book)
+    end
+
+    # And there should be 2 pages of results
+    within "nav.pagination" do
+      page.should have_selector("span.page", count: 2)
     end
   end
 

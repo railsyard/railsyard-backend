@@ -5,7 +5,7 @@ module Railsyard::Backend
       include ActiveSupport::Concern
 
       def collection
-        @collection ||= resource_class.scoped
+        @collection ||= resource_class.page(params[:page]).per(editor_config.list.page_size)
       end
 
       def resource

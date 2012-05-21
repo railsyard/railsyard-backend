@@ -29,6 +29,14 @@ module Railsyard::Backend
         end
       end
 
+      def paginates(options = {})
+        options.symbolize_keys!
+        options.assert_valid_keys(:per)
+        if options[:per].present?
+          config.page_size = options[:per]
+        end
+      end
+
     end
 
   end
