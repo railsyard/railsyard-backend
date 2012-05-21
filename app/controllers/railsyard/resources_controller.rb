@@ -29,11 +29,12 @@ module Railsyard
     end
 
     def reorder
-      params[resource_name].each_with_index do |id, position|
-        record = resource_class.find(id)
+      records = params[resource_name].map { |id| resource_class.find(id) }
+      min_position = ((params[:page].to_i || 1) - 1) * editor_config.list.page_size
+      records.each_with_index do |record, position|
         record.update_attribute(
           editor_config.list.sorting_attribute,
-          position
+          min_position + position
         )
       end
       render json: { success: true }
