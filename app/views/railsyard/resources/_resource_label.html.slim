@@ -1,0 +1,7 @@
+- label = resource.send(editor_config.label_method)
+- image_url = resource.send(editor_config.image_method) if editor_config.image_method.present?
+span.value class=("with-image" if editor_config.image_method.present?)
+  - if image_url.present?
+    .image= image_tag image_url, class: "image"
+  = label
+

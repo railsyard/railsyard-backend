@@ -3,9 +3,14 @@ li class=dom_class(resource) id=dom_id(resource)
   - fields = editor_config.list.fields
 
   .resource class="fields-#{fields.count}"
-    - label = resource.send(editor_config.label_method)
-    = link_to_if edit_enabled_for_resource(resource), label, edit_resource_path(resource), class: "label" do
-      span.label= label
+
+    .label
+      .inner
+        - if edit_enabled_for_resource(resource)
+          = link_to edit_resource_path(resource), class: "label" do
+            = render "resource_label", resource: resource
+        - else
+          = render "resource_label", resource: resource
 
     ul.fields
       - fields.each do |field|
