@@ -9,6 +9,7 @@ require 'blockenspiel'
 require 'responders'
 require 'formalize-rails'
 require 'humane-rails'
+require 'kaminari'
 
 module Railsyard::Backend
   class Engine < ::Rails::Engine

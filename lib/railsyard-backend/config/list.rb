@@ -8,10 +8,11 @@ module Railsyard::Backend
   module Config
 
     class List < Base
-      attr_accessor :sorting_type, :sorting_attribute
+      attr_accessor :sorting_type, :sorting_attribute, :page_size
 
       def initialize(&block)
         @fields = {}
+        @page_size = 25
         Blockenspiel.invoke(block, Dsl::List.new(self)) if block_given?
       end
 

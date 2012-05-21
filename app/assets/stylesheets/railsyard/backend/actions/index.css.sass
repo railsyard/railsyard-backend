@@ -75,3 +75,32 @@ ul.collection
     &> ul.collection
       margin-left: 50px
 
+nav.pagination
+  background: white
+  cursor: default
+  padding: 20px 0
+  text-align: center
+
+  .current, a
+    padding: 4px 8px
+    display: inline-block
+    margin-right: 2px
+    border: 1px solid lighten($blue, 15%)
+
+  .current
+    font-style: normal
+    font-weight: bold
+    background: $blue
+    color: white
+    border: 1px solid $blue
+
+  .gap
+    border-width: 0
+
+  a
+    text-decoration: none
+    color: $blue
+
+    &:hover, &:focus
+      background-color: $light-blue
+

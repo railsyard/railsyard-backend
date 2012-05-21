@@ -30,4 +30,11 @@ describe Railsyard::Backend::Dsl::List do
     end
   end
 
+  describe ".paginates" do
+    it "accepts the :per parameter, and forwards it to .page_size= config" do
+      config.expects(:page_size=).with(50)
+      subject.paginates(per: 50)
+    end
+  end
+
 end

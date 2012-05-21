@@ -11,11 +11,15 @@ describe Railsyard::Backend::Config::List do
   end
 
 
-  %w(sorting_type sorting_attribute).each do |attr|
+  %w(sorting_type sorting_attribute page_size).each do |attr|
     it "let get and set :#{attr} attribute" do
       subject.send("#{attr}=", :foo)
       subject.send(attr).should == :foo
     end
+  end
+
+  it "has a default page size of 25" do
+    subject.page_size.should == 25
   end
 
 end
