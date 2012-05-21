@@ -15,10 +15,10 @@ html
         nav
           - unless Railsyard::Backend.sidebar.nil?
             - Railsyard::Backend.sidebar.groups.each do |group|
-              h3 = t "railsyard.sidebar.groups.#{group.name}"
+              h3 = ry_t "sidebar.groups.#{group.name}", default: group.name.to_s.titleize
               ul.group
                 - group.items.each do |item|
-                  - model = item.name.capitalize.to_s.constantize
+                  - model = item.model_class
                   - case item.type
 
                   - when :resource

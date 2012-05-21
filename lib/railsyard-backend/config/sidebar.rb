@@ -6,7 +6,6 @@ require 'railsyard-backend/config/sidebar_group'
 module Railsyard::Backend
   module Config
 
-
     class Sidebar < Base
 
       def initialize(&block)

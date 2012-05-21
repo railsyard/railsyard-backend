@@ -23,4 +23,12 @@ describe Railsyard::Backend do
     end
   end
 
+  describe ".define_sidebar" do
+    it "should set a sidebar" do
+      Railsyard::Backend.define_sidebar
+      Railsyard::Backend.sidebar.should be_a Railsyard::Backend::Config::Sidebar
+    end
+  end
+
+
 end

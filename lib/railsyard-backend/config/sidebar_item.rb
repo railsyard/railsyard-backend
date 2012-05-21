@@ -6,11 +6,11 @@ module Railsyard::Backend
 
     class SidebarItem < Base
 
-      attr_reader :name, :type
+      attr_reader :type, :model_class
 
-      def initialize(type, name)
-        @name = name.to_sym
+      def initialize(type, model_class)
         @type = type.to_sym
+        @model_class = model_class
       end
 
     end

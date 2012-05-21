@@ -1,11 +1,11 @@
 Railsyard::Backend.define_sidebar do
 
   group :resources do
-    resource :book
+    resource Book
   end
 
   group :settings do
-    instance :settings
+    instance Settings
   end
 
 end

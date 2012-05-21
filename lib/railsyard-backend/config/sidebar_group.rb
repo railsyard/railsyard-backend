@@ -15,11 +15,11 @@ module Railsyard::Backend
       end
 
       def add_item(item_config)
-        @items[item_config.name] = item_config
+        @items[item_config.model_class.name] = item_config
       end
 
-      def item(name)
-        @items[name.to_sym]
+      def item(model_class)
+        @items[model_class.name]
       end
 
       def items
