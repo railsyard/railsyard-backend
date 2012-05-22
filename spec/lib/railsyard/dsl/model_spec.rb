@@ -23,4 +23,12 @@ describe Railsyard::Backend::Dsl::Model do
     end
   end
 
+  describe ".exportable_as" do
+    it "adds the specified formats to config" do
+      config.expects(:add_export_format).with(:foo)
+      config.expects(:add_export_format).with(:bar)
+      subject.exportable_as(:foo, :bar)
+    end
+  end
+
 end

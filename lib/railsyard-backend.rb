@@ -34,5 +34,10 @@ module Railsyard
       @@sidebar = Config::Sidebar.new(&block)
     end
 
+    def self.export_manager
+      require 'railsyard-backend/export/manager'
+      @@export_manager ||= Export::Manager.new
+    end
+
   end
 end

@@ -16,4 +16,13 @@ describe Railsyard::Backend::Config::Model do
     end
   end
 
+  define ".add_export_format" do
+    it "adds the specified format to the list of accepted export formats" do
+      subject.exportable_as?(:foobar).should be_false
+      subject.add_export_format(:foobar)
+      subject.exportable_as?(:foobar).should be_true
+      subject.accepted_exports.should include :foobar
+    end
+  end
+
 end

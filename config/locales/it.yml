@@ -15,6 +15,7 @@ it:
     groups:
       defaults:
         main: "Campi Risorsa"
+    export_as: "Esporta come:"
 
   flash:
     actions:

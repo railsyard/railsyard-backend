@@ -17,6 +17,12 @@ module Railsyard::Backend
       def list(&block)
         config.list = Config::List.new(&block)
       end
+
+      def exportable_as(*formats)
+        formats.each do |format|
+          config.add_export_format(format)
+        end
+      end
     end
 
   end

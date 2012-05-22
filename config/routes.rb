@@ -10,7 +10,7 @@ Rails.application.routes.draw do
         Railsyard::Backend::Routes::EditorForResourceConstraint.new(r, :list).valid?
       } do
 
-        match "/"        , to: :index   , via: :get    , as: :resources
+        match "/", to: :index, via: :get, as: :resources
 
       end
 

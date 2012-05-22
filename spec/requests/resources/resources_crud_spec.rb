@@ -96,5 +96,6 @@ feature "CRUD for resources" do
   pending "Nested resources"
   pending "Errors gets printed out"
   pending "Search works"
+  pending "Export works"
 
 end

@@ -48,18 +48,27 @@ ul.collection
           img
             display: block
 
-header.resource
+header.resource, footer.resource
   background: $light-gray
   padding: 4px 20px
   border-bottom: 1px solid darken($light-gray, 15%)
   border-top: 1px solid lighten($light-gray, 20%)
+  line-height: 27px
+  font-family: $decorative-font
+  color: #666
+  +text-shadow(white 0 1px 0)
+
+  a
+    color: #333
+    text-decoration: none
+
+    &:hover
+      text-decoration: underline
 
   .label
     float: left
-    font-family: $decorative-font
     color: #666
     font-size: 16px
-    line-height: 27px
 
 ul.collection li .resource, header.resource
   +pie-clearfix

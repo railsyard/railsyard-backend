@@ -25,7 +25,16 @@ module Railsyard
     responders :flash
 
     def index
-      respond_with collection
+      if params[:format].blank? || params[:format] == "html"
+        respond_with collection
+      else
+        exporter = Railsyard::Backend.export_manager.exporter_for(params[:format])
+        if exporter.present? && editor_config.exportable_as?(params[:format])
+          send_data exporter.data_for(collection.all), exporter.send_data_options
+        else
+          raise ActionController::RoutingError.new("Export not available.")
+        end
+      end
     end
 
     def reorder

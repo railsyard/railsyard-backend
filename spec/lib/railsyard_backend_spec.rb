@@ -24,11 +24,17 @@ describe Railsyard::Backend do
   end
 
   describe ".define_sidebar" do
-    it "should set a sidebar" do
+    it "returns a Config::Sidebar" do
       Railsyard::Backend.define_sidebar
       Railsyard::Backend.sidebar.should be_a Railsyard::Backend::Config::Sidebar
     end
   end
 
+  describe ".export_manager" do
+    it "returns a Export::Manager" do
+      manager = Railsyard::Backend.export_manager
+      manager.should be_a Railsyard::Backend::Export::Manager
+    end
+  end
 
 end

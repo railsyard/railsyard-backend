@@ -1,5 +1,7 @@
 en:
   railsyard:
+    dashboard: "Dashboard"
+    powered: "Site built using Railsyard %{version}"
     delete_confirm: "Do you really want to delete this resource?"
     blank: "No value"
     helpers:
@@ -12,3 +14,4 @@ en:
     groups:
       defaults:
         main: "Resource Fields"
+    export_as: "Export as:"
