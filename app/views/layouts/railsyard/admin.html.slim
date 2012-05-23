@@ -34,6 +34,8 @@ html
                   - else
                     li = item.inspect
 
+        footer= link_to t("railsyard.powered", version: Railsyard::Backend::VERSION), "http://railsyardcms.org"
+
       #page-content
         div
           = render "railsyard/common/flash_messages"
