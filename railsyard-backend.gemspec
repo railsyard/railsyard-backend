@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
   s.add_dependency "formalize-rails"
   s.add_dependency "humane-rails"
   s.add_dependency "kaminari"
+  s.add_dependency "cells"
 
   s.add_development_dependency "spork"
   s.add_development_dependency "capybara"

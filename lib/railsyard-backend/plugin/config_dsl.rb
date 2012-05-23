@@ -17,6 +17,7 @@ module Railsyard::Backend
       def authentication_infos(partial_path)
         config.authentication_partial = partial_path
       end
+
     end
 
   end

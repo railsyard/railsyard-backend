@@ -1,3 +1,9 @@
 - content_for(:title) { t("railsyard.dashboard") }
 
 h2= t("railsyard.dashboard")
+
+.row
+  .span3
+    .widget
+      h3 Statistiche Analytics: Ultima settimana
+      .content= render_cell :dashboard_analytics, :widget

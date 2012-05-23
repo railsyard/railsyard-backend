@@ -12,7 +12,7 @@ feature "Backend" do
     visit "/backend"
 
     within "#page-sidebar nav" do
-      # Then in the siderbar should be present the groups specified in the sidebar.rb config
+      # Then in the siderbar should be present the rows specified in the sidebar.rb config
       page.should have_xpath ".//h3[text() = 'Resources']"
       page.should have_xpath ".//h3[text() = 'Settings']"
 

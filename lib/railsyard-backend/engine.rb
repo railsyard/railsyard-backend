@@ -10,6 +10,7 @@ require 'responders'
 require 'formalize-rails'
 require 'humane-rails'
 require 'kaminari'
+require 'cells'
 
 module Railsyard::Backend
   class Engine < ::Rails::Engine
