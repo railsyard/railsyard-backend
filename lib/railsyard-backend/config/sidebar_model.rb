@@ -4,7 +4,7 @@ require 'railsyard-backend/config/base'
 module Railsyard::Backend
   module Config
 
-    class SidebarItem < Base
+    class SidebarModel < Base
 
       attr_reader :type, :model_class
 
