@@ -5,7 +5,7 @@
       - if field.is_a? Railsyard::Backend::Config::EditField
         - if field.is_visible_for_resource?(form.object, self)
           - if association.present?
-            = form.association field.name
+            = form.association field.name, field.simple_form_options(form.object, self)
           - else
             = form.input field.name, field.simple_form_options(form.object, self)
       - elsif field.is_a? Railsyard::Backend::Config::NestedEdit
