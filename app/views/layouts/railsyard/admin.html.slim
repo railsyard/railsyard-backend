@@ -15,7 +15,8 @@ html
         nav
           - unless Railsyard::Backend.sidebar.nil?
             - Railsyard::Backend.sidebar.groups.each do |group|
-              h3 = ry_t "sidebar.groups.#{group.name}", default: group.name.to_s.titleize
+              - if group.name
+                h3 = ry_t "sidebar.groups.#{group.name}", default: group.name.to_s.titleize
               ul.group
                 - group.items.each do |item|
                   - case item.type

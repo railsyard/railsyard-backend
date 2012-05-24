@@ -8,8 +8,8 @@ module Railsyard::Backend
     class SidebarGroup < Base
       attr_reader :name, :items
 
-      def initialize(name, &block)
-        @name = name.to_sym
+      def initialize(name=nil, &block)
+        @name = name
         @items = []
         Blockenspiel.invoke(block, Dsl::SidebarGroup.new(self)) if block_given?
       end

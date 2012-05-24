@@ -8,24 +8,26 @@ describe "Sidebar DSL" do
     class Bar; end
 
     config = Railsyard::Backend::Config::Sidebar.new do
-      group :foobar do
+      group do
         resource Foo
         instance Bar
+      end
+
+      group :Links do
         link "Railsyard", "http://railsyardcms.org", target: "_blank"
       end
     end
 
-    config.groups.should have(1).group
-    config.group(:foobar).should be_present
+    config.groups.should have(2).groups
 
-    group = config.group(:foobar)
-    group.items.should have(3).items
-    group.items.first.should be_present
+    group = config.groups.first
+    group.items.should have(2).items
 
     foo_resource = group.items.first
     foo_resource.model_class.should == Foo
     foo_resource.type.should == :resource
 
+    group = config.groups.last
     blog_link = group.items.last
     blog_link.type.should == :link
     blog_link.name.should == "Railsyard"

@@ -7,24 +7,16 @@ module Railsyard::Backend
   module Config
 
     class Sidebar < Base
+      attr_reader :groups
 
       def initialize(&block)
-        @groups = {}
+        @groups = []
         Blockenspiel.invoke(block, Dsl::Sidebar.new(self)) if block_given?
       end
 
-      def add_group(group_config)
-        @groups[group_config.name] = group_config
+      def add_group(group)
+        @groups << group
       end
-
-      def groups
-        @groups.values
-      end
-
-      def group(name)
-        @groups[name.to_sym]
-      end
-
     end
 
   end

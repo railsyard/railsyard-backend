@@ -1,6 +1,6 @@
 Railsyard::Backend.define_sidebar do
 
-  group :resources do
+  group do
     resource Book
   end
 
