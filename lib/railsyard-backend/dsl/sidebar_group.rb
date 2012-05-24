@@ -6,13 +6,18 @@ module Railsyard::Backend
     class SidebarGroup < Base
 
       def resource(*args, &block)
-        require 'railsyard-backend/config/sidebar_item'
-        config.add_item Config::SidebarItem.new(:resource, *args, &block)
+        require 'railsyard-backend/config/sidebar_model'
+        config.add_item Config::SidebarModel.new(:resource, *args, &block)
       end
 
       def instance(*args, &block)
-        require 'railsyard-backend/config/sidebar_item'
-        config.add_item Config::SidebarItem.new(:instance, *args, &block)
+        require 'railsyard-backend/config/sidebar_model'
+        config.add_item Config::SidebarModel.new(:instance, *args, &block)
+      end
+
+      def link(*args, &block)
+        require 'railsyard-backend/config/sidebar_link'
+        config.add_item Config::SidebarLink.new(:link, *args, &block)
       end
 
     end

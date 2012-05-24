@@ -6,8 +6,8 @@ module Railsyard::Backend
   module Dsl
 
     class Sidebar < Base
-      def group(name, &block)
-        config.add_group Config::SidebarGroup.new(name, &block)
+      def group(*args, &block)
+        config.add_group Config::SidebarGroup.new(*args, &block)
       end
     end
 

@@ -6,20 +6,29 @@ describe Railsyard::Backend::Dsl::SidebarGroup do
   subject { Railsyard::Backend::Dsl::SidebarGroup.new(config) }
 
   describe ".instance" do
-    it "adds an instance Config::SidebarItem to config" do
-      item = stub
-      Railsyard::Backend::Config::SidebarItem.expects(:new).with(:instance, :foo).returns(item)
-      config.expects(:add_item).with(item)
+    it "adds an instance Config::SidebarModel to config" do
+      model = stub
+      Railsyard::Backend::Config::SidebarModel.expects(:new).with(:instance, :foo).returns(model)
+      config.expects(:add_item).with(model)
       subject.instance(:foo)
     end
   end
 
   describe ".resource" do
-    it "adds a resource Config::SidebarItem to config" do
-      item = stub
-      Railsyard::Backend::Config::SidebarItem.expects(:new).with(:resource, :foo).returns(item)
-      config.expects(:add_item).with(item)
+    it "adds a resource Config::SidebarModel to config" do
+      model = stub
+      Railsyard::Backend::Config::SidebarModel.expects(:new).with(:resource, :foo).returns(model)
+      config.expects(:add_item).with(model)
       subject.resource(:foo)
+    end
+  end
+
+  describe ".link" do
+    it "adds a link Config::SidebarLink to config" do
+      link = stub
+      Railsyard::Backend::Config::SidebarLink.expects(:new).with(:link, "Railsyard", "http://railsyardcms.org").returns(link)
+      config.expects(:add_item).with(link)
+      subject.link("Railsyard", "http://railsyardcms.org")
     end
   end
 
