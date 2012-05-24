@@ -1,0 +1,28 @@
+.dashboard-widgets
+  margin: 25px
+  +pie-clearfix
+
+  @each $size in 1, 2, 3, 6
+    .colspan#{$size}
+      width: (100% - (2% * (6 / $size - 1))) / 6 * $size
+      float: left
+      margin-left: 2%
+
+      &:first-child
+        margin-left: 0
+
+  .widget
+    border: 1px solid darken($light-gray, 10%)
+    +border-radius(4px)
+    +box-shadow(rgba(black, 0.1) 0 2px 1px)
+
+    &> h3
+      font-family: $decorative-font
+      font-weight: 300
+      font-size: 17px
+      padding: 8px 10px
+      border-bottom: 1px solid darken($light-gray, 10%)
+      background-color: $light-gray
+      +text-shadow(white 0 1px 0)
+
+    &> .content

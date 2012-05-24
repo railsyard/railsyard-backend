@@ -14,7 +14,18 @@ module Railsyard::Backend
       def initialize(&block)
         @backend_js_dependencies = []
         @backend_css_dependencies = []
+        @dashboard_widgets = {}
         Blockenspiel.invoke(block, ConfigDsl.new(self)) if block_given?
+      end
+
+      def add_dashboard_widget(name, options)
+        options.symbolize_keys!
+        options.assert_valid_keys(:cell, :action)
+        @dashboard_widgets[name.to_sym] = OpenStruct.new(options)
+      end
+
+      def dashboard_widget(name)
+        @dashboard_widgets[name.to_sym]
       end
 
     end

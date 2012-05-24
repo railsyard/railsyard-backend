@@ -17,6 +17,11 @@ module Railsyard::Backend
       def authentication_infos(partial_path)
         config.authentication_partial = partial_path
       end
+
+      def dashboard_widget(*args)
+        config.add_dashboard_widget(*args)
+      end
+
     end
 
   end

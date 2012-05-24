@@ -20,6 +20,14 @@ module Railsyard::Backend
         @plugins.values.map(&:authentication_partial).first
       end
 
+      def dashboard_widget(type)
+        @plugins.values.each do |plugin|
+          if widget = plugin.dashboard_widget(type)
+            return widget
+          end
+        end
+      end
+
     end
   end
 end

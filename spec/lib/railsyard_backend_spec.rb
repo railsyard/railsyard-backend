@@ -23,10 +23,21 @@ describe Railsyard::Backend do
     end
   end
 
+  describe ".define_dashboard" do
+    it "returns a Config::Dashboard" do
+      swap Railsyard::Backend, dashboard: nil do
+        Railsyard::Backend.define_dashboard
+        Railsyard::Backend.dashboard.should be_a Railsyard::Backend::Config::Dashboard
+      end
+    end
+  end
+
   describe ".define_sidebar" do
     it "returns a Config::Sidebar" do
-      Railsyard::Backend.define_sidebar
-      Railsyard::Backend.sidebar.should be_a Railsyard::Backend::Config::Sidebar
+      swap Railsyard::Backend, sidebar: nil do
+        Railsyard::Backend.define_sidebar
+        Railsyard::Backend.sidebar.should be_a Railsyard::Backend::Config::Sidebar
+      end
     end
   end
 
