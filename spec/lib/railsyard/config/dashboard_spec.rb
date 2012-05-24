@@ -2,14 +2,12 @@ require 'spec_helper'
 
 describe Railsyard::Backend::Config::Dashboard do
 
-  it "lets you add rows of any type, and get them back via .group and .rows" do
-    group1 = stub(name: :foo)
-    group2 = stub(name: :bar)
-    subject.add_row(group1)
-    subject.add_row(group2)
-    subject.rows.should have(2).widgets
-    subject.rows.should == [ group1, group2 ]
-    subject.group(:bar).should == group2
+  it "lets you add new columns, and get them back via .columns" do
+    first_column = stub
+    second_column = stub
+    subject.add_column(first_column)
+    subject.add_column(second_column)
+    subject.columns.should == [ first_column, second_column ]
   end
 
 end

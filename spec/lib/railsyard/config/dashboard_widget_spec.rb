@@ -8,8 +8,8 @@ describe Railsyard::Backend::Config::DashboardWidget do
     subject.type.should == :foo
   end
 
-  it "takes a model class" do
-    subject.model_class.should == :bar
+  it "takes a name" do
+    subject.name.should == :bar
   end
 
 end

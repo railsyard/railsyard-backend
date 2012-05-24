@@ -1,7 +1,6 @@
 require 'blockenspiel'
-require 'railsyard-backend/dsl/sidebar'
 require 'railsyard-backend/config/base'
-require 'railsyard-backend/config/dashboard_row'
+require 'railsyard-backend/dsl/dashboard'
 
 module Railsyard::Backend
   module Config
@@ -9,20 +8,16 @@ module Railsyard::Backend
     class Dashboard < Base
 
       def initialize(&block)
-        @rows = {}
+        @columns = []
         Blockenspiel.invoke(block, Dsl::Dashboard.new(self)) if block_given?
       end
 
-      def add_row(group_config)
-        @rows[group_config.name] = group_config
+      def add_column(column_config)
+        @columns << column_config
       end
 
-      def rows
-        @rows.values
-      end
-
-      def group(name)
-        @rows[name.to_sym]
+      def columns
+        @columns
       end
 
     end

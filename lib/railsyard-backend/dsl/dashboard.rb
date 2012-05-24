@@ -1,13 +1,13 @@
 require 'blockenspiel'
 require 'railsyard-backend/dsl/base'
-require 'railsyard-backend/config/sidebar'
+require 'railsyard-backend/config/dashboard_column'
 
 module Railsyard::Backend
   module Dsl
 
     class Dashboard < Base
-      def group(name, &block)
-        config.add_row Config::DashboardRow.new(name, &block)
+      def column(&block)
+        config.add_column Config::DashboardColumn.new(&block)
       end
     end
 
