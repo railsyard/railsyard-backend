@@ -2,8 +2,8 @@
 
 h2= t("railsyard.dashboard")
 
-- columns = Railsyard::Backend.dashboard.columns
-- if columns.any?
+- if Railsyard::Backend.dashboard and Railsyard::Backend.dashboard.columns.any?
+  - columns = Railsyard::Backend.dashboard.columns
   section.dashboard-widgets
     - span_size = 6 / columns.count
     - columns.each do |column|
