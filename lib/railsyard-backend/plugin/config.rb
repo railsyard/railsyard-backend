@@ -14,7 +14,16 @@ module Railsyard::Backend
       def initialize(&block)
         @backend_js_dependencies = []
         @backend_css_dependencies = []
+        @generator_editor_types = {}
         Blockenspiel.invoke(block, ConfigDsl.new(self)) if block_given?
+      end
+
+      def add_generator_editor_type(name, ar_type, editor_options)
+         @generator_editor_types[name.to_sym] = {name: name.to_sym, ar_type: ar_type.to_sym, editor_options: editor_options.to_s}
+      end
+
+      def generator_editor_type(name)
+        @generator_editor_types[name.to_sym]
       end
 
     end

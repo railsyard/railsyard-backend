@@ -8,7 +8,7 @@ Railsyard::Backend.define_editor_for <%= class_name %> do
 
   edit do
 <% @attributes.each do |a| -%>
-    field :<%= a.name %>
+    <%= a.attr_options[:editor] %>
 <% end -%>
   end
 
