@@ -1,8 +1,0 @@
-Description:
-    Explain the generator
-
-Example:
-    rails generate railsyard Thing
-
-    This will create:
-        what/will/it/create

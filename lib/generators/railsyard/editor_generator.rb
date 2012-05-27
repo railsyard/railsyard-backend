@@ -7,20 +7,21 @@ module Railsyard
       source_root File.expand_path('../templates', __FILE__)
 
       argument :model_attributes, type: :array, default: [], banner: "[field[:type][:index] field[:type][:index]]"
-      desc "Generates a model with given NAME and attributes and creates the Railsyard editor configuration"
+      desc "Generates a model with given NAME and attributes and creates the Railsyard editor file"
 
       # hook_for :orm, :as => "model"
       hook_for :test_framework, :as => :helper
 
       def initialize(*args, &block)
         super
+        @class_name = class_name
         @attributes = []
 
         model_attributes.collect! do |attribute|
           args = attribute.split(":")
           name = args[0]
           type = args[1]
-          index_type = args[2]
+          index = args[2]
 
           custom_type = Railsyard::Backend.plugin_manager.plugins.collect { |p| p.generator_editor_type(type) }.compact.first
           if custom_type
@@ -29,8 +30,8 @@ module Railsyard
           else
             attr_options = {editor: "field :#{name}"}
           end
-          @attributes << Rails::Generators::GeneratedAttribute.new(name, type, index_type, attr_options)
-          [name, type, index_type].join ':'
+          @attributes << Rails::Generators::GeneratedAttribute.new(name, type, index, attr_options)
+          [name, type, index].join ':'
         end
 
         invoke "active_record:model", [name, model_attributes], :migration => true
