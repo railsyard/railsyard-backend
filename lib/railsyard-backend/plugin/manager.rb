@@ -26,6 +26,7 @@ module Railsyard::Backend
             return widget
           end
         end
+        nil
       end
 
     end

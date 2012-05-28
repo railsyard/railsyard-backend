@@ -2,14 +2,15 @@
 
 h2= t("railsyard.dashboard")
 
-- if Railsyard::Backend.dashboard and Railsyard::Backend.dashboard.columns.any?
+- if Railsyard::Backend.dashboard
   - columns = Railsyard::Backend.dashboard.columns
-  section.dashboard-widgets
-    - span_size = 6 / columns.count
-    - columns.each do |column|
-      div class="colspan#{span_size}"
-        - column.widgets.each do |widget_config|
-          - widget = Railsyard::Backend.plugin_manager.dashboard_widget(widget_config.type)
-          .widget
-            h3= ry_t("dashboard.widgets.#{widget_config.name}", default: widget_config.name.to_s.titleize)
-            .content= render_cell widget.cell, widget.action, widget_config
+  - if columns.any?
+    section.dashboard-widgets
+      - span_size = 6 / columns.count
+      - columns.each do |column|
+        div class="colspan#{span_size}"
+          - column.widgets.each do |widget_config|
+            - widget = Railsyard::Backend.plugin_manager.dashboard_widget(widget_config.type)
+            .widget
+              h3= ry_t("widgets.#{widget_config.name}", default: widget_config.name.to_s.titleize)
+              .content= render_cell widget.cell, widget.action, widget_config

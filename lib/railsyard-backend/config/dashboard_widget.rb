@@ -24,6 +24,10 @@ module Railsyard::Backend
         @config[key.to_sym]
       end
 
+      def to_hash
+        @config.clone
+      end
+
     end
 
   end
