@@ -13,7 +13,6 @@
     left: $page-sidebar-width - 3px
     width: 4px
     background: transparent
-    +box-shadow(rgba(black, 0.2) -2px 0 4px inset)
 
   h1 a
     display: block
@@ -42,7 +41,7 @@
     h3
       margin-bottom: 6px
       font-size: 15px
-      color: darken($gray, 10%)
+      color: darken($gray, 15%)
       +text-shadow(white 0 1px 0)
       padding: 0 15px
 
@@ -66,14 +65,15 @@
           border-top: 1px solid white
           border-bottom: 1px solid rgba(black, 0.2)
           padding: 0 15px
+          background: rgba(black, 0.05)
           +text-shadow(white 0px 1px 0)
 
           &:hover
-            background-color: $light-gray
+            background-color: rgba($blue, 0.1)
 
         &> ul
           background: white
-          +box-shadow(rgba(black, 0.2) 0 1px 3px inset)
+          +box-shadow(rgba(black, 0.2) -2px 1px 3px inset)
           border-bottom: 1px solid rgba(black, 0.2)
           padding: 3px 0
 
@@ -84,6 +84,6 @@
             font-size: 12px
 
             &:hover
-              background-color: $light-blue
+              background-color: rgba($blue, 0.1)
               color: #444
               +text-shadow(white 0px 1px 0)
