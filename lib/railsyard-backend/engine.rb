@@ -17,7 +17,7 @@ module Railsyard::Backend
 
     initializer "Railsyard Backend precompile hook", :group => :assets do |app|
       app.config.assets.precompile += [
-        "html5.js",
+        "railsyard/html5.js",
         "railsyard/backend.css",
         "railsyard/backend.js"
       ]
