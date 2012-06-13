@@ -8,8 +8,8 @@ module Railsyard::Backend
     class EditField < Base
       attr_accessor :visible
       attr_accessor :input_options
-
-      attr_reader :name, :field_type
+      attr_accessor :name
+      attr_accessor :field_type
 
       def initialize(name, options = {}, &block)
         @name = name.to_sym
