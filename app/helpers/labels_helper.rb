@@ -20,6 +20,11 @@ module LabelsHelper
     ry_t("helpers.destroy", model: model_t(model))
   end
 
+  def destroy_confirm_label(model)
+    label = model.send(editor_config.label_method)
+    ry_t("helpers.destroy_confirm", label: label)
+  end
+
   def model_t(model, options = {})
     model = model.class if model.class.respond_to? :model_name
     model.model_name.human(options)

@@ -19,5 +19,5 @@ li class=dom_class(resource) id=dom_id(resource)
           span.value= field.format(value, ry_t("blank"))
 
     ul.actions
-      li= link_to destroy_label(resource), destroy_resource_path(resource), method: :delete, rel: "delete-resource", confirm: ry_t("delete_confirm") if edit_enabled_for_resource(resource)
+      li= link_to destroy_label(resource), destroy_resource_path(resource), method: :delete, rel: "delete-resource", confirm: destroy_confirm_label(resource) if edit_enabled_for_resource(resource)
 

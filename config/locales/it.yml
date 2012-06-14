@@ -4,14 +4,14 @@ it:
     dashboard: "Dashboard"
     powered: "Sito realizzato con Railsyard %{version}"
     blank: "Nessun valore"
-    delete_confirm: "Sei sicuro di voler eliminare questa risorsa?"
     helpers:
       list: "Elenco %{model}"
       edit: "Modifica %{model}"
       update: "Aggiorna %{model}"
       new: "Crea %{model}"
       create: "Crea %{model}"
-      destroy: "Elimina %{model}"
+      destroy: "Elimina"
+      destroy_confirm: "Sei sicuro di voler eliminare \"%{label}\"?"
     groups:
       defaults:
         main: "Campi Risorsa"

@@ -12,5 +12,5 @@
         = form.simple_fields_for field.name do |subform|
           = render "railsyard/resources/nested_form", form: subform, config: field
           .input.remove-fields
-            = subform.link_to_remove destroy_label(subform.object), field.name, class: "button", confirm: ry_t("delete_confirm")
+            = subform.link_to_remove destroy_label(subform.object), field.name, class: "button", confirm: destroy_confirm_label(subform.object)
         = form.link_to_add new_label(association.klass), field.name, class: "button"
