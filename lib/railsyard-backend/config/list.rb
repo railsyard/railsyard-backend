@@ -8,11 +8,25 @@ module Railsyard::Backend
   module Config
 
     class List < Base
-      attr_accessor :sorting_type, :sorting_attribute, :page_size, :search_scope
+      # simple or tree?
+      attr_accessor :view_mode
+
+      # integer position for simple mode, parent id for tree mode
+      attr_accessor :sorting_attribute
+
+      # as tree sortable
+      attr_accessor :tree_children_method, :tree_roots_scope
+
+      # pagination
+      attr_accessor :page_size
+
+      # search
+      attr_accessor :search_scope
 
       def initialize(&block)
         @fields = {}
-        @page_size = 25
+        self.page_size = 25
+        self.view_mode = :simple
         Blockenspiel.invoke(block, Dsl::List.new(self)) if block_given?
       end
 
@@ -28,12 +42,8 @@ module Railsyard::Backend
         @fields.values
       end
 
-      def simple_sorting?
-        sorting_type == :simple
-      end
-
-      def tree_sorting?
-        sorting_type == :tree
+      def view_mode=(mode)
+        @view_mode = ActiveSupport::StringInquirer.new(mode.to_s)
       end
 
     end

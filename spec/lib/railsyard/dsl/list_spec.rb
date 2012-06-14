@@ -15,17 +15,16 @@ describe Railsyard::Backend::Dsl::List do
   end
 
   describe ".as_tree" do
-    it "configs sorting_type to :tree" do
-      config.expects(:sorting_attribute=).with(:foo)
-      config.expects(:sorting_type=).with(:tree)
-      subject.as_tree(using: :foo)
+    it "configs view_mode to :tree" do
+      config.expects(:tree_children_method=).with(:foo)
+      config.expects(:view_mode=).with(:tree)
+      subject.as_tree(children_method: :foo)
     end
   end
 
   describe ".sortable" do
-    it "configs sorting_type to :simple" do
+    it "configs sorting_attribute" do
       config.expects(:sorting_attribute=).with(:foo)
-      config.expects(:sorting_type=).with(:simple)
       subject.sortable(using: :foo)
     end
   end

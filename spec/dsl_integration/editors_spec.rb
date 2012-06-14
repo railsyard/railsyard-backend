@@ -45,7 +45,7 @@ describe "Editors DSL" do
     config.label_method.should == :title
     config.image_method.should == :thumb
 
-    config.list.sorting_type.should == :simple
+    config.list.view_mode.should be_simple
     config.list.sorting_attribute.should == :position
     config.list.field(:title).formatter.call(:test).should == "TEST"
     config.list.field(:created_at).should be_present
