@@ -17,9 +17,7 @@ header.resource class="fields-#{fields.count}"
       li
         span.label = model_attr_t(resource_class, field.name)
 
-ul.collection
-  data-sortable=(editor_config.list.view_mode if params[:query].blank? && editor_config.list.sorting_attribute)
-  data-sort-path=reorder_resources_path(resource_class, page: params[:page])
+ul.collection data-sortable=(editor_config.list.view_mode if params[:query].blank? && editor_config.list.sorting_attribute) data-sort-path=reorder_resources_path(resource_class, page: params[:page])
 
   - collection.each do |resource|
     = render "resource", resource: resource
@@ -30,5 +28,6 @@ ul.collection
     - editor_config.accepted_exports.each do |format|
       = link_to ry_t("export.#{format}"), resources_path(resource_class, format: format, disable_pagination: true)
 
-= paginate collection
+- if collection.is_a? Kaminari::PaginatableArray
+  = paginate collection
 

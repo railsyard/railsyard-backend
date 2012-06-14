@@ -2,6 +2,7 @@ Railsyard::Backend.define_sidebar do
 
   group do
     resource Book
+    resource Page
   end
 
   group :settings do

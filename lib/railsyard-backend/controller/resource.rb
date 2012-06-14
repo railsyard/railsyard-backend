@@ -5,12 +5,16 @@ module Railsyard::Backend
       include ActiveSupport::Concern
 
       def collection
-        collection = resource_class.scoped
-        unless params[:disable_pagination].present?
-          collection = collection.page(params[:page]).per(editor_config.list.page_size)
-        end
-        if (search_scope = editor_config.list.search_scope).present? && params[:query].present?
-          collection = collection.send(search_scope, params[:query])
+        if editor_config.list.view_mode.simple?
+          collection = resource_class.scoped
+          unless params[:disable_pagination].present?
+            collection = collection.page(params[:page]).per(editor_config.list.page_size)
+          end
+          if (search_scope = editor_config.list.search_scope).present? && params[:query].present?
+            collection = collection.send(search_scope, params[:query])
+          end
+        else
+          collection = resource_class.send(editor_config.list.tree_roots_scope)
         end
         collection
       end

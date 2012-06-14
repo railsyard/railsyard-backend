@@ -2,7 +2,6 @@ en:
   railsyard:
     dashboard: "Dashboard"
     powered: "Site built using Railsyard %{version}"
-    delete_confirm: "Do you really want to delete this resource?"
     blank: "No value"
     search: "Search"
     helpers:
@@ -11,7 +10,8 @@ en:
       create: "Create new %{model}"
       edit: "Edit %{model}"
       update: "Update %{model}"
-      destroy: "Delete %{model}"
+      destroy: "Delete"
+      destroy_confirm: "Do you really want to delete \"%{label}\"?"
     groups:
       defaults:
         main: "Resource Fields"

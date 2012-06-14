@@ -1,3 +1,5 @@
+- level ||= 0
+
 li class=dom_class(resource) id=dom_id(resource)
 
   - fields = editor_config.list.fields
@@ -20,4 +22,9 @@ li class=dom_class(resource) id=dom_id(resource)
 
     ul.actions
       li= link_to destroy_label(resource), destroy_resource_path(resource), method: :delete, rel: "delete-resource", confirm: destroy_confirm_label(resource) if edit_enabled_for_resource(resource)
+
+  - if editor_config.list.view_mode.tree?
+    ul.children class="level-#{level+1}"
+      - resource.send(editor_config.list.tree_children_method).each do |child|
+        = render "resource", resource: child, level: level+1
 

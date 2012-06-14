@@ -27,6 +27,8 @@ module Railsyard::Backend
         @fields = {}
         self.page_size = 25
         self.view_mode = :simple
+        self.tree_children_method = :children
+        self.tree_roots_scope = :roots
         Blockenspiel.invoke(block, Dsl::List.new(self)) if block_given?
       end
 
