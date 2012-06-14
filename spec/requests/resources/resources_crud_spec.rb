@@ -93,9 +93,29 @@ feature "CRUD for resources" do
     page.should have_notice "Book was successfully destroyed."
   end
 
+  scenario "Search" do
+    # Given I have a "Foo" book model
+    first_book = create(:book, title: "Foo")
+    # And I have a "Bar" book model
+    second_book = create(:book, title: "Bar")
+
+    # When I visit the list action for Book models
+    visit "/backend/books"
+    # And I search for "foo"
+    fill_in "query", with: "foo"
+    # And I run the search
+    click_on "Search"
+
+    # Then I should be redirected on the same page
+    page.should have_content "List Books"
+
+    # And I should only see the "Foo" book
+    page.should have_selector dom_class_for(first_book), count: 1
+    page.should have_selector dom_id_for(first_book)
+  end
+
   pending "Nested resources"
   pending "Errors gets printed out"
-  pending "Search works"
   pending "Export works"
 
 end

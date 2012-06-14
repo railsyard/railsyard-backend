@@ -3,6 +3,7 @@ Railsyard::Backend.define_editor_for Book do
   label :title
 
   list do
+    searchable with_scope: :search
     paginates per: 5
     sortable using: :foo
     field :subtitle

@@ -4,6 +4,7 @@ en:
     powered: "Site built using Railsyard %{version}"
     delete_confirm: "Do you really want to delete this resource?"
     blank: "No value"
+    search: "Search"
     helpers:
       list: "List %{model}"
       new: "New %{model}"
