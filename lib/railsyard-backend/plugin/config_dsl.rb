@@ -14,6 +14,10 @@ module Railsyard::Backend
         config.backend_css_dependencies << asset_path
       end
 
+      def generator_editor_type(*args)
+        config.add_generator_editor_type *args
+      end
+
       def authentication_infos(partial_path)
         config.authentication_partial = partial_path
       end
