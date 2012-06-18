@@ -13,8 +13,8 @@ describe Railsyard::Generators::EditorGenerator do
     prepare_destination
     run_generator
     templates.assign(class_name: "Foo",
-                     attributes: [stub(name: "title", attr_options: {editor: "field :title"}),
-                                  stub(name: "body", attr_options: {editor: "field :body"}) ])
+                     fields: [{name: "title", editor_config: "field :title"},
+                              {name: "body", editor_config: "field :body"} ])
   end
 
   after(:all) { `rm -rf #{destination_root}` }

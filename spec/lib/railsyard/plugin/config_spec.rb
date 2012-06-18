@@ -10,9 +10,9 @@ describe Railsyard::Backend::Plugin::Config do
   end
 
   it "lets you retrieve generator_editor_types with name" do
-    type = {name: :my_awesome_plugin, ar_type: :text, editor_options: "as: :triple_rainbow"}
-    subject.add_generator_editor_type :my_awesome_plugin, :text, "as: :triple_rainbow"
-    subject.generator_editor_type("my_awesome_plugin").should == type
+    type = stub({name: :my_awesome_plugin, fields: [], editor_config: ""})
+    subject.add_generator_editor_type :my_awesome_plugin, [], ""
+    subject.generator_editor_type("my_awesome_plugin").name.should == :my_awesome_plugin
   end
 
 end

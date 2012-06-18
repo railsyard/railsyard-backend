@@ -1,5 +1,6 @@
 require 'blockenspiel'
 require 'railsyard-backend/plugin/config_dsl'
+require 'railsyard-backend/plugin/config_generator'
 
 module Railsyard::Backend
   module Plugin
@@ -18,8 +19,8 @@ module Railsyard::Backend
         Blockenspiel.invoke(block, ConfigDsl.new(self)) if block_given?
       end
 
-      def add_generator_editor_type(name, ar_type, editor_options)
-         @generator_editor_types[name.to_sym] = {name: name.to_sym, ar_type: ar_type.to_sym, editor_options: editor_options.to_s}
+      def add_generator_editor_type(name, fields, editor_config, model_config=nil)
+        @generator_editor_types[name.to_sym] = ConfigGenerator.new(name, fields, editor_config, model_config)
       end
 
       def generator_editor_type(name)
