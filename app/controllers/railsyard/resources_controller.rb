@@ -38,13 +38,27 @@ module Railsyard
     end
 
     def reorder
-      records = params[resource_name].map { |id| resource_class.find(id) }
-      min_position = ((params[:page].to_i || 1) - 1) * editor_config.list.page_size
-      records.each_with_index do |record, position|
-        record.update_attribute(
-          editor_config.list.sorting_attribute,
-          min_position + position
-        )
+      render json: { success: false } unless editor_config.list.sorting_enabled?
+      if editor_config.list.view_mode.simple?
+        records = params[resource_name].map { |id| resource_class.find(id) }
+        min_position = ((params[:page].to_i || 1) - 1) * editor_config.list.page_size
+        records.each_with_index do |record, position|
+          record.update_attribute(
+            editor_config.list.sorting_attribute,
+            min_position + position
+          )
+        end
+      elsif editor_config.list.view_mode.tree?
+        records = params[resource_name].inject({}) do |res, (resource, parent_resource)|
+          res[resource_class.find(resource)] = resource_class.find(parent_resource) rescue nil
+          res
+        end
+        records.each_with_index do |(record, parent_record), position|
+          record.update_attributes(
+            editor_config.list.sorting_attribute => position,
+            editor_config.list.tree_parent_method => parent_record
+          )
+        end
       end
       render json: { success: true }
     end

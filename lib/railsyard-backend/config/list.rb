@@ -12,10 +12,11 @@ module Railsyard::Backend
       attr_accessor :view_mode
 
       # integer position for simple mode, parent id for tree mode
-      attr_accessor :sorting_attribute
+      attr_accessor :sorting_enabled, :sorting_attribute
+      alias_method :sorting_enabled?, :sorting_enabled
 
       # as tree sortable
-      attr_accessor :tree_children_method, :tree_roots_scope
+      attr_accessor :tree_parent_method, :tree_children_method, :tree_roots_scope
 
       # pagination
       attr_accessor :page_size
@@ -28,7 +29,10 @@ module Railsyard::Backend
         self.page_size = 25
         self.view_mode = :simple
         self.tree_children_method = :children
+        self.tree_parent_method = :parent
         self.tree_roots_scope = :roots
+        self.sorting_enabled = false
+        self.sorting_attribute = :position
         Blockenspiel.invoke(block, Dsl::List.new(self)) if block_given?
       end
 

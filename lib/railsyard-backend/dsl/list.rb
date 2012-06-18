@@ -26,6 +26,7 @@ module Railsyard::Backend
       def sortable(options = {})
         options.symbolize_keys!
         options.assert_valid_keys(:using)
+        config.sorting_enabled = true
         if options[:using].present?
           config.sorting_attribute = options[:using].to_sym
         end

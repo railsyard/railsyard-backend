@@ -23,7 +23,12 @@ describe Railsyard::Backend::Dsl::List do
   end
 
   describe ".sortable" do
-    it "configs sorting_attribute" do
+    it "turns on sorting_enabled" do
+      config.expects(:sorting_enabled=).with(true)
+      subject.sortable()
+    end
+    it "accepts a :using option" do
+      config.expects(:sorting_enabled=).with(true)
       config.expects(:sorting_attribute=).with(:foo)
       subject.sortable(using: :foo)
     end

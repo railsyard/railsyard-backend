@@ -5,7 +5,7 @@ Railsyard::Backend.define_editor_for Book do
   list do
     searchable with_scope: :search
     paginates per: 5
-    sortable using: :foo
+    sortable
     field :subtitle
     field :description_excerpt
   end

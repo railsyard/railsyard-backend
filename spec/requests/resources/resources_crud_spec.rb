@@ -78,10 +78,10 @@ feature "CRUD for resources" do
     # When I visit the list action for Book models
     visit "/backend/books"
 
-    # Within the list item for the book itself
+    # Then within the list item for the book itself
     within dom_id_for(book) do
-      # The button label should be "Delete Book"
-      page.should have_content "Delete Book"
+      # The button label should be "Delete"
+      page.should have_content "Delete"
       # When I click on the Delete button
       find_rel("delete-resource").click
     end

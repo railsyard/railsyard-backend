@@ -4,6 +4,8 @@ class Book < ActiveRecord::Base
     where("title LIKE ?", "%#{key}%")
   }
 
+  default_scope order(:position)
+
   def description_excerpt
     if description.present?
       description[0..50] + "..."

@@ -4,7 +4,7 @@ Railsyard::Backend.define_editor_for Page do
 
   list do
     as_tree
-    sortable using: :parent_id
+    sortable
     field :subtitle
     field :created_at
   end

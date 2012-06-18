@@ -2,14 +2,13 @@ ul.collection
 
   .placeholder
     background: rgba($light-gray, 0.8)
-    height: 45px
 
-  .ui-sortable-helper
+  .ui-sortable-helper article
     background: white
     border-bottom-width: 0
     +box-shadow(rgba(black, 0.1) 0 3px 3px)
 
-  li .resource
+  li.resource article
     padding: 11px 20px
     border-bottom: 1px solid $light-gray
 
@@ -70,7 +69,7 @@ header.resource, footer.resource
     color: #666
     font-size: 16px
 
-ul.collection li .resource, header.resource
+ul.collection article, header.resource
   +pie-clearfix
   +text-shadow(white 0 1px 0)
 
@@ -131,11 +130,16 @@ ul.collection li .resource, header.resource
     &> ul.fields
       display: none
 
-ul.collection li > ul.children
-  margin-left: 2%
+ul.collection[data-sortable="tree"]
+  li.resource, li.placeholder
+    margin-top: 5px
 
-  &> li .resource
-    border-left: 1px solid $light-gray
+    &> ul
+      margin-left: 2%
+
+    article
+      border-top: 1px solid $light-gray
+      border-left: 1px solid $light-gray
 
 nav.pagination
   background: white
