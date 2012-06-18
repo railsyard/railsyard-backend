@@ -20,9 +20,13 @@ module LabelsHelper
     ry_t("helpers.destroy", model: model_t(model))
   end
 
-  def destroy_confirm_label(model)
-    label = model.send(editor_config.label_method)
-    ry_t("helpers.destroy_confirm", label: label)
+  def destroy_confirm_label(model = nil)
+    if model.present?
+      label = model.send(editor_config.label_method)
+      ry_t("helpers.destroy_confirm_model", label: label)
+    else
+      ry_t("helpers.destroy_confirm")
+    end
   end
 
   def model_t(model, options = {})

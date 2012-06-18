@@ -28,6 +28,6 @@ ul.collection data-sortable=(editor_config.list.view_mode if params[:query].blan
     - editor_config.accepted_exports.each do |format|
       = link_to ry_t("export.#{format}"), resources_path(resource_class, format: format, disable_pagination: true)
 
-- if collection.is_a? Kaminari::PaginatableArray
+- if collection.respond_to? :total_count
   = paginate collection
 

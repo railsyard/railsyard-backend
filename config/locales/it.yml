@@ -11,7 +11,8 @@ it:
       new: "Crea %{model}"
       create: "Crea %{model}"
       destroy: "Elimina"
-      destroy_confirm: "Sei sicuro di voler eliminare \"%{label}\"?"
+      destroy_confirm_model: "Sei sicuro di voler eliminare \"%{label}\"?"
+      destroy_confirm: "Sei sicuro di voler eliminare la risorsa?"
     groups:
       defaults:
         main: "Campi Risorsa"

@@ -11,7 +11,8 @@ en:
       edit: "Edit %{model}"
       update: "Update %{model}"
       destroy: "Delete"
-      destroy_confirm: "Do you really want to delete \"%{label}\"?"
+      destroy_confirm_model: "Do you really want to delete \"%{label}\"?"
+      destroy_confirm: "Do you really want to delete this resource?"
     groups:
       defaults:
         main: "Resource Fields"
