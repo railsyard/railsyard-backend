@@ -16,6 +16,10 @@ module Railsyard::Backend
         @plugins.values
       end
 
+      def generator_editor_type(name)
+        plugins.collect { |p| p.generator_editor_type(name) }.compact.first
+      end
+
       def authentication_partial
         @plugins.values.map(&:authentication_partial).first
       end
