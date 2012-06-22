@@ -1,35 +1,63 @@
 require 'spec_helper'
 require 'erb'
 
+shared_examples_for "any editor generator" do |args, templates, template_variables|
+
+  before :all do
+    prepare_destination
+    run_generator(args)
+  end
+
+  after(:all) { prepare_destination }
+
+  it "should create a editor file" do
+    templates.assign(template_variables)
+    editor_content = templates.render(template: 'editor_for_resource.rb')
+    assert_file "app/backend/editor_for_narwhal.rb", editor_content
+  end
+
+  it "should create a rails model" do
+    assert_file "app/models/narwhal.rb"
+  end
+
+  it "should create a rails migration" do
+    assert_migration "db/migrate/create_narwhals.rb"
+  end
+
+end
+
+
 describe Railsyard::Generators::EditorGenerator do
   include GeneratorSpec::TestCase
   root_path = File.expand_path("../../../../", __FILE__)
   destination File.join(root_path, "tmp/spec")
   templates = ActionView::Base.new File.join(root_path, "lib/generators/railsyard/templates")
 
-  arguments %w(Narwhal title:string:uniq body:text)
+  context "with model name, but no attributes" do
+    args = %w(Narwhal)
 
-  before :all do
-    prepare_destination
-    run_generator
-    templates.assign(class_name: "Narwhal",
+    it_behaves_like "any editor generator",
+                     args, templates, {class_name: "Narwhal", fields: []}
+  end
+
+  context "with model name and attributes without type" do
+    args = %w(Narwhal title)
+
+    it_behaves_like "any editor generator",
+                    args,
+                    templates,
+                    {class_name: "Narwhal", fields: [{name: "title", editor_config: "field :title"}] }
+  end
+
+  context "with all possible arguments" do
+    args = %w(Narwhal title:string:uniq body:text)
+
+    it_behaves_like "any editor generator",
+                    args,
+                    templates,
+                    {class_name: "Narwhal",
                      fields: [{name: "title", editor_config: "field :title"},
-                              {name: "body", editor_config: "field :body"} ])
-  end
-
-  after(:all) { `rm -rf #{destination_root}` }
-
-  it "creates a editor file" do
-    editor_content = templates.render(template: 'editor_for_resource.rb.erb')
-    assert_file "app/backend/editor_for_narwhal.rb", editor_content
-  end
-
-  it "creates a rails model" do
-    assert_file "app/models/narwhal.rb"
-  end
-
-  it "creates a rails migration" do
-    assert_migration "db/migrate/create_narwhals.rb"
+                              {name: "body", editor_config: "field :body"} ]}
   end
 
 end
