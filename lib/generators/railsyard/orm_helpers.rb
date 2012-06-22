@@ -14,6 +14,10 @@ module Railsyard
         File.exists?(File.join(destination_root, editor_path))
       end
 
+      def sidebar_exists?
+        File.exists?(File.join(destination_root, sidebar_path))
+      end
+
       def migration_path
         @migration_path ||= File.join("db", "migrate")
       end
@@ -24,6 +28,10 @@ module Railsyard
 
       def editor_path
         @editor_path ||= File.join("app", "backend", "editor_for_#{file_path}.rb")
+      end
+
+      def sidebar_path
+        @sidebar_path ||= File.join("app", "backend", "sidebar_config.rb")
       end
     end
   end

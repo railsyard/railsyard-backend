@@ -57,6 +57,16 @@ module Railsyard
         template "editor_for_resource.rb.erb", "app/backend/editor_for_#{singular_name}.rb" unless editor_exists?
       end
 
+      def create_or_update_sidebar
+        if sidebar_exists?
+          inject_into_file sidebar_path, :after => /Railsyard::Backend.define_sidebar.*do.*group.*do\n/m do
+            "    resource #{@class_name} # resource or instance\n"
+          end
+        else
+          template "sidebar_config.rb.erb", "app/backend/sidebar_config.rb"
+        end
+      end
+
     end
 
   end
