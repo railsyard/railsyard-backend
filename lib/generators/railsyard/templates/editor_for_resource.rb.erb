@@ -1,8 +1,7 @@
 Railsyard::Backend.define_editor_for <%= @class_name %> do
 
   list do
-    label :<%= @fields.first[:name] %>
-
+    <%= "label :#{@fields.first[:name]}\n" unless @fields.empty? %>
     field :created_at
   end
 

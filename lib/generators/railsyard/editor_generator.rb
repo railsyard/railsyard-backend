@@ -23,7 +23,7 @@ module Railsyard
         model_attributes.each do |attribute|
           args = attribute.split(":")
           name = args[0]
-          type = args[1]
+          type = args[1] || "string"
           index = args[2]
 
           custom_type = Railsyard::Backend.plugin_manager.generator_editor_type(type)
