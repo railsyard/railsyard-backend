@@ -6,14 +6,19 @@ shared_examples_for "any editor generator" do |args, templates, template_variabl
   before :all do
     prepare_destination
     run_generator(args)
+    templates.assign(template_variables)
   end
 
   after(:all) { prepare_destination }
 
   it "should create a editor file" do
-    templates.assign(template_variables)
     editor_content = templates.render(template: 'editor_for_resource.rb')
     assert_file "app/backend/editor_for_narwhal.rb", editor_content
+  end
+
+  it "should create a sidebar configuration file if not present" do
+    sidebar_content = templates.render(template: 'sidebar_config.rb')
+    assert_file "app/backend/sidebar_config.rb", sidebar_content
   end
 
   it "should create a rails model" do
