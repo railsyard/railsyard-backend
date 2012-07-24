@@ -15,6 +15,10 @@ Railsyard::Backend.define_editor_for Book do
       field :title
       field :subtitle
     end
+    nested :author do
+      field :first_name
+      field :last_name
+    end
     field :description
   end
 

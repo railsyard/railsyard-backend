@@ -69,8 +69,7 @@ jQuery(function($) {
       $(link).closest("form").trigger({ type: 'nested:fieldRemoved', field: field });
 
       if (assocType == 'has_one') {
-        $(link).closest("a.add_nested_fields")
-        field.siblings(".add_nested_fields[data-association='"+assoc+"']").show();
+        $(".add_nested_fields[data-association='"+assoc+"']").show();
       }
 
       return false;
@@ -80,4 +79,13 @@ jQuery(function($) {
   window.nestedFormEvents = new NestedFormEvents();
   $('form a.add_nested_fields').live('click', nestedFormEvents.addFields);
   $('form a.remove_nested_fields').live('click', nestedFormEvents.removeFields);
+  $('form a.add_nested_fields').each(function() {
+    var assoc = $(this).attr('data-association');
+    var resources = $("#"+assoc+"_attributes__destroy[value='false']").filter(function(){
+        return $(this).closest('.nested_form_blueprint').length == 0;
+    });
+    if (resources.length) {
+      $(this).hide();
+    }
+  });
 });

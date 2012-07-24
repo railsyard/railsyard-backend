@@ -57,7 +57,7 @@ module Railsyard::Backend
     def link_to_remove(*args, &block)
       options = args.extract_options!.symbolize_keys
       association = args.pop
-      complete_association_name = "#{object_name}_#{association}".gsub(/[\[\]]+/, '_')
+      complete_association_name = "#{parent_builder.object_name}_#{association}".gsub(/[\[\]]+/, '_')
       options[:class] = [options[:class], "remove_nested_fields"].compact.join(" ")
       options["data-association"] = complete_association_name
       options["data-association-type"] = parent_builder.object.class.reflect_on_association(association).macro

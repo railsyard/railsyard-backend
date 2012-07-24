@@ -6,6 +6,9 @@ class Book < ActiveRecord::Base
 
   default_scope order(:position)
 
+  has_one :author
+  accepts_nested_attributes_for :author
+
   def description_excerpt
     if description.present?
       description[0..50] + "..."
