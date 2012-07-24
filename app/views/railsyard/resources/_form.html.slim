@@ -1,7 +1,7 @@
 ruby:
   url = resource.new_record? ? create_resource_path(resource) : update_resource_path(resource)
 
-= backend_form_for resource, url: url, html: { class: "horizontal", multipart: true } do |form|
+= backend_form_for resource, url: url, html: { class: "horizontal", multipart: true, novalidate: true } do |form|
 
   = form.error_messages
 
