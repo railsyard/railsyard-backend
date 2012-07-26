@@ -11,6 +11,7 @@ module Railsyard
     helper_method :editor_config
     helper_method :instance
     helper_method :instance_class
+    helper_method :authenticator
 
     layout "railsyard/admin"
 

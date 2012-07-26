@@ -13,6 +13,7 @@ module Railsyard
     helper_method :collection_name
     helper_method :resource
     helper_method :resource_class
+    helper_method :authenticator
 
     layout "railsyard/admin"
 
