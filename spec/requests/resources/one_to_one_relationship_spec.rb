@@ -15,7 +15,7 @@ feature "One to one relationships" do
     find(".add_nested_fields[data-association='book_author']").click
 
     # Then there should not be a button to add another Author
-    page.should_not have_selector ".add_nested_fields[data-association='book_author']"
+    page.find(".add_nested_fields[data-association='book_author']").should_not be_visible
   end
 
   scenario "One to one relationships, editing", js: true do
@@ -27,7 +27,7 @@ feature "One to one relationships" do
     visit "/backend/books/#{book.to_param}/edit"
 
     # Then there should not be a button to add another Author
-    page.should_not have_selector ".add_nested_fields[data-association='book_author']"
+    page.find(".add_nested_fields[data-association='book_author']").should_not be_visible
 
     # When I remove the existing author
     find(".remove_nested_fields[data-association='book_author']").click

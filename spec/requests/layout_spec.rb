@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "Backend layout interaction" do
 
-  scenario "Toggle groups display in edit form", js: true do
+  scenario "Toggle groups display in resource edit form", js: true do
     # Given I have a book
     book = create(:book)
 
@@ -19,7 +19,7 @@ feature "Backend layout interaction" do
     lambda { find('label', text: 'Description') }.should raise_error(Capybara::ElementNotFound)
   end
 
-  scenario "Sidebar resource buttons visible for selected resource", js: true do
+  scenario "Sidebar resource buttons visible only for selected resource", js: true do
     # Given a I have a book resource
 
     # When I visit the book index page
