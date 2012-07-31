@@ -35,7 +35,7 @@ Spork.prefork do
     Capybara.default_driver = :rack_test
     Capybara.javascript_driver = ENV['TRAVIS'] ? :webkit : :selenium_chrome
     Capybara.default_selector = :css
-    Capybara.ignore_hidden_elements = true
+    Capybara.ignore_hidden_elements = false
   end
 end
 

@@ -19,4 +19,17 @@ feature "Backend layout interaction" do
     lambda { find('label', text: 'Description') }.should raise_error(Capybara::ElementNotFound)
   end
 
+  scenario "Sidebar resource buttons visible for selected resource", js: true do
+    # Given a I have a book resource
+
+    # When I visit the book index page
+    visit "/backend/books"
+
+    # Then I should see the book sidebar buttons
+    page.find(:css, 'ul#books').should be_visible
+
+    # And no other resource button
+    page.find(:css, 'ul#pages').should_not be_visible
+  end
+
 end
