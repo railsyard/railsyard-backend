@@ -90,7 +90,7 @@ ul.collection article, header.resource
         font-style: italic
 
   &> ul.actions
-    float: right
+    float: left
     text-align: right
     width: 10%
 
@@ -135,7 +135,14 @@ ul.collection[data-sortable="tree"]
     margin-top: 5px
 
     &> ul
-      margin-left: 2%
+      position: relative
+      left: 15px
+
+    @for $depth-level from 1 to 10
+      &> ul.level-#{$depth-level}
+        @for $fields-count from 1 through 10
+          &> li > article.fields-#{$fields-count} > .label
+            @include calc(width, #{90% / ($fields-count + 1) + 3%} - #{15px * $depth-level})
 
     article
       border-top: 1px solid $light-gray
