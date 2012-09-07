@@ -37,10 +37,27 @@ jQuery(function($) {
         }
       }
 
+      var replace = function(el, regexp, new_id) {
+        var $el = $(el);
+
+        if ($el.attr("name"))
+          $el.attr("name", $el.attr("name").replace(regexp, new_id));
+        if ($el.attr("id"))
+          $el.attr("id", $el.attr("id").replace(regexp, new_id));
+        if ($el.attr("for"))
+          $el.attr("for", $el.attr("for").replace(regexp, new_id));
+
+        $el.children().each(function() {
+          replace(this, regexp, new_id);
+        });
+
+        return $($('<div></div>').html($el.clone())).html();
+      };
+
       // Make a unique ID for the new child
       var regexp  = new RegExp('new_' + assoc, 'g');
       var new_id  = new Date().getTime();
-      content     = content.replace(regexp, "new_" + new_id);
+      content     = replace(content, regexp, "new_" + new_id);
 
       var field = this.insertFields(content, assoc, link);
 
