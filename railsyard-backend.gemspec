@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.add_dependency "blockenspiel"
   s.add_dependency "responders"
   s.add_dependency "formalize-rails"
-  s.add_dependency "humane-rails"
+  s.add_dependency "humane-rails", '2.8.0.0.1.2' # FIXME: update to v3
   s.add_dependency "kaminari"
   s.add_dependency "cells"
 
