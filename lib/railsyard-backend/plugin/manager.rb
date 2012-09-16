@@ -21,7 +21,7 @@ module Railsyard::Backend
       end
 
       def authentication_partial
-        @plugins.values.map(&:authentication_partial).first
+        @plugins.values.map(&:authentication_partial).compact.first
       end
 
       def dashboard_widget(type)

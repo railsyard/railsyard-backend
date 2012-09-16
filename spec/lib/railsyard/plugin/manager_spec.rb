@@ -11,4 +11,17 @@ describe Railsyard::Backend::Plugin::Manager do
     end
   end
 
+  describe ".authentication_partial" do
+    it "should return first valid authentication partial among all plugins" do
+      plugins = {foo: stub(:authentication_partial),
+                 bar: stub(authentication_partial: "partial/lmao")}
+      subject.instance_variable_set(:@plugins, plugins)
+      subject.authentication_partial.should == "partial/lmao"
+    end
+  end
+
+  pending ".plugins"
+  pending ".generator_editor_type"
+  pending ".dashboard_widget"
+
 end
