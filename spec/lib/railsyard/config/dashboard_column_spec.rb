@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Railsyard::Backend::Config::DashboardColumn do
+describe Railsyard::Config::DashboardColumn do
 
   it "lets you add widgets of any type, and get them back via .widgets" do
     first_widget = stub

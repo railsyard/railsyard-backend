@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe Railsyard::Backend::Plugin::ConfigDsl do
+describe Railsyard::Plugin::ConfigDsl do
 
   let(:config) do
     stub(backend_js_dependencies: [],
          backend_css_dependencies: [])
   end
-  subject { Railsyard::Backend::Plugin::ConfigDsl.new(config) }
+  subject { Railsyard::Plugin::ConfigDsl.new(config) }
 
   describe '.backend_javascript_dependency' do
     it "adds a path to asset js paths" do

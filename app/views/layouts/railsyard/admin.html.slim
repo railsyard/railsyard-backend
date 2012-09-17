@@ -5,16 +5,16 @@ html
     #page-container
 
       #top-bar
-        - if Railsyard::Backend.plugin_manager.authentication_partial.present?
-          = render Railsyard::Backend.plugin_manager.authentication_partial
+        - if Railsyard.plugin_manager.authentication_partial.present?
+          = render Railsyard.plugin_manager.authentication_partial
         = yield :top_bar
 
       #page-sidebar
         h1.logo = link_to "Railsyard", backend_index_path
 
         nav
-          - unless Railsyard::Backend.sidebar.nil?
-            - Railsyard::Backend.sidebar.groups.each do |group|
+          - unless Railsyard.sidebar.nil?
+            - Railsyard.sidebar.groups.each do |group|
               - if group.name
                 h3 = ry_t "sidebar.groups.#{group.name}", default: group.name.to_s.titleize
               ul.group
@@ -39,7 +39,7 @@ html
                   - else
                     li = item.inspect
 
-        footer= link_to t("railsyard.powered", version: Railsyard::Backend::VERSION), "http://railsyardcms.org"
+        footer= link_to t("railsyard.powered", version: Railsyard::VERSION), "http://railsyardcms.org"
 
       #page-content
         div

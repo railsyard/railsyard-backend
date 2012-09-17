@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Railsyard::Backend::Config::ListField do
+describe Railsyard::Config::ListField do
 
-  subject { Railsyard::Backend::Config::ListField.new(:foo) }
+  subject { Railsyard::Config::ListField.new(:foo) }
 
   it "takes a name" do
     subject.name.should == :foo

@@ -1,12 +1,12 @@
 require 'responders'
-require 'railsyard-backend/controller'
+require 'railsyard/controller'
 
 module Railsyard
   class ResourcesController < Railsyard::ApplicationController
 
-    include Railsyard::Backend::Controller::Resource
-    include Railsyard::Backend::Controller::Authentication
-    include Railsyard::Backend::Controller::Authorization
+    include Railsyard::Controller::Resource
+    include Railsyard::Controller::Authentication
+    include Railsyard::Controller::Authorization
 
     helper_method :collection
     helper_method :editor_config
@@ -29,7 +29,7 @@ module Railsyard
       if params[:format].blank? || params[:format] == "html"
         respond_with collection
       else
-        exporter = Railsyard::Backend.export_manager.exporter_for(params[:format])
+        exporter = Railsyard.export_manager.exporter_for(params[:format])
         if exporter.present? && editor_config.exportable_as?(params[:format])
           send_data exporter.data_for(collection.all), exporter.send_data_options
         else

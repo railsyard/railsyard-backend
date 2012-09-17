@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Railsyard::Backend::Export::Config do
+describe Railsyard::Export::Config do
   pending
 end

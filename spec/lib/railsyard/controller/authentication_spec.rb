@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe Railsyard::Backend::Controller::Authentication do
+describe Railsyard::Controller::Authentication do
 
   before do
     class Foobar
-      include Railsyard::Backend::Controller::Authentication
+      include Railsyard::Controller::Authentication
     end
   end
 
@@ -12,10 +12,10 @@ describe Railsyard::Backend::Controller::Authentication do
 
   describe ".authenticator" do
 
-    it "defaults to Railsyard::Backend::Authentication::None" do
-      Railsyard::Backend.stubs(:authentication_adapter).returns(nil)
-      Railsyard::Backend.stubs(:authenticator_initializer).returns(nil)
-      subject.authenticator.should be_a Railsyard::Backend::Authentication::None
+    it "defaults to Railsyard::Authentication::None" do
+      Railsyard.stubs(:authentication_adapter).returns(nil)
+      Railsyard.stubs(:authenticator_initializer).returns(nil)
+      subject.authenticator.should be_a Railsyard::Authentication::None
     end
 
     it "uses the configured adapter + given block otherwise" do
@@ -23,8 +23,8 @@ describe Railsyard::Backend::Controller::Authentication do
       custom_adapter_class = stub
       custom_adapter_class.expects(:new).with(subject).returns(custom_adapter)
 
-      Railsyard::Backend.stubs(:authentication_adapter).returns(custom_adapter_class)
-      Railsyard::Backend.stubs(:authenticator_initializer).returns(Proc.new { |param|
+      Railsyard.stubs(:authentication_adapter).returns(custom_adapter_class)
+      Railsyard.stubs(:authenticator_initializer).returns(Proc.new { |param|
         param.should == custom_adapter
       })
 

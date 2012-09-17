@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe Railsyard::Backend::Dsl::EditField do
+describe Railsyard::Dsl::EditField do
 
   let(:config) { stub }
-  subject { Railsyard::Backend::Dsl::EditField.new(config) }
+  subject { Railsyard::Dsl::EditField.new(config) }
 
   delegated_options = {
     visible: :visible=,

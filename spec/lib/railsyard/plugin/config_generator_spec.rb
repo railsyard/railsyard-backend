@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe Railsyard::Backend::Plugin::ConfigGenerator do
+describe Railsyard::Plugin::ConfigGenerator do
 
   subject do
     test = "This is just a %{test}, %{ok}?"
-    Railsyard::Backend::Plugin::ConfigGenerator.new(:my_awesome_plugin, {test => :string}, test, test)
+    Railsyard::Plugin::ConfigGenerator.new(:my_awesome_plugin, {test => :string}, test, test)
   end
 
   it "lets you retrieve fields interpolating variables" do

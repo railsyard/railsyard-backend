@@ -1,12 +1,12 @@
 $:.push File.expand_path("../lib", __FILE__)
 
 # Maintain your gem's version:
-require 'railsyard-backend/version'
+require 'railsyard/version'
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "railsyard-backend"
-  s.version     = Railsyard::Backend::VERSION
+  s.name        = "railsyard"
+  s.version     = Railsyard::VERSION
   s.authors     = ["Stefano Verna", "Francesco Disperati", "Silvio Relli"]
   s.email       = ["s.verna@cantierecreativo.net", "f.disperati@cantierecreativo.net"]
   s.homepage    = "http://railsyardcms.org"

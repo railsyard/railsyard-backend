@@ -1,8 +1,8 @@
-require 'railsyard-backend/controller'
+require 'railsyard/controller'
 
 class Railsyard::StaticController < ApplicationController
 
-  include Railsyard::Backend::Controller::Authentication
+  include Railsyard::Controller::Authentication
   before_filter :authenticate!
   helper_method :authenticator
 

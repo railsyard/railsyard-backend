@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe Railsyard::Backend::Controller::Resource do
+describe Railsyard::Controller::Resource do
 
   before do
     class Foobar
-      include Railsyard::Backend::Controller::Resource
+      include Railsyard::Controller::Resource
     end
   end
 

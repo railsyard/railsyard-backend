@@ -1,14 +1,14 @@
 require 'spec_helper'
 
-describe Railsyard::Backend::Dsl::List do
+describe Railsyard::Dsl::List do
 
   let(:config) { stub }
-  subject { Railsyard::Backend::Dsl::List.new(config) }
+  subject { Railsyard::Dsl::List.new(config) }
 
   describe ".field" do
     it "initialize a Config::ListField and adds it to config" do
       field_config = stub
-      Railsyard::Backend::Config::ListField.stubs(:new).with(:foo).returns(field_config)
+      Railsyard::Config::ListField.stubs(:new).with(:foo).returns(field_config)
       config.expects(:add_field).with(field_config)
       subject.field(:foo)
     end

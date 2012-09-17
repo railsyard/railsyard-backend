@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Railsyard::Backend::Config::SidebarLink do
+describe Railsyard::Config::SidebarLink do
 
-  subject { Railsyard::Backend::Config::SidebarLink.new(:link,
+  subject { Railsyard::Config::SidebarLink.new(:link,
                                                         "Railsyard",
                                                         "http://railsyardcms.org",
                                                         {target: "_blank"}) }

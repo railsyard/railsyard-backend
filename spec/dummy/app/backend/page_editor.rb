@@ -1,4 +1,4 @@
-Railsyard::Backend.define_editor_for Page do
+Railsyard.define_editor_for Page do
 
   label :title
 

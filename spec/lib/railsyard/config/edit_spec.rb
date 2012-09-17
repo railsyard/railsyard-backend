@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Railsyard::Backend::Config::Edit do
+describe Railsyard::Config::Edit do
 
   it "lets you add groups, and get them back via .group and .groups" do
     group = stub(:name => :foo)
@@ -15,7 +15,7 @@ describe Railsyard::Backend::Config::Edit do
       field = stub
       group = stub
       group.expects(:add_field).with(field)
-      Railsyard::Backend::Config::EditGroup.expects(:new).with(:main).returns(group)
+      Railsyard::Config::EditGroup.expects(:new).with(:main).returns(group)
       subject.add_field_to_default_group(field)
       subject.group(:main).should == group
     end

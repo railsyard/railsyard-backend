@@ -6,8 +6,8 @@ Rails.application.routes.draw do
     controller "railsyard/resources" do
 
       scope ":tableized_class_name", constraints: lambda { |r|
-        require 'railsyard-backend/routes/editor_for_resource_constraint'
-        Railsyard::Backend::Routes::EditorForResourceConstraint.new(r, :list).valid?
+        require 'railsyard/routes/editor_for_resource_constraint'
+        Railsyard::Routes::EditorForResourceConstraint.new(r, :list).valid?
       } do
 
         match "/", to: :index, via: :get, as: :resources
@@ -15,8 +15,8 @@ Rails.application.routes.draw do
       end
 
       scope ":tableized_class_name", constraints: lambda { |r|
-        require 'railsyard-backend/routes/editor_for_resource_constraint'
-        Railsyard::Backend::Routes::EditorForResourceConstraint.new(r, :edit).valid?
+        require 'railsyard/routes/editor_for_resource_constraint'
+        Railsyard::Routes::EditorForResourceConstraint.new(r, :edit).valid?
       } do
 
         match "/"        , to: :create  , via: :post   , as: :create_resource
@@ -34,8 +34,8 @@ Rails.application.routes.draw do
 
     controller "railsyard/instance" do
       scope ":underscore_class_name", constraints: lambda { |r|
-        require 'railsyard-backend/routes/editor_for_instance_constraint'
-        Railsyard::Backend::Routes::EditorForInstanceConstraint.new(r).valid?
+        require 'railsyard/routes/editor_for_instance_constraint'
+        Railsyard::Routes::EditorForInstanceConstraint.new(r).valid?
       } do
 
         match "/"        , to: :update  , as: :update_instance , via: :put

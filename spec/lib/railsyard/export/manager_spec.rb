@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Railsyard::Backend::Export::Manager do
+describe Railsyard::Export::Manager do
   pending
 end

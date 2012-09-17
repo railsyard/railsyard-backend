@@ -6,4 +6,4 @@
 #= require jquery.formalize
 #= require_tree ./backend
 
-#= require railsyard/backend/customizations
+#= require railsyard/customizations

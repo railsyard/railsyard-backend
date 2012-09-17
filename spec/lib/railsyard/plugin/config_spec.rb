@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Railsyard::Backend::Plugin::Config do
+describe Railsyard::Plugin::Config do
 
   %w(name backend_js_dependencies backend_css_dependencies).each do |attr|
     it "lets get and set :#{attr} attribute" do

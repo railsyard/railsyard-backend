@@ -6,7 +6,7 @@ describe "Editors DSL" do
 
     class Foobar; end
 
-    backend = Railsyard::Backend::EditorManager.new
+    backend = Railsyard::EditorManager.new
     backend.define_editor_for Foobar do
 
       label :title

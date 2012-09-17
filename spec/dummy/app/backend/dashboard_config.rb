@@ -1,4 +1,4 @@
-Railsyard::Backend.define_dashboard do
+Railsyard.define_dashboard do
 
   column do
     widget :hello_world do

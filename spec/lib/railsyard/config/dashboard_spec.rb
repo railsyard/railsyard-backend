@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Railsyard::Backend::Config::Dashboard do
+describe Railsyard::Config::Dashboard do
 
   it "lets you add new columns, and get them back via .columns" do
     first_column = stub

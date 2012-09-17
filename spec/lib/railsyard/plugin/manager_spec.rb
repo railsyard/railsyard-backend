@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe Railsyard::Backend::Plugin::Manager do
+describe Railsyard::Plugin::Manager do
 
   describe ".add_plugin" do
     it "adds a Plugin::Config by name" do
       config = stub
-      Railsyard::Backend::Plugin::Config.expects(:new).returns(config)
+      Railsyard::Plugin::Config.expects(:new).returns(config)
       subject.add_plugin(:foo)
       subject.plugins.first.should == config
     end

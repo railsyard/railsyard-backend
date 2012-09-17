@@ -1,4 +1,4 @@
-Railsyard::Backend.define_sidebar do
+Railsyard.define_sidebar do
 
   group do
     resource Book

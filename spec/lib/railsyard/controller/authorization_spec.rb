@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe Railsyard::Backend::Controller::Authorization do
+describe Railsyard::Controller::Authorization do
 
   before do
     class Foobar
-      include Railsyard::Backend::Controller::Authorization
+      include Railsyard::Controller::Authorization
     end
   end
 
@@ -12,10 +12,10 @@ describe Railsyard::Backend::Controller::Authorization do
 
   describe ".authorizer" do
 
-    it "defaults to Railsyard::Backend::Authorization::None" do
-      Railsyard::Backend.stubs(:authorization_adapter).returns(nil)
-      Railsyard::Backend.stubs(:authorizer_initializer).returns(nil)
-      subject.authorizer.should be_a Railsyard::Backend::Authorization::None
+    it "defaults to Railsyard::Authorization::None" do
+      Railsyard.stubs(:authorization_adapter).returns(nil)
+      Railsyard.stubs(:authorizer_initializer).returns(nil)
+      subject.authorizer.should be_a Railsyard::Authorization::None
     end
 
     it "uses the configured adapter + given block otherwise" do
@@ -23,8 +23,8 @@ describe Railsyard::Backend::Controller::Authorization do
       custom_adapter_class = stub
       custom_adapter_class.expects(:new).with(subject).returns(custom_adapter)
 
-      Railsyard::Backend.stubs(:authorization_adapter).returns(custom_adapter_class)
-      Railsyard::Backend.stubs(:authorizer_initializer).returns(Proc.new { |param|
+      Railsyard.stubs(:authorization_adapter).returns(custom_adapter_class)
+      Railsyard.stubs(:authorizer_initializer).returns(Proc.new { |param|
         param.should == custom_adapter
       })
 

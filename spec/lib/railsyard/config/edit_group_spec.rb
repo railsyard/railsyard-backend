@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Railsyard::Backend::Config::EditGroup do
+describe Railsyard::Config::EditGroup do
 
-  subject { Railsyard::Backend::Config::EditGroup.new(:foo) }
+  subject { Railsyard::Config::EditGroup.new(:foo) }
 
   it "takes a name" do
     subject.name.should == :foo

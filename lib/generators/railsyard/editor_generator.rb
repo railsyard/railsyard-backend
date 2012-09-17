@@ -26,7 +26,7 @@ module Railsyard
           type = args[1] || "string"
           index = args[2]
 
-          custom_type = Railsyard::Backend.plugin_manager.generator_editor_type(type)
+          custom_type = Railsyard.plugin_manager.generator_editor_type(type)
           if custom_type
             custom_type.fields(name: name).each do |field|
               @attributes << [field[:name], field[:type], index].join(':')
@@ -59,7 +59,7 @@ module Railsyard
 
       def create_or_update_sidebar
         if sidebar_exists?
-          inject_into_file sidebar_path, :after => /Railsyard::Backend.define_sidebar.*do.*group.*do\n/m do
+          inject_into_file sidebar_path, :after => /Railsyard.define_sidebar.*do.*group.*do\n/m do
             "    resource #{@class_name} # resource or instance\n"
           end
         else

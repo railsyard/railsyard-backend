@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Railsyard::Backend::EditorManager do
+describe Railsyard::EditorManager do
 
   describe ".define_editor_for" do
     let(:model) { stub }
@@ -8,7 +8,7 @@ describe Railsyard::Backend::EditorManager do
 
     it "setup a Config::Model for the specified model" do
       model = stub(name: :class_name)
-      Railsyard::Backend::Config::Model.expects(:new).with(model)
+      Railsyard::Config::Model.expects(:new).with(model)
       subject.define_editor_for(model)
     end
 
@@ -18,7 +18,7 @@ describe Railsyard::Backend::EditorManager do
     it "returns an editor by model" do
       model = stub(name: :class_name)
       model_config = stub
-      Railsyard::Backend::Config::Model.stubs(:new).returns(model_config)
+      Railsyard::Config::Model.stubs(:new).returns(model_config)
       subject.define_editor_for(model)
       subject.editor_for(model).should == model_config
     end

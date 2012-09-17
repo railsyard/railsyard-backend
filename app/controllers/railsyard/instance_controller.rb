@@ -1,12 +1,12 @@
 require 'responders'
-require 'railsyard-backend/controller'
+require 'railsyard/controller'
 
 module Railsyard
   class InstanceController < Railsyard::ApplicationController
 
-    include Railsyard::Backend::Controller::Instance
-    include Railsyard::Backend::Controller::Authentication
-    include Railsyard::Backend::Controller::Authorization
+    include Railsyard::Controller::Instance
+    include Railsyard::Controller::Authentication
+    include Railsyard::Controller::Authorization
 
     helper_method :editor_config
     helper_method :instance

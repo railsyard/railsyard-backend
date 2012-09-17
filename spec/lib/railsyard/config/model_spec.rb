@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe Railsyard::Backend::Config::Model do
+describe Railsyard::Config::Model do
 
   let(:model) { stub }
-  subject { Railsyard::Backend::Config::Model.new(model) }
+  subject { Railsyard::Config::Model.new(model) }
 
   it "takes a model class" do
     subject.model_class.should == model

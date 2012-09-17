@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Railsyard::Backend::Config::Sidebar do
+describe Railsyard::Config::Sidebar do
 
   it "lets you add groups of any type, and get them back via .groups" do
     group1 = stub(name: :foo)

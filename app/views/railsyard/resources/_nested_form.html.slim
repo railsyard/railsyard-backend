@@ -2,13 +2,13 @@
   = form.group group.name do
     - group.fields.each do |field|
       - association = form.object.class.reflect_on_association(field.name)
-      - if field.is_a? Railsyard::Backend::Config::EditField
+      - if field.is_a? Railsyard::Config::EditField
         - if field.is_visible_for_resource?(form.object, self)
           - if association.present?
             = form.association field.name, field.simple_form_options(form.object, self)
           - else
             = form.input field.name, field.simple_form_options(form.object, self)
-      - elsif field.is_a? Railsyard::Backend::Config::NestedEdit
+      - elsif field.is_a? Railsyard::Config::NestedEdit
         = form.simple_fields_for field.name do |subform|
           = render "railsyard/resources/nested_form", form: subform, config: field
           .input.remove-fields

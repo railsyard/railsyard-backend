@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Railsyard::Backend::Config::List do
+describe Railsyard::Config::List do
 
   it "lets you add fields, and get them back via .field and .fields" do
     field = stub(:name => :foo)

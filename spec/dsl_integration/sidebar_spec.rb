@@ -7,7 +7,7 @@ describe "Sidebar DSL" do
     class Foo; end
     class Bar; end
 
-    config = Railsyard::Backend::Config::Sidebar.new do
+    config = Railsyard::Config::Sidebar.new do
       group do
         resource Foo
         instance Bar

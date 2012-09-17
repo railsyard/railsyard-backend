@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Railsyard::Backend::Config::SidebarGroup do
+describe Railsyard::Config::SidebarGroup do
 
-  subject { Railsyard::Backend::Config::SidebarGroup.new(:lol) }
+  subject { Railsyard::Config::SidebarGroup.new(:lol) }
 
   it "takes a name" do
     subject.name.should == :lol

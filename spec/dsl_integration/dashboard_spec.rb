@@ -4,7 +4,7 @@ describe "Dashboard DSL" do
 
   it "saves the whole DSL configuration tree properly" do
 
-    config = Railsyard::Backend::Config::Dashboard.new do
+    config = Railsyard::Config::Dashboard.new do
       column do
         widget :analytics_line_chart, :last_week_visits do
           username "mickey"

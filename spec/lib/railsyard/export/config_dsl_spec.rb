@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Railsyard::Backend::Export::ConfigDsl do
+describe Railsyard::Export::ConfigDsl do
   pending
 end
