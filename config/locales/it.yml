@@ -15,7 +15,7 @@ it:
       destroy_confirm: "Sei sicuro di voler eliminare la risorsa?"
     groups:
       defaults:
-        main: "Campi Risorsa"
+        main: "Campi %{model}"
     export_as: "Esporta come:"
 
   flash:
