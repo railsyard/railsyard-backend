@@ -3,8 +3,8 @@ module Railsyard::Backend
   class FormBuilder < SimpleForm::FormBuilder
 
     def group(group_name, options = {}, &block)
-      group_legend = translate(group_name, "railsyard.groups", )
-      group_hint = translate(group_name, "railsyard.group_hints", )
+      group_legend = translate(group_name, "railsyard.groups", group_name.to_s.titleize)
+      group_hint = translate(group_name, "railsyard.group_hints")
 
       group_legend = template.link_to group_legend, "##{group_name}", data: { behaviour: "dom-toggle", translation_keys: translate_lookups(group_name) }
       [
@@ -18,12 +18,12 @@ module Railsyard::Backend
       ].join.html_safe
     end
 
-    def translate(name, scope)
-      i18n_lookup_keys = translate_lookups(name)
+    def translate(name, scope, default = '')
+      i18n_lookup_keys = translate_lookups(name, default)
       I18n.t(i18n_lookup_keys.shift, :scope => scope.to_sym, :default => i18n_lookup_keys, model: object.class.model_name.human)
     end
 
-    def translate_lookups(name)
+    def translate_lookups(name, default = '')
       model_names = lookup_model_names.dup
       lookups     = []
 
@@ -37,7 +37,7 @@ module Railsyard::Backend
 
       lookups << :"defaults.#{lookup_action}.#{name}"
       lookups << :"defaults.#{name}"
-      lookups << ''
+      lookups << default
 
       lookups
     end

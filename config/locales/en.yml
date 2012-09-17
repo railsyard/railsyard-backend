@@ -15,5 +15,5 @@ en:
       destroy_confirm: "Do you really want to delete this resource?"
     groups:
       defaults:
-        main: "Resource Fields"
+        main: "%{model} Fields"
     export_as: "Export as:"

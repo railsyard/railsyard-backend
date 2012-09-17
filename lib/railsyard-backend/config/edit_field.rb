@@ -22,13 +22,27 @@ module Railsyard::Backend
       end
 
       def is_visible_for_resource?(resource, view)
-        value_or_call(visible, resource, view)
+        value_or_call(self.visible, resource, view)
       end
 
       def simple_form_options(resource, view)
         options = {}
         options[:as] = field_type if field_type.present?
         options.merge value_or_call(input_options, resource, view)
+      end
+
+      def render(form, context)
+        object = form.object
+
+        association = object.class.reflect_on_association(name)
+
+        if is_visible_for_resource?(object, context)
+          if association.present?
+            form.association name, simple_form_options(object, context)
+          else
+            form.input name, simple_form_options(object, context)
+          end
+        end
       end
 
     end

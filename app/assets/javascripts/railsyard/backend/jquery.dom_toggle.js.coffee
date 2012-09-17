@@ -25,6 +25,4 @@ $.fn.domToggle = ->
 
       false
 
-
-
 $ -> $("[data-behaviour=dom-toggle]").domToggle()

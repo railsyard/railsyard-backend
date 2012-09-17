@@ -29,6 +29,14 @@ module Railsyard::Backend
       def fields
         @fields.values
       end
+
+      def render(form, context)
+        form.group name do
+          fields.map do |field|
+            field.render(form, context)
+          end.join.html_safe
+        end
+      end
     end
 
   end
