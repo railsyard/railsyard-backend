@@ -35,6 +35,12 @@ module Railsyard::Backend
         @groups.values
       end
 
+      def render(form, context)
+        groups.map do |group|
+          group.render(form, context)
+        end.join.html_safe
+      end
+
     end
 
   end

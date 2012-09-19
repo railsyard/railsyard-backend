@@ -3,5 +3,5 @@
 span.value class=("with-image" if editor_config.image_method.present?)
   - if image_url.present?
     .image= image_tag image_url, class: "image"
-  = label
+  = label.blank? ? I18n.t("railsyard.blank") : label
 

@@ -18,7 +18,9 @@ module Railsyard::Backend
         association = object.class.reflect_on_association(name)
 
         nested_form = form.simple_fields_for(name) do |subform|
-          nested_form = context.render("railsyard/resources/nested_form", form: subform, config: self)
+          nested_form = groups.map do |group|
+              group.render(subform, context)
+          end.join.html_safe
           remove_field = context.content_tag(:div, class: "input remove-fields") do
             subform.link_to_remove(context.destroy_label(subform.object), name, class: "button", data: { confirm: context.destroy_confirm_label })
           end
