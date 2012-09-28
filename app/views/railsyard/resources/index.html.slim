@@ -31,3 +31,6 @@ ul.collection data-sortable=(editor_config.list.view_mode if params[:query].blan
 - if collection.respond_to? :total_count
   = paginate collection
 
+- editor_config.list.footer_partials.each do |partial|
+  = render partial
+

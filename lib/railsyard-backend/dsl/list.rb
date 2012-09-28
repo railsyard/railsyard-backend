@@ -48,6 +48,10 @@ module Railsyard::Backend
         end
       end
 
+      def footer_partial(partial)
+        config.add_footer_partial(partial)
+      end
+
     end
 
   end

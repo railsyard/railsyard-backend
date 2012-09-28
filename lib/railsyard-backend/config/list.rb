@@ -24,8 +24,11 @@ module Railsyard::Backend
       # search
       attr_accessor :search_scope
 
+      attr_reader :footer_partials
+
       def initialize(&block)
         @fields = {}
+        @footer_partials = []
         self.page_size = 25
         self.view_mode = :simple
         self.tree_children_method = :children
@@ -52,7 +55,10 @@ module Railsyard::Backend
         @view_mode = ActiveSupport::StringInquirer.new(mode.to_s)
       end
 
-    end
+      def add_footer_partial(partial)
+        @footer_partials << partial
+      end
 
+    end
   end
 end
