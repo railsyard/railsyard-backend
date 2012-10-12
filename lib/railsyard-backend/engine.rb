@@ -15,7 +15,7 @@ require 'cells'
 module Railsyard::Backend
   class Engine < ::Rails::Engine
 
-    initializer "Railsyard Backend precompile hook" do |app|
+    initializer "Railsyard Backend precompile hook", :group => :all do |app|
       app.config.assets.precompile += [
         "railsyard/html5.js",
         "railsyard/backend.css",
