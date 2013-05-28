@@ -1,3 +1,4 @@
+require 'railsyard-backend/version'
 require 'railsyard-backend/engine'
 
 module Railsyard
